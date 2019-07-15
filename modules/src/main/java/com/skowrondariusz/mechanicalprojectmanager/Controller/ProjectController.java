@@ -56,7 +56,7 @@ public class ProjectController {
     }
 
     @GetMapping(value = "projects/id/{id}")
-    public Optional<Project> findById(@PathVariable("id") Long id) {
+    public Optional<Project> findById(@PathVariable long id) {
 
         Optional<Project> projects = projectRepository.findById(id);
         return projects;

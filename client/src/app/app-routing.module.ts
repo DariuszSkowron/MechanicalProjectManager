@@ -6,7 +6,7 @@ import {NgModule} from "@angular/core";
 
 const routes: Routes = [
   {path: '', redirectTo: 'project', pathMatch: 'full'},
-  {path: 'customer', component: ProjectListComponent},
+  {path: 'project', component: ProjectListComponent},
   {path: 'add', component: CreateProjectComponent},
   {path: 'findbyid', component: SearchProjectComponent},
 ];
