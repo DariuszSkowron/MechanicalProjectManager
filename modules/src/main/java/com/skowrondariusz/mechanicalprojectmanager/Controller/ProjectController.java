@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +34,7 @@ public class ProjectController {
     @PostMapping(value = "/projects/create")
     public Project postProject(@RequestBody Project project) {
 
-        Project projectAdded = projectRepository.save(new Project(project.getName()));
+        Project projectAdded = projectRepository.save(new Project(project.getName(), project.getProjectNumber()));
         return projectAdded;
     }
 
@@ -55,11 +56,23 @@ public class ProjectController {
         return new ResponseEntity<>("All projects have been deleted! You are in troubles!!", HttpStatus.OK);
     }
 
-    @GetMapping(value = "projects/id/{id}")
-    public Optional<Project> findById(@PathVariable long id) {
+//    @GetMapping(value = "projects/id/{id}")
+//    public Optional<Project> findById(@PathVariable long id) {
+//
+//        Optional<Project> projects = projectRepository.findById(id);
+//        return projects;
+//    }
 
-        Optional<Project> projects = projectRepository.findById(id);
-        return projects;
+
+    @GetMapping(value = "projects/number/{number}")
+    public Project findByProjectNumber(@PathVariable int projectNumber) {
+
+        var project = this.projectRepository.findByProjectNumber(projectNumber);
+
+        if (project == null){
+            throw new EntityNotFoundException();
+        }
+        return project;
     }
 
     @PutMapping("/projects/{id}")

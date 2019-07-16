@@ -8,7 +8,7 @@ const routes: Routes = [
   {path: '', redirectTo: 'project', pathMatch: 'full'},
   {path: 'project', component: ProjectListComponent},
   {path: 'add', component: CreateProjectComponent},
-  {path: 'findbyid', component: SearchProjectComponent},
+  {path: 'findbynumber', component: SearchProjectComponent},
 ];
 
 @NgModule({
