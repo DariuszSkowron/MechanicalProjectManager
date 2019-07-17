@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface ProjectRepository extends JpaRepository<Project, Long> {
 
-    Project findByProjectNumber(int number);
+    List<Project> findByProjectNumber(int number);
 }
 

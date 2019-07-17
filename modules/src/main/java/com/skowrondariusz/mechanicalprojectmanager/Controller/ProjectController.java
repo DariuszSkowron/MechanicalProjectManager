@@ -64,8 +64,8 @@ public class ProjectController {
 //    }
 
 
-    @GetMapping(value = "projects/number/{number}")
-    public Project findByProjectNumber(@PathVariable int projectNumber) {
+    @GetMapping(value = "projects/number/{projectNumber}")
+    public List<Project> findByProjectNumber(@PathVariable int projectNumber) {
 
         var project = this.projectRepository.findByProjectNumber(projectNumber);
 

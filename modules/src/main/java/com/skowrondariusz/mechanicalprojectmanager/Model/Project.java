@@ -13,7 +13,8 @@ public class Project {
     @Column(name = "name")
     private String name;
 
-//    @Column(name = "project_number", unique = true)
+    @Column(name = "project_number", unique = true)
+//    @Column (name ="number")
     private int projectNumber;
 
     public Project() {
