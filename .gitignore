@@ -1,8 +1,8 @@
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
-!modules/src/main/**
-!modules/src/test/**
+!modules/application/src/main/**
+!modules/application/src/test/**
 
 ### STS ###
 .apt_generated
@@ -29,3 +29,5 @@ build/
 
 ### VS Code ###
 .vscode/
+!/client/dist/
+/client/out-tsc/

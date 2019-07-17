@@ -1,0 +1,22 @@
+<h2>Create Project</h2>
+<div [hidden]="submitted" style="width: 300px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" required [(ngModel)]="project.name" name="name">
+    </div>
+
+    <div class="form-group">
+      <label for="projectNumber">Project number</label>
+      <input type="text" class="form-control" id="projectNumber" required [(ngModel)]="project.projectNumber" name="ProjectNumber">
+    </div>
+
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
+
+<div [hidden]="!submitted">
+  <h3>You submitted successfully!</h3>
+  <button class="btn btn-success" (click)="newProject()">Add</button>
+</div>

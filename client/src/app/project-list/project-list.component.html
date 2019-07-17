@@ -1,0 +1,9 @@
+<h1>Projects</h1>
+
+<div *ngFor="let project of projects | async" style="width: 300px;">
+  <project-details [project]='project'></project-details>
+</div>
+
+<div>
+  <button type="button" class="button btn-danger" (click)='deleteProjects()'>Delete All</button>
+</div>
