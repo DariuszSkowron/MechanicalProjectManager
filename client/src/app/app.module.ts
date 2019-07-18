@@ -12,6 +12,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {CoreModule} from "./core/core.module";
+import {AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {CoreModule} from "./core/core.module";
     CreateProjectComponent,
     ProjectDetailsComponent,
     ProjectListComponent,
-    SearchProjectComponent
+    SearchProjectComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
