@@ -1,5 +1,7 @@
 package com.skowrondariusz.mechanicalprojectmanager.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,12 +19,22 @@ public class Project {
 //    @Column (name ="number")
     private int projectNumber;
 
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "project", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private MechanicalProcessing mechanicalProcessing;
+
     public Project() {
     }
 
     public Project(String name, int projectNumber) {
         this.name = name;
         this.projectNumber = projectNumber;
+    }
+
+    public Project(String name, int projectNumber, MechanicalProcessing mechanicalProcessing) {
+        this.name = name;
+        this.projectNumber = projectNumber;
+        this.mechanicalProcessing = mechanicalProcessing;
     }
 
     public long getId() {
@@ -48,6 +60,16 @@ public class Project {
     public void setName(String name) {
         this.name = name;
     }
+
+    public MechanicalProcessing getMechanicalProcessing() {
+        return mechanicalProcessing;
+    }
+
+//    public boolean needProcessing(){
+//        return
+//    }
+
+
 
     @Override
     public String toString() {
