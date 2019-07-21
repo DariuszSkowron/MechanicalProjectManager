@@ -1,8 +1,7 @@
-package com.skowrondariusz.mechanicalprojectmanager.Repository;
+package com.skowrondariusz.mechanicalprojectmanager.repository;
 
-import com.skowrondariusz.mechanicalprojectmanager.Model.Project;
+import com.skowrondariusz.mechanicalprojectmanager.model.Project;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
