@@ -19,9 +19,9 @@ public class Project {
 //    @Column (name ="number")
     private int projectNumber;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "project", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private MechanicalProcessing mechanicalProcessing;
+//    @OneToOne(fetch = FetchType.LAZY, mappedBy = "mechanical_processing", cascade = CascadeType.ALL)
+//    @JsonIgnore
+//    private MechanicalProcessing mechanicalProcessing;
 
     public Project() {
     }
@@ -31,11 +31,11 @@ public class Project {
         this.projectNumber = projectNumber;
     }
 
-    public Project(String name, int projectNumber, MechanicalProcessing mechanicalProcessing) {
-        this.name = name;
-        this.projectNumber = projectNumber;
-        this.mechanicalProcessing = mechanicalProcessing;
-    }
+//    public Project(String name, int projectNumber, MechanicalProcessing mechanicalProcessing) {
+//        this.name = name;
+//        this.projectNumber = projectNumber;
+//        this.mechanicalProcessing = mechanicalProcessing;
+//    }
 
     public long getId() {
         return id;
@@ -61,9 +61,9 @@ public class Project {
         this.name = name;
     }
 
-    public MechanicalProcessing getMechanicalProcessing() {
-        return mechanicalProcessing;
-    }
+//    public MechanicalProcessing getMechanicalProcessing() {
+//        return mechanicalProcessing;
+//    }
 
 //    public boolean needProcessing(){
 //        return

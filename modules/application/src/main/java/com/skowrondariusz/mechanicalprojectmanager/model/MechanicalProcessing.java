@@ -3,9 +3,11 @@ package com.skowrondariusz.mechanicalprojectmanager.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+//@Table(name ="kupa")
 public class MechanicalProcessing {
 
     @Id
@@ -13,9 +15,13 @@ public class MechanicalProcessing {
     private long id;
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "mechanicalprocessing", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "mechanicalProcessing", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<ProcessedPart> processedParts;
+
+    protected MechanicalProcessing() {
+        this.processedParts = new ArrayList<>();
+    }
 
     public MechanicalProcessing(String name) {
         this.name = name;
@@ -42,4 +48,7 @@ public class MechanicalProcessing {
         return processedParts;
     }
 
+    public void setProcessedParts(List<ProcessedPart> processedParts) {
+        this.processedParts = processedParts;
+    }
 }

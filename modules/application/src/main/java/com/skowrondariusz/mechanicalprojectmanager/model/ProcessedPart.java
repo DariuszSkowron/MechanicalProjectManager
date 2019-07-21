@@ -1,11 +1,9 @@
 package com.skowrondariusz.mechanicalprojectmanager.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table
 public class ProcessedPart {
 
     @Id
@@ -15,6 +13,10 @@ public class ProcessedPart {
     private String material;
     private String mainProcess;
     private String manufacturer;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private MechanicalProcessing mechanicalProcessing;
 
     public ProcessedPart(String drawingNumber, String material, String mainProcess) {
         this.drawingNumber = drawingNumber;
@@ -29,6 +31,21 @@ public class ProcessedPart {
         this.manufacturer = manufacturer;
     }
 
+    public ProcessedPart(String drawingNumber, String material, String mainProcess, String manufacturer, MechanicalProcessing mechanicalProcessing) {
+        this.drawingNumber = drawingNumber;
+        this.material = material;
+        this.mainProcess = mainProcess;
+        this.manufacturer = manufacturer;
+        this.mechanicalProcessing = mechanicalProcessing;
+    }
+
+    public MechanicalProcessing getMechanicalProcessing() {
+        return mechanicalProcessing;
+    }
+
+    public void setMechanicalProcessing(MechanicalProcessing mechanicalProcessing) {
+        this.mechanicalProcessing = mechanicalProcessing;
+    }
 
     public long getId() {
         return id;
