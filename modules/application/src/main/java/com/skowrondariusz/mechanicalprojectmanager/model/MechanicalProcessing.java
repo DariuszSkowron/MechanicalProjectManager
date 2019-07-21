@@ -1,4 +1,4 @@
-package com.skowrondariusz.mechanicalprojectmanager.Model;
+package com.skowrondariusz.mechanicalprojectmanager.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

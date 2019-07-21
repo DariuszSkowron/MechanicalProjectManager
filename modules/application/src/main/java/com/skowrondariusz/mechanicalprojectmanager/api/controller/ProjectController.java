@@ -1,8 +1,8 @@
-package com.skowrondariusz.mechanicalprojectmanager.Controller;
+package com.skowrondariusz.mechanicalprojectmanager.api.controller;
 
 
-import com.skowrondariusz.mechanicalprojectmanager.Model.Project;
-import com.skowrondariusz.mechanicalprojectmanager.Repository.ProjectRepository;
+import com.skowrondariusz.mechanicalprojectmanager.model.Project;
+import com.skowrondariusz.mechanicalprojectmanager.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
