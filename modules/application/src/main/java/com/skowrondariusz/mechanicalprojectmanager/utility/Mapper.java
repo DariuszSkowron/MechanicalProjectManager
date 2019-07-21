@@ -1,7 +1,9 @@
 package com.skowrondariusz.mechanicalprojectmanager.utility;
 
 
+import com.skowrondariusz.mechanicalprojectmanager.api.viewmodel.MechanicalProcessingViewModel;
 import com.skowrondariusz.mechanicalprojectmanager.api.viewmodel.ProcessedPartViewModel;
+import com.skowrondariusz.mechanicalprojectmanager.model.MechanicalProcessing;
 import com.skowrondariusz.mechanicalprojectmanager.model.ProcessedPart;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -20,6 +22,12 @@ public class Mapper {
     public ProcessedPart convertToProcessedPartEntity(ProcessedPartViewModel viewModel){
 
         var entity = modelMapper.map(viewModel, ProcessedPart.class);
+        return entity;
+    }
+
+    public MechanicalProcessing convertToMechanicalProcessingEntity(MechanicalProcessingViewModel viewModel){
+
+        var entity = modelMapper.map(viewModel, MechanicalProcessing.class);
         return entity;
     }
 
