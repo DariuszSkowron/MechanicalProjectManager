@@ -26,7 +26,7 @@ import { ProcessedPartComponent } from './processed-part/processed-part.componen
     SearchProjectComponent,
     AboutComponent,
     MechanicalProcessingComponent,
-    ProcessedPartComponent
+    ProcessedPartComponent,
   ],
   imports: [
     BrowserModule,
