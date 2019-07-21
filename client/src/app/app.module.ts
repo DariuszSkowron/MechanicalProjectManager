@@ -13,6 +13,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {CoreModule} from "./core/core.module";
 import {AboutComponent } from './about/about.component';
+import { MechanicalProcessingComponent } from './mechanical-processing/mechanical-processing.component';
+import { ProcessedPartComponent } from './processed-part/processed-part.component';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import {AboutComponent } from './about/about.component';
     ProjectDetailsComponent,
     ProjectListComponent,
     SearchProjectComponent,
-    AboutComponent
+    AboutComponent,
+    MechanicalProcessingComponent,
+    ProcessedPartComponent
   ],
   imports: [
     BrowserModule,
