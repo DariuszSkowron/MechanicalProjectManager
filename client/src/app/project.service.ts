@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {MechanicalProcessing} from "./model/mechanical-processing";
-import {ProcessedPart} from "./model/processed-part";
+import {MechanicalProcessing} from "./processed-parts/model/mechanical-processing";
+import {ProcessedPart} from "./processed-parts/model/processed-part";
 
 @Injectable({
   providedIn: 'root'
