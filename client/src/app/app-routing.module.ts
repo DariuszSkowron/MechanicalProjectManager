@@ -4,8 +4,6 @@ import {CreateProjectComponent} from "./create-project/create-project.component"
 import {SearchProjectComponent} from "./search-project/search-project.component";
 import {NgModule} from "@angular/core";
 import {AboutComponent} from "./about/about.component";
-import {MechanicalProcessingComponent} from "./mechanical-processing/mechanical-processing.component";
-import {ProcessedPartComponent} from "./processed-parts/processed-part/processed-part.component";
 import {ProcessedPartsComponent} from "./processed-parts/processed-parts.component";
 
 const routes: Routes = [
