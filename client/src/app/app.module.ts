@@ -13,8 +13,9 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {CoreModule} from "./core/core.module";
 import {AboutComponent } from './about/about.component';
-import { MechanicalProcessingComponent } from './mechanical-processing/mechanical-processing.component';
-import { ProcessedPartComponent } from './processed-part/processed-part.component';
+import { ProcessedPartComponent } from './processed-parts/processed-part/processed-part.component';
+import { NoteTextFilterPipe } from './shared/note-text-filter.pipe';
+import {ProcessedPartsComponent} from "./processed-parts/processed-parts.component";
 
 
 @NgModule({
@@ -25,8 +26,9 @@ import { ProcessedPartComponent } from './processed-part/processed-part.componen
     ProjectListComponent,
     SearchProjectComponent,
     AboutComponent,
-    MechanicalProcessingComponent,
     ProcessedPartComponent,
+    NoteTextFilterPipe,
+    ProcessedPartsComponent,
   ],
   imports: [
     BrowserModule,

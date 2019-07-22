@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {MechanicalProcessing} from "./model/mechanical-processing";
-import {ProcessedPart} from "./model/processed-part";
+import {MechanicalProcessing} from "./processed-parts/model/mechanical-processing";
+import {ProcessedPart} from "./processed-parts/model/processed-part";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ import {ProcessedPart} from "./model/processed-part";
 
 export class ProjectService {
 
-  private BASE_URL = 'http://localhost:8080/api/projects';
+  private BASE_URL = 'http://localhost:8080/api';
   private PROJECTS_URL = `${this.BASE_URL}/projects`;
   private ALL_MECHANICAL_PROCESSING_URL = `${this.BASE_URL}/mechanicalProcessing/all`;
   private SAVE_UPDATE_MECHANICAL_PROCESSING = `${this.BASE_URL}/mechanicalProcessing`;
