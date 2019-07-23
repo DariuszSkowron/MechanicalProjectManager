@@ -114,7 +114,7 @@ export class ProcessedPartsComponent implements OnInit {
         this.processedParts.push(newProcessedPart);
       },
       err => {
-        alert("An error has occured while saving part");
+        alert("An error has occurred while saving part");
       }
     );
   }
@@ -126,7 +126,7 @@ export class ProcessedPartsComponent implements OnInit {
         this.processedParts = res;
       },
       err => {
-        alert("An error has occurred while fetching the parts")
+        alert("An error has occurred while fetching the parts4444")
       }
     );
   }

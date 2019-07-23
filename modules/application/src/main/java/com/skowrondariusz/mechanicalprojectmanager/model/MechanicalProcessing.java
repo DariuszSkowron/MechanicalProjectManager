@@ -18,11 +18,14 @@ public class MechanicalProcessing {
     @JsonIgnore
     private List<ProcessedPart> processedParts;
 
+
+
     protected MechanicalProcessing() {
         this.processedParts = new ArrayList<>();
     }
 
     public MechanicalProcessing(String name) {
+        this();
         this.name = name;
     }
 

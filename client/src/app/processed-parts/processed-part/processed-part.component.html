@@ -15,7 +15,15 @@
     <!-- text -->
     <textarea class="input-label"
               style="width: 100%" rows="6"
-              [(ngModel)]="processedPart.drawingNumber"
+              [(ngModel)]="processedPart.mainProcess"
+              (change)="updateProcessedPart()"></textarea>
+    <textarea class="input-label"
+              style="width: 100%" rows="6"
+              [(ngModel)]="processedPart.material"
+              (change)="updateProcessedPart()"></textarea>
+    <textarea class="input-label"
+              style="width: 100%" rows="6"
+              [(ngModel)]="processedPart.mainProcess"
               (change)="updateProcessedPart()"></textarea>
   </div>
 </div>

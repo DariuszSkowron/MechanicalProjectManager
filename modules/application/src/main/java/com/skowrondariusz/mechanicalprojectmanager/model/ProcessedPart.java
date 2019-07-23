@@ -18,6 +18,9 @@ public class ProcessedPart {
     @ManyToOne(fetch = FetchType.LAZY)
     private MechanicalProcessing mechanicalProcessing;
 
+    public ProcessedPart() {
+    }
+
     public ProcessedPart(String drawingNumber, String material, String mainProcess) {
         this.drawingNumber = drawingNumber;
         this.material = material;
