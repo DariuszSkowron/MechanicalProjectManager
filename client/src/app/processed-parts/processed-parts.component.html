@@ -34,9 +34,11 @@
           <i class="fa fa-book"></i>&nbsp;All
         </a>
         <!-- Mechanical Processing List -->
-        <a *ngFor="let mechanicalProcess of mechanicalProcessings" (click)="selectMechanicalProcessing(mechanicalProcess)" class="list-group-item list-group-item-action">
+        <a *ngFor="let mechanicalProcess of mechanicalProcessings"
+           (click)="selectMechanicalProcessing(mechanicalProcess)" class="list-group-item list-group-item-action">
           <i class="fa fa-book"></i>&nbsp;
-          <input [(ngModel)]="mechanicalProcess.name" (change)="updateMechanicalProcessing(mechanicalProcess)" type="text" class="input-label" style="width: 80%"/>
+          <input [(ngModel)]="mechanicalProcess.name" (change)="updateMechanicalProcessing(mechanicalProcess)"
+                 type="text" class="input-label" style="width: 80%"/>
           <a (click)="deleteMechanicalProcessing(mechanicalProcess)" class="pull-right text-danger">
             <i class="fas fa-trash"></i>
           </a>
@@ -61,14 +63,17 @@
             <th>Material</th>
             <th>Manufacturer</th>
           </tr>
-          <tr>
-            <processed-part *ngFor="let n of processedParts | noteTextFilter:searchText"
-                                      [processedPart]="n"
-                                      (processedPartUpdated)="updateProcessedPart($event)"
-                                      (processedPartDeleted)="deleteProcessedPart($event)">
-            </processed-part> </tr>
+
+          <tr *ngFor="let n of processedParts | noteTextFilter:searchText">
+            <processed-part
+                            [processedPart]="n"
+                            (processedPartUpdated)="updateProcessedPart($event)"
+                            (processedPartDeleted)="deleteProcessedPart($event)">
+            </processed-part>
+          </tr>
 
         </table>
+
       </div>
     </div>
   </div>

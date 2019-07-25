@@ -1,30 +1,33 @@
-<table class="parts-table">
-  <tr>
-    <th>Drawing number</th>
-    <th>Main process</th>
-    <th>Material</th>
-    <th>Manufacturer</th>
-  </tr>
-  <tr>
-    <td>
-      <input type="text" placeholder="Drawing number"
-             [(ngModel)]="processedPart.drawingNumber"
-             (change)="updateProcessedPart()"
-             class="input-label-lg"
-      />
-    </td>
-   <td><input type="text" placeholder="id"
-              [(ngModel)]="processedPart.mainProcess"
-              (change)="updateProcessedPart()"
-              class="input-label-lg"/></td>
-    <td>    <input type="text"
-                      [(ngModel)]="processedPart.material"
-                      (change)="updateProcessedPart()"/></td>
-    <td>    <input type="text"
-                      [(ngModel)]="processedPart.manufacturer"
-                      (change)="updateProcessedPart()"/></td>
-    <td><a (click)="deleteProcessedPart()" class="pull-right text-danger">
-      <i class="fas fa-trash"></i>
-    </a></td>
-  </tr>
-</table>
+
+<td>
+  <input type="text" placeholder="Drawing number"
+         [(ngModel)]="processedPart.drawingNumber"
+         (change)="updateProcessedPart()"
+         class="input-label-lg"/>
+</td>
+
+<td>
+  <input type="text" placeholder="id"
+         [(ngModel)]="processedPart.mainProcess"
+         (change)="updateProcessedPart()"
+         class="input-label-lg"/>
+</td>
+
+<td>
+  <input type="text"
+         [(ngModel)]="processedPart.material"
+         (change)="updateProcessedPart()"/>
+</td>
+
+<td>
+  <input type="text"
+         [(ngModel)]="processedPart.manufacturer"
+         (change)="updateProcessedPart()"/>
+</td>
+
+<td>
+  <a (click)="deleteProcessedPart()" class="pull-right text-danger">
+    <i class="fas fa-trash"></i>
+  </a>
+</td>
+
