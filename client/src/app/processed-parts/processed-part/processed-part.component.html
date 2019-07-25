@@ -1,28 +1,37 @@
 
 <td>
-  <input type="text" placeholder="Drawing number"
-         [(ngModel)]="processedPart.drawingNumber"
-         (change)="updateProcessedPart()"
-         class="input-label-lg"/>
+  <label>
+    <input type="text" name="drawingnumber" placeholder="Drawing number"
+           [(ngModel)]="processedPart.drawingNumber"
+           (change)="updateProcessedPart()"
+           class="input-label-lg"/>
+  </label>
 </td>
 
 <td>
-  <input type="text" placeholder="id"
-         [(ngModel)]="processedPart.mainProcess"
-         (change)="updateProcessedPart()"
-         class="input-label-lg"/>
+
+  <label>
+    <input type="text" placeholder="Main process"
+           [(ngModel)]="processedPart.mainProcess"
+           (change)="updateProcessedPart()"
+           class="input-label-lg"/>
+  </label>
 </td>
 
 <td>
-  <input type="text"
-         [(ngModel)]="processedPart.material"
-         (change)="updateProcessedPart()"/>
+  <label>
+    <input type="text" placeholder="Material"
+           [(ngModel)]="processedPart.material"
+           (change)="updateProcessedPart()"/>
+  </label>
 </td>
 
 <td>
-  <input type="text"
-         [(ngModel)]="processedPart.manufacturer"
-         (change)="updateProcessedPart()"/>
+  <label>
+    <input type="text" placeholder="Manufacturer"
+           [(ngModel)]="processedPart.manufacturer"
+           (change)="updateProcessedPart()"/>
+  </label>
 </td>
 
 <td>

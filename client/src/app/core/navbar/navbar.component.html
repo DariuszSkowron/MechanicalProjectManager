@@ -1,7 +1,8 @@
 <div class="navbar bg-dark text-light">
   <div class="btn-lg text-warning title">
-    <a [routerLink]="'/'" class="text-reset">
-      Mechanical Project App
+    <a [routerLink]="'/'" class="text-reset" >
+      <i class="fas fa-cogs"></i>
+      Mechanical Manger
     </a>
   </div>
   <div class="spacer"></div>
@@ -17,11 +18,12 @@
     Find project
   </div>
   <div class="ml-3"></div>
-  <div [routerLink]="'about'" class="btn btn-outline-warning">
-    About application
-  </div>
-  <div class="ml-3"></div>
   <div [routerLink]="'processedParts'" class="btn btn-outline-warning">
     Processed parts lists
   </div>
+  <div class="ml-3"></div>
+  <div [routerLink]="'about'" class="btn btn-outline-warning">
+    About application
+  </div>
+
 </div>
