@@ -16,7 +16,7 @@ export class ProjectService {
   private SAVE_UPDATE_MECHANICAL_PROCESSING = `${this.BASE_URL}/mechanicalProcessing`;
   private DELETE_MECHANICAL_PROCESSING_URL =  `${this.BASE_URL}/mechanicalProcessing/`;
   private ALL_PROCESSED_PARTS_URL = `${this.BASE_URL}/parts/all`;
-  private PARTS_BY_MECHANICAL_PROCESSING = `${this.BASE_URL}/parts/byMechanicalProcessing`;
+  private PARTS_BY_MECHANICAL_PROCESSING = `${this.BASE_URL}/parts/byMechanicalProcessing/`;
   private SAVE_UPDATE_PROCESSED_PART_URL = `${this.BASE_URL}/parts`;
   private DELETE_PROCESSED_PART_URL = `${this.BASE_URL}/parts/`;
 

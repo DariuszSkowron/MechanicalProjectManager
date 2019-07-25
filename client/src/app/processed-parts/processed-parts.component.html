@@ -12,13 +12,13 @@
       <button type="buton"
               (click)="createMechanicalProcessing()"
               class="btn btn-info pull-right"
-              style="margin-left:12px;"><i class="fa fa-plus"></i> New mechanical processing list
+              style="margin-left:12px;"><i class="fas fa-plus"></i> New mechanical processing list
       </button>
       <button type="button"
               (click)="createProcessedPart(selectedMechanicalProcessing.id)"
               [disabled]="selectedMechanicalProcessing == null"
               class="btn btn-warning pull-right"
-              style="margin-left:12px;"><i class="fa fa-plus"></i> New note
+              style="margin-left:12px;"><i class="fa fa-plus"></i> New part
       </button>
     </div>
 
@@ -34,11 +34,13 @@
           <i class="fa fa-book"></i>&nbsp;All
         </a>
         <!-- Mechanical Processing List -->
-        <a *ngFor="let mechanicalProcess of mechanicalProcessings" (click)="selectMechanicalProcessing(mechanicalProcess)" class="list-group-item list-group-item-action">
+        <a *ngFor="let mechanicalProcess of mechanicalProcessings"
+           (click)="selectMechanicalProcessing(mechanicalProcess)" class="list-group-item list-group-item-action">
           <i class="fa fa-book"></i>&nbsp;
-          <input [(ngModel)]="mechanicalProcess.name" (change)="updateMechanicalProcessing(mechanicalProcess)" type="text" class="input-label" style="width: 80%"/>
+          <input [(ngModel)]="mechanicalProcess.name" (change)="updateMechanicalProcessing(mechanicalProcess)"
+                 type="text" class="input-label" style="width: 80%"/>
           <a (click)="deleteMechanicalProcessing(mechanicalProcess)" class="pull-right text-danger">
-            <i class="fa fa-trash-o"></i>
+            <i class="fas fa-trash"></i>
           </a>
         </a>
       </div>
@@ -53,14 +55,25 @@
           <h3 *ngIf="selectedMechanicalProcessing == null">All parts</h3>
           <p *ngIf="this.processedParts.length === 0">There are no parts to display in this list :(</p>
         </div>
-      </div>
-      <div class="row">
-        <!-- Parts list -->
-        <processed-part *ngFor="let n of processedParts | noteTextFilter:searchText"
-                        [processedPart]="n"
-                        (processedPartUpdated)="updateProcessedPart($event)"
-                        (processedPartDeleted)="deleteProcessedPart($event)">
-        </processed-part>
+        <table class="parts-table">
+
+          <tr>
+            <th>Drawing number</th>
+            <th>Main process</th>
+            <th>Material</th>
+            <th>Manufacturer</th>
+          </tr>
+
+          <tr *ngFor="let n of processedParts | noteTextFilter:searchText">
+            <processed-part
+                            [processedPart]="n"
+                            (processedPartUpdated)="updateProcessedPart($event)"
+                            (processedPartDeleted)="deleteProcessedPart($event)">
+            </processed-part>
+          </tr>
+
+        </table>
+
       </div>
     </div>
   </div>
