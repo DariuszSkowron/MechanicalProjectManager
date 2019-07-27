@@ -1,9 +1,9 @@
-
+<table>
 <td>
   <label>
     <input type="text" name="drawingnumber" placeholder="Drawing number"
            [(ngModel)]="processedPart.drawingNumber"
-           (change)="updateProcessedPart()"
+           (change)="updateProcessedPart1()"
            class="input-label-lg"/>
   </label>
 </td>
@@ -13,7 +13,7 @@
   <label>
     <input type="text" placeholder="Main process"
            [(ngModel)]="processedPart.mainProcess"
-           (change)="updateProcessedPart()"
+           (change)="updateProcessedPart1()"
            class="input-label-lg"/>
   </label>
 </td>
@@ -22,7 +22,7 @@
   <label>
     <input type="text" placeholder="Material"
            [(ngModel)]="processedPart.material"
-           (change)="updateProcessedPart()"/>
+           (change)="updateProcessedPart1()"/>
   </label>
 </td>
 
@@ -30,13 +30,14 @@
   <label>
     <input type="text" placeholder="Manufacturer"
            [(ngModel)]="processedPart.manufacturer"
-           (change)="updateProcessedPart()"/>
+           (change)="updateProcessedPart1()"/>
   </label>
 </td>
 
 <td>
-  <a (click)="deleteProcessedPart()" class="pull-right text-danger">
-    <i class="fas fa-trash"></i>
-  </a>
-</td>
+  <button type="button"
+ (click)="deleteProcessedPart1()" class="btn btn-warning">
+    <i class="fas fa-trash"></i></button>
 
+</td>
+</table>

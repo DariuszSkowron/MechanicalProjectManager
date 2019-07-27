@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MechanicalProcessing} from "./model/mechanical-processing";
 import {ProcessedPart} from "./model/processed-part";
 import {ProjectService} from "../project.service";
@@ -13,12 +13,15 @@ export class ProcessedPartsComponent implements OnInit {
   processedParts: ProcessedPart[] = [];
   selectedMechanicalProcessing: MechanicalProcessing;
   searchText: string;
+  
   constructor(private projectService: ProjectService) { }
 
   ngOnInit() {
     this.getAllMechanicalProcessing();
     this.getAllProcessedParts();
   }
+
+
 
   public getAllMechanicalProcessing() {
     this.projectService.getAllMechanicalProcessing().subscribe(res => {

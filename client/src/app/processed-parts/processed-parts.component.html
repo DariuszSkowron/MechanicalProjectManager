@@ -55,24 +55,24 @@
           <h3 *ngIf="selectedMechanicalProcessing == null">All parts</h3>
           <p *ngIf="this.processedParts.length === 0">There are no parts to display in this list :(</p>
         </div>
-        <table class="parts-table">
-
+        <table>
           <tr>
             <th>Drawing number</th>
             <th>Main process</th>
             <th>Material</th>
             <th>Manufacturer</th>
+            <th>Delete part</th>
           </tr>
-
-          <tr *ngFor="let n of processedParts | noteTextFilter:searchText">
+        </table>
+          <div *ngFor="let n of processedParts | noteTextFilter:searchText">
             <processed-part
                             [processedPart]="n"
                             (processedPartUpdated)="updateProcessedPart($event)"
                             (processedPartDeleted)="deleteProcessedPart($event)">
             </processed-part>
-          </tr>
+          </div>
 
-        </table>
+
 
       </div>
     </div>
