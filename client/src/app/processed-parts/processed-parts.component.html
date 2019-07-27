@@ -54,8 +54,9 @@
           <h3 *ngIf="selectedMechanicalProcessing != null">{{selectedMechanicalProcessing.name}}</h3>
           <h3 *ngIf="selectedMechanicalProcessing == null">All parts</h3>
           <p *ngIf="this.processedParts.length === 0">There are no parts to display in this list :(</p>
+
         </div>
-        <table>
+        <table *ngIf="this.processedParts.length != 0">
           <tr>
             <th>Drawing number</th>
             <th>Main process</th>
