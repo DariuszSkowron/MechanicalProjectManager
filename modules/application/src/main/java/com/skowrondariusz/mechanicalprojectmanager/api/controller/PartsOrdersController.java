@@ -1,24 +1,14 @@
 package com.skowrondariusz.mechanicalprojectmanager.api.controller;
 
-import com.skowrondariusz.mechanicalprojectmanager.api.viewmodel.CommercialPartViewModel;
-import com.skowrondariusz.mechanicalprojectmanager.model.Manufacturer;
+import com.skowrondariusz.mechanicalprojectmanager.api.viewmodel.PartsOrdersViewModel;
 import com.skowrondariusz.mechanicalprojectmanager.model.PartsOrders;
-import com.skowrondariusz.mechanicalprojectmanager.repository.CommercialPartRepository;
 import com.skowrondariusz.mechanicalprojectmanager.repository.PartsOrdersRepository;
 import com.skowrondariusz.mechanicalprojectmanager.utility.Mapper;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import java.util.Date;
+import javax.validation.ValidationException;
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -28,29 +18,36 @@ public class PartsOrdersController {
 
 
     private PartsOrdersRepository partsOrdersRepository;
-    private CommercialPartRepository commercialPartRepository;
     private Mapper mapper;
 
 
-    public PartsOrdersController(PartsOrdersRepository partsOrdersRepository, CommercialPartRepository commercialPartRepository, Mapper mapper){
+    public PartsOrdersController(PartsOrdersRepository partsOrdersRepository, Mapper mapper) {
         this.partsOrdersRepository = partsOrdersRepository;
-        this.commercialPartRepository = commercialPartRepository;
         this.mapper = mapper;
     }
 
-
     @GetMapping("/all")
-    public List<CommercialPartViewModel> all(){
-        var commercialParts = this.commercialPartRepository.findAll();
-
-        var commercialPartModel = commercialParts.stream()
-                .map(part -> this.mapper.convertToCommercialPartViewModel(part))
-                .collect(Collectors.toList());
-
-        return commercialPartModel;
+    public List<PartsOrders> all() {
+        return this.partsOrdersRepository.findAll();
     }
 
-    
+    @PostMapping
+    public PartsOrders save(@RequestBody PartsOrdersViewModel partsOrdersViewModel, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            throw new ValidationException();
+        }
+        var partsOrdersEntity = this.mapper.convertToPartsOrdersEntity(partsOrdersViewModel);
+
+        this.partsOrdersRepository.save(partsOrdersEntity);
+
+        return partsOrdersEntity;
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable String id) {
+        this.partsOrdersRepository.deleteById(Long.valueOf(id));
+    }
 
 
 }
