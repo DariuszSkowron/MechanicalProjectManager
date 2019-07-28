@@ -1,8 +1,10 @@
 package com.skowrondariusz.mechanicalprojectmanager.utility;
 
 
+import com.skowrondariusz.mechanicalprojectmanager.api.viewmodel.CommercialPartViewModel;
 import com.skowrondariusz.mechanicalprojectmanager.api.viewmodel.MechanicalProcessingViewModel;
 import com.skowrondariusz.mechanicalprojectmanager.api.viewmodel.ProcessedPartViewModel;
+import com.skowrondariusz.mechanicalprojectmanager.model.CommercialPart;
 import com.skowrondariusz.mechanicalprojectmanager.model.MechanicalProcessing;
 import com.skowrondariusz.mechanicalprojectmanager.model.ProcessedPart;
 import org.modelmapper.ModelMapper;
@@ -29,6 +31,12 @@ public class Mapper {
 
         var entity = modelMapper.map(viewModel, MechanicalProcessing.class);
         return entity;
+    }
+
+    public CommercialPartViewModel convertToCommercialPartViewModel(CommercialPart entity){
+
+        var viewModel = modelMapper.map(entity, CommercialPartViewModel.class);
+        return viewModel;
     }
 
 }
