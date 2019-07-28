@@ -20,11 +20,11 @@ export class ProcessedPartComponent implements OnInit {
   ngOnInit() {
   }
 
-  updateProcessedPart1(){
+  updateProcessedPart(){
     this.processedPartUpdated.emit(this.processedPart);
   }
 
-  deleteProcessedPart1(){
+  deleteProcessedPart(){
     this.processedPartDeleted.emit(this.processedPart);
   }
 }
