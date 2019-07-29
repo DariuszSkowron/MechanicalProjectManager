@@ -19,6 +19,8 @@ public class MechanicalProcessing {
     private List<ProcessedPart> processedParts;
 
 
+
+
     protected MechanicalProcessing() {
         this.processedParts = new ArrayList<>();
     }

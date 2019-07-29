@@ -16,7 +16,6 @@ public class Project {
     private String name;
 
     @Column(name = "project_number", unique = true)
-//    @Column (name ="number")
     private int projectNumber;
 
 //    @OneToOne(fetch = FetchType.LAZY, mappedBy = "mechanical_processing", cascade = CascadeType.ALL)
@@ -31,11 +30,6 @@ public class Project {
         this.projectNumber = projectNumber;
     }
 
-//    public Project(String name, int projectNumber, MechanicalProcessing mechanicalProcessing) {
-//        this.name = name;
-//        this.projectNumber = projectNumber;
-//        this.mechanicalProcessing = mechanicalProcessing;
-//    }
 
     public long getId() {
         return id;

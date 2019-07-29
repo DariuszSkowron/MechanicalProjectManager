@@ -65,7 +65,7 @@
             <th>Delete part</th>
           </tr>
         </table>
-          <div *ngFor="let n of processedParts | noteTextFilter:searchText">
+          <div *ngFor="let n of processedParts | ProcessedPartDwgNumberFilter:searchText">
             <processed-part
                             [processedPart]="n"
                             (processedPartUpdated)="updateProcessedPart($event)"
