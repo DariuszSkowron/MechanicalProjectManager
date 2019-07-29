@@ -47,4 +47,8 @@ public class Mapper {
         return entity;
     }
 
+    public CommercialPart convertToCommercialPartEntity(CommercialPartViewModel viewModel){
+        var entity = modelMapper.map(viewModel, CommercialPart.class);
+        return entity;
+    }
 }
