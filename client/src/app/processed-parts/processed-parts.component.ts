@@ -13,7 +13,7 @@ export class ProcessedPartsComponent implements OnInit {
   processedParts: ProcessedPart[] = [];
   selectedMechanicalProcessing: MechanicalProcessing;
   searchText: string;
-  
+  mainProcesses: ['CNC', 'FREZ'];
   constructor(private projectService: ProjectService) { }
 
   ngOnInit() {
