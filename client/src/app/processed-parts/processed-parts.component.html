@@ -3,15 +3,15 @@
   <div class="row" style="margin-top:12px;">
     <div class="col-md-8">
       <input type="text"
-             [(ngModel)]="searchText"
+             [(ngModel)]="nameSearch"
              class="form-control"
              style="width: 100%;"
              placeholder="Search parts...">
     </div>
     <div class="col-md-8">
       <label for="fieldOfStudies" class="text-title">Search my main process</label>
-      <select id="fieldOfStudies" class="custom-select" (change)="filterPartsByProcessingType($event.target.value)">
-        <option selected disabled hidden>Pick one of the options avaible</option>
+      <select id="fieldOfStudies" [(ngModel)]="mainProcessSearch" class="custom-select" (change)="filterPartsByProcessingType($event.target.value)">
+        <option value="0" selected disabled hidden>Pick one of the options avaible</option>
         <option *ngFor="let fos of processedParts" value={{fos.mainProcess}}>
           {{fos.mainProcess}}
         </option>
@@ -66,6 +66,13 @@
           <p *ngIf="this.processedParts.length === 0">There are no parts to display in this list :(</p>
 
         </div>
+        <table class="spec-table">
+          <tbody>
+          <tr *ngFor='let n of processedParts'>
+            <td>{{n.drawingNumber}}</td>
+          </tr>
+          </tbody>
+        </table>
         <table *ngIf="this.processedParts.length != 0">
           <tr>
             <th>Drawing number</th>
@@ -75,7 +82,7 @@
             <th>Delete part</th>
           </tr>
         </table>
-          <div *ngFor="let n of processedParts | ProcessedPartDwgNumberFilter:searchText">
+          <div *ngFor="let n of processedParts | ProcessedPartDwgNumberFilter:mainProcessSearch: nameSearch">
             <processed-part
                             [processedPart]="n"
                             (processedPartUpdated)="updateProcessedPart($event)"

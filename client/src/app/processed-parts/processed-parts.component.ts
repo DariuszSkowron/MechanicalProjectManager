@@ -12,7 +12,8 @@ export class ProcessedPartsComponent implements OnInit {
   mechanicalProcessings: MechanicalProcessing[] = [];
   processedParts: ProcessedPart[] = [];
   selectedMechanicalProcessing: MechanicalProcessing;
-  searchText: string;
+  nameSearch: string;
+  mainProcessSearch: string;
   mainProcesses: ['CNC', 'FREZ'];
   constructor(private projectService: ProjectService) { }
 
@@ -21,8 +22,8 @@ export class ProcessedPartsComponent implements OnInit {
     this.getAllProcessedParts();
   }
 
-  filterPartsByProcessingType(processingType: string){
-    this.processedParts.find(part => processingType == part.mainProcess);
+  filterPartsByProcessingType(processingType: any){
+    this.processedParts.find(part => part.mainProcess == processingType);
   }
 
 
