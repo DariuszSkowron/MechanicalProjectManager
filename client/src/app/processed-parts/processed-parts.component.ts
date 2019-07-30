@@ -21,9 +21,12 @@ export class ProcessedPartsComponent implements OnInit {
     this.getAllProcessedParts();
   }
 
+  filterPartsByProcessingType(processingType: string){
+    this.processedParts.find(part => processingType == part.mainProcess);
+  }
 
 
-  public getAllMechanicalProcessing() {
+  getAllMechanicalProcessing() {
     this.projectService.getAllMechanicalProcessing().subscribe(res => {
         this.mechanicalProcessings = res;
       },
