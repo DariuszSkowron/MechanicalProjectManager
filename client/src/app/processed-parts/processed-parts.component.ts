@@ -12,8 +12,9 @@ export class ProcessedPartsComponent implements OnInit {
   mechanicalProcessings: MechanicalProcessing[] = [];
   processedParts: ProcessedPart[] = [];
   selectedMechanicalProcessing: MechanicalProcessing;
-  searchText: string;
-  
+  nameSearch: string;
+  mainProcessSearch: string;
+  mainProcesses: ['CNC', 'FREZ'];
   constructor(private projectService: ProjectService) { }
 
   ngOnInit() {
@@ -21,9 +22,12 @@ export class ProcessedPartsComponent implements OnInit {
     this.getAllProcessedParts();
   }
 
+  filterPartsByProcessingType(processingType: any){
+    this.processedParts.find(part => part.mainProcess == processingType);
+  }
 
 
-  public getAllMechanicalProcessing() {
+  getAllMechanicalProcessing() {
     this.projectService.getAllMechanicalProcessing().subscribe(res => {
         this.mechanicalProcessings = res;
       },

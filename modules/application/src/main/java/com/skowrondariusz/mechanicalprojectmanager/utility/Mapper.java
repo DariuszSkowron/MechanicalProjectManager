@@ -1,9 +1,13 @@
 package com.skowrondariusz.mechanicalprojectmanager.utility;
 
 
+import com.skowrondariusz.mechanicalprojectmanager.api.viewmodel.CommercialPartViewModel;
 import com.skowrondariusz.mechanicalprojectmanager.api.viewmodel.MechanicalProcessingViewModel;
+import com.skowrondariusz.mechanicalprojectmanager.api.viewmodel.PartsOrdersViewModel;
 import com.skowrondariusz.mechanicalprojectmanager.api.viewmodel.ProcessedPartViewModel;
+import com.skowrondariusz.mechanicalprojectmanager.model.CommercialPart;
 import com.skowrondariusz.mechanicalprojectmanager.model.MechanicalProcessing;
+import com.skowrondariusz.mechanicalprojectmanager.model.PartsOrders;
 import com.skowrondariusz.mechanicalprojectmanager.model.ProcessedPart;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -31,4 +35,20 @@ public class Mapper {
         return entity;
     }
 
+    public CommercialPartViewModel convertToCommercialPartViewModel(CommercialPart entity){
+
+        var viewModel = modelMapper.map(entity, CommercialPartViewModel.class);
+        return viewModel;
+    }
+
+    public PartsOrders convertToPartsOrdersEntity(PartsOrdersViewModel viewModel){
+
+        var entity = modelMapper.map(viewModel, PartsOrders.class);
+        return entity;
+    }
+
+    public CommercialPart convertToCommercialPartEntity(CommercialPartViewModel viewModel){
+        var entity = modelMapper.map(viewModel, CommercialPart.class);
+        return entity;
+    }
 }

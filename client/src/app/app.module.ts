@@ -14,7 +14,7 @@ import {FormsModule} from "@angular/forms";
 import {CoreModule} from "./core/core.module";
 import {AboutComponent } from './about/about.component';
 import { ProcessedPartComponent } from './processed-parts/processed-part/processed-part.component';
-import { NoteTextFilterPipe } from './shared/note-text-filter.pipe';
+import { ProcessedPartDwgNumberFilterPipe } from './shared/processed-part-dwg-number-filter.pipe';
 import {ProcessedPartsComponent} from "./processed-parts/processed-parts.component";
 
 
@@ -27,7 +27,7 @@ import {ProcessedPartsComponent} from "./processed-parts/processed-parts.compone
     SearchProjectComponent,
     AboutComponent,
     ProcessedPartComponent,
-    NoteTextFilterPipe,
+    ProcessedPartDwgNumberFilterPipe,
     ProcessedPartsComponent,
   ],
   imports: [

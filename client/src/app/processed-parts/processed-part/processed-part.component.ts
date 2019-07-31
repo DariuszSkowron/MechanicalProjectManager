@@ -1,7 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MechanicalProcessing} from "../model/mechanical-processing";
 import {ProcessedPart} from "../model/processed-part";
-import {ProjectService} from "../../project.service";
 
 @Component({
   selector: 'processed-part',
