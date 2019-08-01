@@ -3,6 +3,8 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {MechanicalProcessing} from "./processed-parts/model/mechanical-processing";
 import {ProcessedPart} from "./processed-parts/model/processed-part";
+import {PartsOrders} from "./commercial-parts/model/parts-orders";
+import {CommercialPart} from "./commercial-parts/model/commercial-part.model";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +21,16 @@ export class ProjectService {
   private PARTS_BY_MECHANICAL_PROCESSING = `${this.BASE_URL}/parts/byMechanicalProcessing/`;
   private SAVE_UPDATE_PROCESSED_PART_URL = `${this.BASE_URL}/parts`;
   private DELETE_PROCESSED_PART_URL = `${this.BASE_URL}/parts/`;
+  private ALL_PARTS_ORDERS_URL = `${this.BASE_URL}/partsOrders/all`;
+  private SAVE_UPDATE_PARTS_ORDERS_URL = `${this.BASE_URL}/partsOrders`;
+  private DELETE_PARTS_ORDERS_URL = `${this.BASE_URL}/partsOrders/`;
+  private ALL_COMMERCIAL_PARTS_URL = `${this.BASE_URL}/commercialParts/all`;
+  private PARTS_BY_PARTS_ORDERS_URL = `${this.BASE_URL}/commercialParts/byPartsOrders/`;
+  private SAVE_UPDATE_COMMERCIAL_PART_URL = `${this.BASE_URL}/commercialParts`;
+  private DELETE_COMMERCIAL_PART_URL = `${this.BASE_URL}/commercialParts/`;
+
+
+
 
   constructor(private http: HttpClient) {
   }
@@ -77,6 +89,36 @@ export class ProjectService {
   }
 
   deleteProcessedPart(processedPartId: string):Observable<any>{
+    return this.http.delete(this.DELETE_PROCESSED_PART_URL + processedPartId);
+  }
+
+
+
+  getAllPartsOrders(): Observable<PartsOrders[]> {
+    return this.http.get<PartsOrders[]>(this.ALL_PARTS_ORDERS_URL);
+  }
+
+  postPartsOrders(partsOrders: PartsOrders): Observable<PartsOrders>{
+    return this.http.post<PartsOrders>(this.SAVE_UPDATE_PARTS_ORDERS_URL, partsOrders);
+  }
+
+  deletePartsOrders(id: string): Observable<any>{
+    return this.http.delete(this.DELETE_PARTS_ORDERS_URL + id);
+  }
+
+  getAllCommercialParts(): Observable<CommercialPart[]>{
+    return this.http.get<CommercialPart[]>(this.ALL_COMMERCIAL_PARTS_URL);
+  }
+
+  getCommercialPartsByPartsOrders(partsOrdersId: string): Observable<CommercialPart[]>{
+    return this.http.get<CommercialPart[]>(this.PARTS_BY_PARTS_ORDERS_URL + partsOrdersId);
+  }
+
+  saveCommercialPart(commercialPart: CommercialPart): Observable<CommercialPart>{
+    return this.http.post<CommercialPart>(this.SAVE_UPDATE_COMMERCIAL_PART_URL, commercialPart);
+  }
+
+  deleteCommercialPart(processedPartId: string):Observable<any>{
     return this.http.delete(this.DELETE_PROCESSED_PART_URL + processedPartId);
   }
 
