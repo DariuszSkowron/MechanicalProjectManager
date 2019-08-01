@@ -16,6 +16,8 @@ import {AboutComponent } from './about/about.component';
 import { ProcessedPartComponent } from './processed-parts/processed-part/processed-part.component';
 import { ProcessedPartDwgNumberFilterPipe } from './shared/processed-part-dwg-number-filter.pipe';
 import {ProcessedPartsComponent} from "./processed-parts/processed-parts.component";
+import { CommercialPartsComponent } from './commercial-parts/commercial-parts.component';
+import { CommercialPartComponent } from './commercial-parts/commercial-part/commercial-part.component';
 
 
 @NgModule({
@@ -29,6 +31,8 @@ import {ProcessedPartsComponent} from "./processed-parts/processed-parts.compone
     ProcessedPartComponent,
     ProcessedPartDwgNumberFilterPipe,
     ProcessedPartsComponent,
+    CommercialPartsComponent,
+    CommercialPartComponent,
   ],
   imports: [
     BrowserModule,
