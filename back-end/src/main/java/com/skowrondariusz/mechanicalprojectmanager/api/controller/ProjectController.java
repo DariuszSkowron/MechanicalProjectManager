@@ -12,25 +12,27 @@ import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")
 public class ProjectController {
 
-    @Autowired
-    ProjectRepository projectRepository;
+   
+    private ProjectRepository projectRepository;
+    
+    public ProjectController(ProjectRepository projectRepository){
+        this.projectRepository = projectRepository;
+    }
     
     
 
     @GetMapping("/projects")
     public List<Project> getAllProjects() {
         System.out.println("Get all projects...");
-
-        List<Project> projects = new ArrayList<>();
-        projectRepository.findAll().forEach(projects::add);
-
-        return projects;
+        var projects = projectRepository.findAll();
+        return new ArrayList<>(projects);
     }
 
     @PostMapping(value = "/projects/create")
@@ -56,15 +58,7 @@ public class ProjectController {
 
         return new ResponseEntity<>("All projects have been deleted! You are in troubles!!", HttpStatus.OK);
     }
-
-//    @GetMapping(value = "projects/id/{id}")
-//    public Optional<Project> findById(@PathVariable long id) {
-//
-//        Optional<Project> projects = projectRepository.findById(id);
-//        return projects;
-//    }
-
-
+    
     @GetMapping(value = "projects/number/{projectNumber}")
     public List<Project> findByProjectNumber(@PathVariable int projectNumber) {
 
