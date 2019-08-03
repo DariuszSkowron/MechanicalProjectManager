@@ -24,12 +24,12 @@ public class CommercialPart {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private PartsOrders partsOrders;
+    private PartsOrder partsOrder;
 
     public CommercialPart() {
     }
 
-    public CommercialPart(String type, String orderSymbol, String name, Manufacturer manufacturer, int quantity, Date orderDate, Date deliveryDate, long price, PartsOrders partsOrders) {
+    public CommercialPart(String type, String orderSymbol, String name, Manufacturer manufacturer, int quantity, Date orderDate, Date deliveryDate, long price, PartsOrder partsOrder) {
         this.type = type;
         this.orderSymbol = orderSymbol;
         this.name = name;
@@ -38,7 +38,7 @@ public class CommercialPart {
         this.orderDate = orderDate;
         this.deliveryDate = deliveryDate;
         this.price = price;
-        this.partsOrders = partsOrders;
+        this.partsOrder = partsOrder;
     }
 
     public long getId() {
@@ -113,11 +113,11 @@ public class CommercialPart {
         this.deliveryDate = deliveryDate;
     }
 
-    public PartsOrders getPartsOrders() {
-        return partsOrders;
+    public PartsOrder getPartsOrder() {
+        return partsOrder;
     }
 
-    public void setPartsOrders(PartsOrders partsOrders) {
-        this.partsOrders = partsOrders;
+    public void setPartsOrder(PartsOrder partsOrder) {
+        this.partsOrder = partsOrder;
     }
 }

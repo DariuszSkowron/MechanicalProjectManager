@@ -1,8 +1,6 @@
 package com.skowrondariusz.mechanicalprojectmanager.api.viewmodel;
 
-import com.skowrondariusz.mechanicalprojectmanager.model.Manufacturer;
-import com.skowrondariusz.mechanicalprojectmanager.model.PartsOrders;
-
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class CommercialPartViewModel {
@@ -16,6 +14,8 @@ public class CommercialPartViewModel {
     private Date orderDate;
     private Date deliveryDate;
     private long price;
+    
+    @NotNull
     private String partsOrdersId;
     private String manufacturerId;
 

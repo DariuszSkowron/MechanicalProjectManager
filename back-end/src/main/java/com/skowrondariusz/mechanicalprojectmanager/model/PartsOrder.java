@@ -7,7 +7,8 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class PartsOrders {
+public class PartsOrder
+{
 
 
     @Id
@@ -20,10 +21,10 @@ public class PartsOrders {
     private List<CommercialPart> commercialParts;
 
 
-    public PartsOrders() {
+    public PartsOrder() {
     }
 
-    public PartsOrders(String name, List<CommercialPart> commercialParts) {
+    public PartsOrder(String name, List<CommercialPart> commercialParts) {
         this.name = name;
         this.commercialParts = commercialParts;
     }

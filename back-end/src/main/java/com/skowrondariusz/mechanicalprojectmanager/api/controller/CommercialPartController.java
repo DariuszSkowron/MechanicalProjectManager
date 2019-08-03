@@ -2,19 +2,15 @@ package com.skowrondariusz.mechanicalprojectmanager.api.controller;
 
 import com.skowrondariusz.mechanicalprojectmanager.api.viewmodel.CommercialPartViewModel;
 import com.skowrondariusz.mechanicalprojectmanager.model.CommercialPart;
-import com.skowrondariusz.mechanicalprojectmanager.model.Manufacturer;
-import com.skowrondariusz.mechanicalprojectmanager.model.PartsOrders;
 import com.skowrondariusz.mechanicalprojectmanager.repository.CommercialPartRepository;
-import com.skowrondariusz.mechanicalprojectmanager.repository.PartsOrdersRepository;
+import com.skowrondariusz.mechanicalprojectmanager.repository.PartsOrderRepository;
 import com.skowrondariusz.mechanicalprojectmanager.utility.Mapper;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
-import javax.validation.Validation;
 import javax.validation.ValidationException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,13 +21,13 @@ import java.util.stream.Collectors;
 public class CommercialPartController {
 
 
-    private PartsOrdersRepository partsOrdersRepository;
+    private PartsOrderRepository partsOrderRepository;
     private CommercialPartRepository commercialPartRepository;
     private Mapper mapper;
 
 
-    public CommercialPartController(PartsOrdersRepository partsOrdersRepository, CommercialPartRepository commercialPartRepository, Mapper mapper){
-        this.partsOrdersRepository = partsOrdersRepository;
+    public CommercialPartController(PartsOrderRepository partsOrderRepository, CommercialPartRepository commercialPartRepository, Mapper mapper){
+        this.partsOrderRepository = partsOrderRepository;
         this.commercialPartRepository = commercialPartRepository;
         this.mapper = mapper;
     }
@@ -59,11 +55,11 @@ public class CommercialPartController {
         return commercialPartViewModel;
     }
 
-    @GetMapping("/byPartsOrders/{partsOrdersId}")
-    public List<CommercialPartViewModel> byPartsOrders(@PathVariable String partsOrdersId){
+    @GetMapping("/byPartsOrders/{partsOrderId}")
+    public List<CommercialPartViewModel> byPartsOrders(@PathVariable String partsOrderId){
         List<CommercialPart> commercialParts = new ArrayList<>();
 
-        var partsOrders = this.partsOrdersRepository.findById(Long.valueOf(partsOrdersId));
+        var partsOrders = this.partsOrderRepository.findById(Long.valueOf(partsOrderId));
         if (partsOrders.isPresent()){
             commercialParts = this.commercialPartRepository.findAllByPartsOrders(partsOrders.get());
         }

@@ -2,7 +2,8 @@ package com.skowrondariusz.mechanicalprojectmanager.api.viewmodel;
 
 import javax.validation.constraints.NotNull;
 
-public class PartsOrdersViewModel {
+public class PartsOrderViewModel
+{
 
     private String id;
 

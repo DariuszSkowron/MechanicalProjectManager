@@ -9,7 +9,7 @@ import {ProjectService} from '../project.service';
   styleUrls: ['./processed-parts.component.scss']
 })
 export class ProcessedPartsComponent implements OnInit {
-  mechanicalProcessings: MechanicalProcessing[] = [];
+  mechanicalProceedings: MechanicalProcessing[] = [];
   processedParts: ProcessedPart[] = [];
   selectedMechanicalProcessing: MechanicalProcessing;
   nameSearch: string;
@@ -28,10 +28,10 @@ export class ProcessedPartsComponent implements OnInit {
 
   getAllMechanicalProcessing() {
     this.projectService.getAllMechanicalProcessing().subscribe(res => {
-        this.mechanicalProcessings = res;
+        this.mechanicalProceedings = res;
       },
       err => {
-        alert(`An error has occurred`);
+        alert(`An error has occurred` + err);
       }
     );
   }
@@ -40,6 +40,7 @@ export class ProcessedPartsComponent implements OnInit {
   getAllProcessedParts() {
     this.projectService.getAllProcessedParts().subscribe(
       res => {
+        console.log(res);
       },
       err => {
         alert('While downloading the processed parts occurred an error');
@@ -57,7 +58,7 @@ export class ProcessedPartsComponent implements OnInit {
     this.projectService.postMechanicalProcessing(newMechanicalProcessing).subscribe(
       res => {
         newMechanicalProcessing.id = res.id;
-        this.mechanicalProcessings.push(newMechanicalProcessing);
+        this.mechanicalProceedings.push(newMechanicalProcessing);
       },
       err => {
         alert('An error has occurred while trying to save the mechanical processing list');
@@ -80,8 +81,8 @@ export class ProcessedPartsComponent implements OnInit {
     if (confirm('You will now delete mechanical processing list, do you want to proceed?')) {
       this.projectService.deleteMechanicalProcessing(mechanicalProcessing.id).subscribe(
         res => {
-          const indexOfMechanicalProcessing = this.mechanicalProcessings.indexOf(mechanicalProcessing);
-          this.mechanicalProcessings.splice(indexOfMechanicalProcessing, 1);
+          const indexOfMechanicalProcessing = this.mechanicalProceedings.indexOf(mechanicalProcessing);
+          this.mechanicalProceedings.splice(indexOfMechanicalProcessing, 1);
         },
         err => {
           alert('Failed to delete mechanical processing list');
@@ -142,7 +143,7 @@ export class ProcessedPartsComponent implements OnInit {
       res => {
       },
       err => {
-        alert('An error occurred while updating the note');
+        alert('An error occurred while updating the part' + JSON.stringify(err));
       }
     );
   }

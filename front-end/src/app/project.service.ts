@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {MechanicalProcessing} from './processed-parts/model/mechanical-processing';
 import {ProcessedPart} from './processed-parts/model/processed-part';
-import {PartsOrders} from './commercial-parts/model/parts-orders';
+import {PartsOrder} from './commercial-parts/model/parts-order';
 import {CommercialPart} from './commercial-parts/model/commercial-part';
 
 @Injectable({
@@ -94,15 +94,15 @@ export class ProjectService {
 
 
 
-  getAllPartsOrders(): Observable<PartsOrders[]> {
-    return this.http.get<PartsOrders[]>(this.ALL_PARTS_ORDERS_URL);
+  getAllPartsOrders(): Observable<PartsOrder[]> {
+    return this.http.get<PartsOrder[]>(this.ALL_PARTS_ORDERS_URL);
   }
 
-  postPartsOrders(partsOrders: PartsOrders): Observable<PartsOrders> {
-    return this.http.post<PartsOrders>(this.SAVE_UPDATE_PARTS_ORDERS_URL, partsOrders);
+  postPartsOrder(partsOrder: PartsOrder): Observable<PartsOrder> {
+    return this.http.post<PartsOrder>(this.SAVE_UPDATE_PARTS_ORDERS_URL, partsOrder);
   }
 
-  deletePartsOrders(id: string): Observable<any> {
+  deletePartsOrder(id: string): Observable<any> {
     return this.http.delete(this.DELETE_PARTS_ORDERS_URL + id);
   }
 
@@ -110,8 +110,8 @@ export class ProjectService {
     return this.http.get<CommercialPart[]>(this.ALL_COMMERCIAL_PARTS_URL);
   }
 
-  getCommercialPartsByPartsOrders(partsOrdersId: string): Observable<CommercialPart[]> {
-    return this.http.get<CommercialPart[]>(this.PARTS_BY_PARTS_ORDERS_URL + partsOrdersId);
+  getCommercialPartsByPartsOrder(partsOrderId: string): Observable<CommercialPart[]> {
+    return this.http.get<CommercialPart[]>(this.PARTS_BY_PARTS_ORDERS_URL + partsOrderId);
   }
 
   saveCommercialPart(commercialPart: CommercialPart): Observable<CommercialPart> {
