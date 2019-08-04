@@ -1,0 +1,73 @@
+<table>
+  <tr>
+    <td>
+      <label>
+        <input type="text" name="type" placeholder="Type"
+               [(ngModel)]="commercialPart.type"
+               (change)="updateCommercialPart()"
+               class="input-label-lg"/>
+      </label>
+    </td>
+
+    <td>
+
+      <label>
+        <input type="text" placeholder="orderSymbol"
+               [(ngModel)]="commercialPart.orderSymbol"
+               (change)="updateCommercialPart()"
+               class="input-label-lg"/>
+      </label>
+    </td>
+
+    <td>
+      <label>
+        <input type="text" placeholder="name"
+               [(ngModel)]="commercialPart.name"
+               (change)="updateCommercialPart()"/>
+      </label>
+    </td>
+
+    <td>
+      <label>
+        <input type="text" placeholder="manufacturer"
+               [(ngModel)]="commercialPart.manufacturer"
+               (change)="updateCommercialPart()"/>
+      </label>
+    </td>
+    <td>
+      <label>
+        <input type="text" placeholder="quantity"
+               [(ngModel)]="commercialPart.quantity"
+               (change)="updateCommercialPart()"/>
+      </label>
+    </td>
+    <td>
+      <label>
+        <input type="text" placeholder="orderDate"
+               [(ngModel)]="commercialPart.orderDate"
+               (change)="updateCommercialPart()"/>
+      </label>
+    </td>
+    <td>
+      <label>
+        <input type="text" placeholder="deliveryDate"
+               [(ngModel)]="commercialPart.deliveryDate"
+               (change)="updateCommercialPart()"/>
+      </label>
+    </td>
+    <td>
+      <label>
+        <input type="text" placeholder="price"
+               [(ngModel)]="commercialPart.price"
+               (change)="updateCommercialPart()"/>
+      </label>
+    </td>
+
+    <td>
+      <button type="button"
+              (click)="deleteCommercialPart()" class="btn btn-warning">
+        <i class="fas fa-trash"></i></button>
+
+    </td>
+  </tr>
+</table>
