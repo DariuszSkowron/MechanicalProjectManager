@@ -29,7 +29,12 @@ public class Manufacturer {
         this.commercialParts = commercialParts;
         this.salesRepresentative = salesRepresentative;
     }
-
+    
+    private Manufacturer(List<CommercialPart> commercialParts)
+    {
+        this.commercialParts = commercialParts;
+    }
+    
     public Long getId() {
         return id;
     }
