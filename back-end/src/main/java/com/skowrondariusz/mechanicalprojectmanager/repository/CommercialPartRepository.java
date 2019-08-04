@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface CommercialPartRepository extends JpaRepository<CommercialPart, Long> {
-    List<CommercialPart> findAllByPartsOrders(PartsOrder partsOrder);
+    List<CommercialPart> findAllByPartsOrder(PartsOrder partsOrder);
 }

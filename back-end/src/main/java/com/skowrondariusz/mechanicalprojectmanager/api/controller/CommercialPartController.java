@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/commercialParts")
+@RequestMapping("api/commercialParts")
 public class CommercialPartController {
 
 
@@ -61,7 +61,7 @@ public class CommercialPartController {
 
         var partsOrders = this.partsOrderRepository.findById(Long.valueOf(partsOrderId));
         if (partsOrders.isPresent()){
-            commercialParts = this.commercialPartRepository.findAllByPartsOrders(partsOrders.get());
+            commercialParts = this.commercialPartRepository.findAllByPartsOrder(partsOrders.get());
         }
 
         var commercialPartsViewModel = commercialParts.stream()

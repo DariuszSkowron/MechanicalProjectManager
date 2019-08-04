@@ -16,7 +16,7 @@ public class PartsOrder
     private long id;
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "partsOrders", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "partsOrder", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<CommercialPart> commercialParts;
 

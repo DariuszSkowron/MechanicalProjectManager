@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {PartsOrder} from './model/parts-order';
 import {CommercialPart} from './model/commercial-part';
 import {ProjectService} from '../project.service';
-import {MechanicalProcessing} from "../processed-parts/model/mechanical-processing";
-import {ProcessedPart} from "../processed-parts/model/processed-part";
+
 
 @Component({
   selector: 'commercial-parts',
