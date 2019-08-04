@@ -8,6 +8,6 @@ export class CommercialPart {
   orderDate: string;
   deliveryDate: string;
   price: string;
-  partsOrdersId: string;
+  partsOrderId: string;
   manufacturerId: string;
 }

@@ -4,8 +4,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class CommercialPartViewModel {
-    
-    
+
     private String id;
     private String type;
     private String orderSymbol;
@@ -15,21 +14,18 @@ public class CommercialPartViewModel {
     private Date orderDate;
     private Date deliveryDate;
     private long price;
-    
-    private String getId()
-    {
-        return id;
-    }
-    
-    private void setId(String id)
-    {
-        this.id = id;
-    }
-    
+
     @NotNull
-    private String partsOrdersId;
+    private String partsOrderId;
     private String manufacturerId;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getType() {
         return type;
@@ -95,12 +91,12 @@ public class CommercialPartViewModel {
         this.price = price;
     }
 
-    public String getPartsOrdersId() {
-        return partsOrdersId;
+    public String getPartsOrderId() {
+        return partsOrderId;
     }
 
-    public void setPartsOrdersId(String partsOrdersId) {
-        this.partsOrdersId = partsOrdersId;
+    public void setPartsOrderId(String partsOrderId) {
+        this.partsOrderId = partsOrderId;
     }
 
     public String getManufacturerId() {

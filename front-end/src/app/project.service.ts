@@ -25,7 +25,7 @@ export class ProjectService {
   private SAVE_UPDATE_PARTS_ORDERS_URL = `${this.BASE_URL}/partsOrders`;
   private DELETE_PARTS_ORDERS_URL = `${this.BASE_URL}/partsOrders/`;
   private ALL_COMMERCIAL_PARTS_URL = `${this.BASE_URL}/commercialParts/all`;
-  private PARTS_BY_PARTS_ORDERS_URL = `${this.BASE_URL}/commercialParts/byPartsOrders/`;
+  private PARTS_BY_PARTS_ORDERS_URL = `${this.BASE_URL}/commercialParts/byPartsOrder/`;
   private SAVE_UPDATE_COMMERCIAL_PART_URL = `${this.BASE_URL}/commercialParts`;
   private DELETE_COMMERCIAL_PART_URL = `${this.BASE_URL}/commercialParts/`;
 

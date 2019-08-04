@@ -3,6 +3,7 @@ package com.skowrondariusz.mechanicalprojectmanager.api.controller;
 import com.skowrondariusz.mechanicalprojectmanager.api.viewmodel.CommercialPartViewModel;
 import com.skowrondariusz.mechanicalprojectmanager.model.CommercialPart;
 import com.skowrondariusz.mechanicalprojectmanager.repository.CommercialPartRepository;
+import com.skowrondariusz.mechanicalprojectmanager.repository.ManufacturerRepository;
 import com.skowrondariusz.mechanicalprojectmanager.repository.PartsOrderRepository;
 import com.skowrondariusz.mechanicalprojectmanager.utility.Mapper;
 import org.springframework.validation.BindingResult;
@@ -24,12 +25,14 @@ public class CommercialPartController {
     private PartsOrderRepository partsOrderRepository;
     private CommercialPartRepository commercialPartRepository;
     private Mapper mapper;
+    private ManufacturerRepository manufacturerRepository;
 
 
-    public CommercialPartController(PartsOrderRepository partsOrderRepository, CommercialPartRepository commercialPartRepository, Mapper mapper){
+    public CommercialPartController(PartsOrderRepository partsOrderRepository, CommercialPartRepository commercialPartRepository, Mapper mapper, ManufacturerRepository manufacturerRepository){
         this.partsOrderRepository = partsOrderRepository;
         this.commercialPartRepository = commercialPartRepository;
         this.mapper = mapper;
+        this.manufacturerRepository = manufacturerRepository;
     }
 
 
@@ -55,13 +58,13 @@ public class CommercialPartController {
         return commercialPartViewModel;
     }
 
-    @GetMapping("/byPartsOrders/{partsOrderId}")
+    @GetMapping("/byPartsOrder/{partsOrderId}")
     public List<CommercialPartViewModel> byPartsOrders(@PathVariable String partsOrderId){
         List<CommercialPart> commercialParts = new ArrayList<>();
 
-        var partsOrders = this.partsOrderRepository.findById(Long.valueOf(partsOrderId));
-        if (partsOrders.isPresent()){
-            commercialParts = this.commercialPartRepository.findAllByPartsOrder(partsOrders.get());
+        var partsOrder = this.partsOrderRepository.findById(Long.valueOf(partsOrderId));
+        if (partsOrder.isPresent()){
+            commercialParts = this.commercialPartRepository.findAllByPartsOrder(partsOrder.get());
         }
 
         var commercialPartsViewModel = commercialParts.stream()
@@ -78,8 +81,10 @@ public class CommercialPartController {
         }
 
         var commercialPartEntity = this.mapper.convertToCommercialPartEntity(commercialPartViewModel);
-
+        this.manufacturerRepository.save(commercialPartEntity.getManufacturer());
         this.commercialPartRepository.save(commercialPartEntity);
+        
+        
 
         return commercialPartEntity;
     }

@@ -119,7 +119,7 @@ export class CommercialPartsComponent implements OnInit {
       deliveryDate: '',
       price: '',
       manufacturerId: '',
-      partsOrdersId: partsOrderId,
+      partsOrderId: partsOrderId,
     };
 
     this.projectService.saveCommercialPart(newCommercialPart).subscribe(
