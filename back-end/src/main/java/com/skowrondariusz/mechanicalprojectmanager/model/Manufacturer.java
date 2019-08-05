@@ -12,6 +12,8 @@ public class Manufacturer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String name;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "manufacturer", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<CommercialPart> commercialParts;
@@ -34,7 +36,20 @@ public class Manufacturer {
     {
         this.commercialParts = commercialParts;
     }
-    
+
+
+    public Manufacturer(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }

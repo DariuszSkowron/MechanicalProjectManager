@@ -2,6 +2,7 @@ package com.skowrondariusz.mechanicalprojectmanager.api.controller;
 
 import com.skowrondariusz.mechanicalprojectmanager.api.viewmodel.CommercialPartViewModel;
 import com.skowrondariusz.mechanicalprojectmanager.model.CommercialPart;
+import com.skowrondariusz.mechanicalprojectmanager.model.Manufacturer;
 import com.skowrondariusz.mechanicalprojectmanager.repository.CommercialPartRepository;
 import com.skowrondariusz.mechanicalprojectmanager.repository.ManufacturerRepository;
 import com.skowrondariusz.mechanicalprojectmanager.repository.PartsOrderRepository;
@@ -81,7 +82,9 @@ public class CommercialPartController {
         }
 
         var commercialPartEntity = this.mapper.convertToCommercialPartEntity(commercialPartViewModel);
-        this.manufacturerRepository.save(commercialPartEntity.getManufacturer());
+        Manufacturer manufacturer = commercialPartEntity.getManufacturer();
+        manufacturer.setName(commercialPartViewModel.getManufacturer());
+        this.manufacturerRepository.save(manufacturer);
         this.commercialPartRepository.save(commercialPartEntity);
         
         

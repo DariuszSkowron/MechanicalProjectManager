@@ -13,7 +13,7 @@ export class CommercialPartsComponent implements OnInit {
   partsOrders: PartsOrder[] = [];
   commercialParts: CommercialPart[] = [];
   selectedPartsOrder: PartsOrder;
-  nameSearch: string;
+  nameOrOrderSymbolSearch: string;
   manufacturerSearch: string;
 
   constructor(private projectService: ProjectService) {

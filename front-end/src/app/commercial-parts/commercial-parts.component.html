@@ -4,7 +4,7 @@
     <div class="col-md-8">
       <label>
         <input type="text"
-               [(ngModel)]="nameSearch"
+               [(ngModel)]="nameOrOrderSymbolSearch"
                class="form-control"
                style="width: 100%;"
                placeholder="Search parts...">
@@ -70,13 +70,7 @@
           <p *ngIf="this.partsOrders.length === 0">There are no parts to display in this list</p>
 
         </div>
-        <table class="spec-table">
-          <tbody>
-          <tr *ngFor='let n of commercialParts'>
-            <td>{{n.manufacturer}}</td>
-          </tr>
-          </tbody>
-        </table>
+
         <table *ngIf="this.commercialParts.length != 0">
           <tr>
             <th>Drawing number</th>
@@ -86,15 +80,14 @@
             <th>Delete part</th>
           </tr>
         </table>
-        <div *ngFor="let n of commercialParts">
+
+        <div *ngFor="let n of commercialParts | commercialPartFilter:nameOrOrderSymbolSearch: manufacturerSearch">
           <commercial-part
             [commercialPart]="n"
             (commercialPartUpdated)="updateCommercialParts($event)"
             (commercialPartDeleted)="deleteCommercialPart($event)">
           </commercial-part>
         </div>
-
-
 
       </div>
     </div>
