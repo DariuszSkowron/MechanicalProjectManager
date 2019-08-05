@@ -17,6 +17,7 @@ import { ProcessedPartDwgNumberFilterPipe } from './shared/processed-part-dwg-nu
 import {ProcessedPartsComponent} from './processed-parts/processed-parts.component';
 import { CommercialPartsComponent } from './commercial-parts/commercial-parts.component';
 import { CommercialPartComponent } from './commercial-parts/commercial-part/commercial-part.component';
+import { CommercialPartFilterPipe } from './shared/commercial-part-filter.pipe';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { CommercialPartComponent } from './commercial-parts/commercial-part/comm
     ProcessedPartsComponent,
     CommercialPartsComponent,
     CommercialPartComponent,
+    CommercialPartFilterPipe,
   ],
   imports: [
     BrowserModule,
