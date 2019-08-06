@@ -8,7 +8,8 @@ import java.util.Date;
 public class CommercialPart {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "commercial_part_id")
     private long id;
     private String type;
     private String orderSymbol;
