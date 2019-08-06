@@ -7,7 +7,7 @@ import {CommercialPart} from '../commercial-parts/model/commercial-part';
 
 export class CommercialPartFilterPipe implements PipeTransform {
   transform(commercialParts: CommercialPart[], nameOrOrderSymbolSearch?: string, manufacturerSearch?: string): CommercialPart[] {
-    if (nameOrOrderSymbolSearch == null && (nameOrOrderSymbolSearch == null)) {
+    if (nameOrOrderSymbolSearch == null && (manufacturerSearch == null)) {
       return commercialParts;
     }
 
