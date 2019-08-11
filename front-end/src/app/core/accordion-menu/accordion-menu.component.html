@@ -2,27 +2,27 @@
 <div class="middle">
   <div class="menu">
     <li class="item" id='profile'>
-      <a href="#profile" class="btn"><i class="far fa-user"></i>Profile</a>
+      <a href="#profile" target="_self" class="btn"><i class="far fa-user"></i>Projects</a>
       <div class="smenu">
-        <a href="#">Posts</a>
-        <a href="#">Picture</a>
+        <a [routerLink]="'project'">All projects</a>
+        <a [routerLink]="'add'">Add project</a>
+        <a [routerLink]="'findByNumber'">Find project</a>
       </div>
     </li>
 
-    <li class="item" id="messages">
-      <a href="#messages" class="btn"><i class="far fa-envelope"></i>Messages</a>
+    <li class="item" id="parts">
+      <a data-target="#parts" class="btn"><i class="far fa-envelope"></i>Parts</a>
       <div class="smenu">
-        <a href="#">new</a>
-        <a href="#">Sent</a>
-        <a href="#">Spam</a>
+        <a [routerLink]="'processedParts'">Processed Parts</a>
+        <a [routerLink]="'commercialParts'">Commercial Parts</a>
       </div>
     </li>
 
     <li class="item" id="settings">
-      <a href="#settings" class="btn"><i class="fas fa-cog"></i>Settings</a>
+      <a href="#settings" class="btn"><i class="fas fa-cog"></i>Manufacturers</a>
       <div class="smenu">
-        <a href="#">Password</a>
-        <a href="#">Language</a>
+        <a href="#">Manufacturers</a>
+        <a href="#">Sales Representatives</a>
       </div>
     </li>
 
