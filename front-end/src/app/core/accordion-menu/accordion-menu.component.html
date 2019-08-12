@@ -1,22 +1,24 @@
 <nav>
   <div class="middle">
     <div class="menu">
+      <div class="item">
       <a class="btn" (click)="isCollapsed = !isCollapsed"
               [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
         <i class="far fa-user"></i>Projects
       </a>
-    <div id="collapseExample" [ngbCollapse]="isCollapsed">
-        <div class="card-body">
+<!--    <div id="collapseExample" [ngbCollapse]="isCollapsed">-->
+        <div class="card-body" id="collapseExample" [ngbCollapse]="isCollapsed">
           <a [routerLink]="'project'">All projects</a>
           <a [routerLink]="'add'">Add project</a>
           <a [routerLink]="'findByNumber'">Find project</a>
         </div>
-    </div>
+<!--    </div>-->
+      </div>
 
 
 
       <li class="item" id='profile'>
-        <a href="#profile" target="_self" class="btn"><i class="far fa-user"></i>Projects</a>
+        <a  target="_self" class="btn"><i class="far fa-user"></i>Projects</a>
         <div class="smenu">
           <a [routerLink]="'project'">All projects</a>
           <a [routerLink]="'add'">Add project</a>
