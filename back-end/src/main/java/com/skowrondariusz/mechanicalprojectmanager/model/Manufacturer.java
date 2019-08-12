@@ -9,8 +9,10 @@ import java.util.List;
 public class Manufacturer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String name;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "manufacturer", cascade = CascadeType.ALL)
     @JsonIgnore
@@ -34,7 +36,20 @@ public class Manufacturer {
     {
         this.commercialParts = commercialParts;
     }
-    
+
+
+    public Manufacturer(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }

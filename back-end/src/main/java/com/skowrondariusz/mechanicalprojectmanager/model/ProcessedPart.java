@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class ProcessedPart {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String drawingNumber;
     private String material;

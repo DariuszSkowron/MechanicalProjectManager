@@ -1,0 +1,34 @@
+<nav>
+<div class="middle">
+  <div class="menu">
+    <li class="item" id='profile'>
+      <a href="#profile" target="_self" class="btn"><i class="far fa-user"></i>Projects</a>
+      <div class="smenu">
+        <a [routerLink]="'project'">All projects</a>
+        <a [routerLink]="'add'">Add project</a>
+        <a [routerLink]="'findByNumber'">Find project</a>
+      </div>
+    </li>
+
+    <li class="item" id="parts">
+      <a data-target="#parts" class="btn"><i class="far fa-envelope"></i>Parts</a>
+      <div class="smenu">
+        <a [routerLink]="'processedParts'">Processed Parts</a>
+        <a [routerLink]="'commercialParts'">Commercial Parts</a>
+      </div>
+    </li>
+
+    <li class="item" id="settings">
+      <a href="#settings" class="btn"><i class="fas fa-cog"></i>Manufacturers</a>
+      <div class="smenu">
+        <a href="#">Manufacturers</a>
+        <a href="#">Sales Representatives</a>
+      </div>
+    </li>
+
+    <li class="item">
+      <a class="btn" href="#"><i class="fas fa-sign-out-alt"></i>Logout</a>
+    </li>
+  </div>
+</div>
+</nav>

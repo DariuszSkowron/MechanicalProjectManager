@@ -34,7 +34,10 @@ public class Mapper {
 
     public CommercialPartViewModel convertToCommercialPartViewModel(CommercialPart entity){
     
-        return modelMapper.map(entity, CommercialPartViewModel.class);
+        var viewModel = modelMapper.map(entity, CommercialPartViewModel.class);
+        viewModel.setManufacturer(entity.getManufacturer().getName());
+
+        return viewModel;
     }
 
     public PartsOrder convertToPartsOrdersEntity(PartsOrderViewModel viewModel){

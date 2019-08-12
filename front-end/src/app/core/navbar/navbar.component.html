@@ -1,42 +1,21 @@
-<div class="navbar bg-dark text-light">
-  <div class="btn-lg text-warning title">
-    <a [routerLink]="'/'" class="text-reset" >
-      <i class="fas fa-cogs"></i>
-      Mechanical Manger
-    </a>
+<div class="header">
+    <a [routerLink]="'/'"><div class="logo"><i class="fas fa-cogs"></i>Mechanical Manager</div></a>
+    <input type="checkbox" id="chk">
+    <label for="chk" class="show-menu-btn">
+      <i class="fas fa-ellipsis-h"></i>
+    </label>
 
+  <div class="menu">
+    <a href="#">Home</a>
+    <a [routerLink]="'project'">Projects</a>
+    <a [routerLink]="'add'">Add project</a>
+    <a [routerLink]="'findByNumber'">Find project</a>
+    <a [routerLink]="'processedParts'">Processed parts lists</a>
+    <a [routerLink]="'commercialParts'">Commercial Parts</a>
+    <a [routerLink]="'about'">About application</a>
+    <label for="chk" class="hide-menu-btn">
+      <i class="fas  a-times"></i>
+    </label>
   </div>
-
-  <div class="spacer"></div>
-  <div [routerLink]="'project'" class="btn btn-outline-warning">
-    Projects
-  </div>
-
-  <div class="ml-3"></div>
-  <div [routerLink]="'add'" class="btn btn-outline-warning">
-    Add new project
-  </div>
-
-  <div class="ml-3"></div>
-  <div [routerLink]="'findbynumber'" class="btn btn-outline-warning">
-    Find project
-  </div>
-
-  <div class="ml-3"></div>
-  <div [routerLink]="'processedParts'" class="btn btn-outline-warning">
-    Processed parts lists
-  </div>
-
-  <div class="ml-3"></div>
-  <div [routerLink]="'about'" class="btn btn-outline-warning">
-    About application
-  </div>
-
-  <div class="ml-3"></div>
-  <div [routerLink]="'commercialParts'" class="btn btn-outline-warning">
-    Commercial Parts
-  </div>
-
-
 </div>
 
