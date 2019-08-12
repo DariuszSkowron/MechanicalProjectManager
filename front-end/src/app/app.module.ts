@@ -18,6 +18,7 @@ import {ProcessedPartsComponent} from './processed-parts/processed-parts.compone
 import { CommercialPartsComponent } from './commercial-parts/commercial-parts.component';
 import { CommercialPartComponent } from './commercial-parts/commercial-part/commercial-part.component';
 import { CommercialPartFilterPipe } from './shared/commercial-part-filter.pipe';
+import {NgbActiveModal, NgbDropdown, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -40,9 +41,10 @@ import { CommercialPartFilterPipe } from './shared/commercial-part-filter.pipe';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    CoreModule
+    CoreModule,
+    NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [NgbActiveModal],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
