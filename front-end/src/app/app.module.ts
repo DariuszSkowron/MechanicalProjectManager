@@ -18,7 +18,9 @@ import {ProcessedPartsComponent} from './processed-parts/processed-parts.compone
 import { CommercialPartsComponent } from './commercial-parts/commercial-parts.component';
 import { CommercialPartComponent } from './commercial-parts/commercial-part/commercial-part.component';
 import { CommercialPartFilterPipe } from './shared/commercial-part-filter.pipe';
-import {NgbActiveModal, NgbDropdown, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {CollapseModule} from 'ngx-bootstrap';
+
 
 
 @NgModule({
@@ -42,9 +44,10 @@ import {NgbActiveModal, NgbDropdown, NgbModule} from '@ng-bootstrap/ng-bootstrap
     AppRoutingModule,
     HttpClientModule,
     CoreModule,
-    NgbModule.forRoot()
+    BrowserAnimationsModule,
+    CollapseModule.forRoot(),
   ],
-  providers: [NgbActiveModal],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
