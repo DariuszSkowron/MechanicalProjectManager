@@ -5,6 +5,7 @@ import {NavbarComponent} from './navbar/navbar.component';
 import {ErrorComponent} from './error/error.component';
 import {RouterModule} from '@angular/router';
 import { AccordionMenuComponent } from './accordion-menu/accordion-menu.component';
+import {NgbCollapseModule, NgbDropdownModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import { AccordionMenuComponent } from './accordion-menu/accordion-menu.componen
 
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    NgbDropdownModule,
+    NgbCollapseModule
   ],
 })
 export class CoreModule {
