@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Project} from '../project';
 import {Observable} from 'rxjs';
-import {ProjectService} from '../project.service';
+import {ApiService} from '../../shared/api.service';
 
 @Component({
   selector: 'project-list',
@@ -12,7 +12,7 @@ export class ProjectListComponent implements OnInit {
 
   projects: Observable<Project[]>;
 
-  constructor(private projectService: ProjectService) { }
+  constructor(private projectService: ApiService) { }
 
   ngOnInit() {
     this.reloadData();

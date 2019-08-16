@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ProjectService} from '../project.service';
+import {ApiService} from '../../shared/api.service';
 import {Project} from '../project';
 import {ProjectListComponent} from '../project-list/project-list.component';
 
@@ -13,7 +13,7 @@ export class ProjectDetailsComponent implements OnInit {
   @Input() project: Project;
 
 
-  constructor(private projectService: ProjectService, private listComponent: ProjectListComponent) {
+  constructor(private projectService: ApiService, private listComponent: ProjectListComponent) {
   }
 
   ngOnInit() {

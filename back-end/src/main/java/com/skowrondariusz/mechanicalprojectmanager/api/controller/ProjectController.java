@@ -3,7 +3,6 @@ package com.skowrondariusz.mechanicalprojectmanager.api.controller;
 
 import com.skowrondariusz.mechanicalprojectmanager.model.Project;
 import com.skowrondariusz.mechanicalprojectmanager.repository.ProjectRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,54 +11,48 @@ import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/projects")
 public class ProjectController {
 
-   
     private ProjectRepository projectRepository;
     
     public ProjectController(ProjectRepository projectRepository){
         this.projectRepository = projectRepository;
     }
-    
-    
 
-    @GetMapping("/projects")
+
+    @GetMapping("/all")
     public List<Project> getAllProjects() {
-        System.out.println("Get all projects...");
         var projects = projectRepository.findAll();
         return new ArrayList<>(projects);
     }
 
-    @PostMapping(value = "/projects/create")
+    @PostMapping(value = "create")
     public Project postProject(@RequestBody Project project) {
     
-        return projectRepository.save(new Project(project.getName(), project.getProjectNumber()));
+        return projectRepository.save(project);
     }
 
-    @DeleteMapping("/projects/{id}")
+    @DeleteMapping("/byId/{id}")
     public ResponseEntity<String> deleteProject(@PathVariable("id") long id) {
-        System.out.println("Delete project with ID = " + id + "...");
 
         projectRepository.deleteById(id);
 
         return new ResponseEntity<>("Project has been deleted", HttpStatus.OK);
     }
 
-    @DeleteMapping("/projects/delete")
+    @DeleteMapping("/delete")
     public ResponseEntity<String> deleteAllProjects() {
-        System.out.println("Delete all projects...");
 
         projectRepository.deleteAll();
 
         return new ResponseEntity<>("All projects have been deleted! You are in troubles!!", HttpStatus.OK);
     }
     
-    @GetMapping(value = "projects/number/{projectNumber}")
+    @GetMapping(value = "/number/{projectNumber}")
     public List<Project> findByProjectNumber(@PathVariable int projectNumber) {
 
         var project = this.projectRepository.findByProjectNumber(projectNumber);
@@ -72,7 +65,7 @@ public class ProjectController {
 
     @PutMapping("/projects/{id}")
     public ResponseEntity<Project> updateProject(@PathVariable("id") long id, @RequestBody Project project) {
-        System.out.println("Update project with ID= " + id + "...");
+
 
         Optional<Project> projectData = projectRepository.findById(id);
 

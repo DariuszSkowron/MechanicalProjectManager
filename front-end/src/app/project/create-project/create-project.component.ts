@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Project} from '../project';
-import {ProjectService} from '../project.service';
+import {ApiService} from '../../shared/api.service';
 
 @Component({
   selector: 'create-project',
@@ -12,7 +12,7 @@ export class CreateProjectComponent implements OnInit {
   project: Project = new Project();
   submitted = false;
 
-  constructor(private projectService: ProjectService) {
+  constructor(private projectService: ApiService) {
   }
 
   ngOnInit() {

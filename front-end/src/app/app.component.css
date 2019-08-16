@@ -1,4 +1,11 @@
 div.frame {
+  width: calc(100% - 250px);
   margin-left: 250px;
   display: inline-block;
+}
+
+router-outlet {
+  width: calc(100% - 250px);
+  display: flex;
+  flex-flow: column;
 }

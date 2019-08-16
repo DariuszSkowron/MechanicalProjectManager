@@ -26,8 +26,7 @@ public class MechanicalProcessingController {
 
     @GetMapping("/all")
     public List<MechanicalProcessing> all() {
-        var allMechanicalProcessing = this.mechanicalProcessingRepository.findAll();
-        return allMechanicalProcessing;
+        return this.mechanicalProcessingRepository.findAll();
     }
 
     @PostMapping

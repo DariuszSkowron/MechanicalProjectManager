@@ -1,0 +1,19 @@
+<div *ngIf="project">
+  <div>
+    <label><b>Name:</b> </label> {{project.name}}
+  </div>
+  <div>
+    <label><b>Id:</b></label> {{project.id}}
+  </div>
+  <div>
+    <label><b>Project Number:</b></label> {{project.projectNumber}}
+  </div>
+  <div>
+    <label><b>Budget:</b></label> {{project.budget}}
+  </div>
+
+
+  <span class="button is-small btn-danger" (click)='deleteProject()'>Delete</span>
+
+  <hr/>
+</div>

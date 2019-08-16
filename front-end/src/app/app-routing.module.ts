@@ -1,7 +1,7 @@
 import {RouterModule, Routes} from '@angular/router';
-import {ProjectListComponent} from './project-list/project-list.component';
-import {CreateProjectComponent} from './create-project/create-project.component';
-import {SearchProjectComponent} from './search-project/search-project.component';
+import {ProjectListComponent} from './project/project-list/project-list.component';
+import {CreateProjectComponent} from './project/create-project/create-project.component';
+import {SearchProjectComponent} from './project/search-project/search-project.component';
 import {NgModule} from '@angular/core';
 import {AboutComponent} from './about/about.component';
 import {ProcessedPartsComponent} from './processed-parts/processed-parts.component';
