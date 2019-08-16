@@ -1,7 +1,23 @@
+.container{
+
+}
+
+.processList{
+  display: block;
+  min-width: 220px;
+  float: left;
+
+}
+
+.partsList{
+  display: flex;
+}
+
+
 table{
+  //display: inline-block;
   table-layout:fixed;
-  //width="600" border="1" cellspacing="0" cellpadding="0";
-  width:800px;
+  width: 100%;
   border:1px;
 }
 table td {

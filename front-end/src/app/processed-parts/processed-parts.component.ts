@@ -50,7 +50,7 @@ export class ProcessedPartsComponent implements OnInit {
 
   createMechanicalProcessing() {
     const newMechanicalProcessing: MechanicalProcessing = {
-      name: 'New mechanical processing',
+      name: 'New processing list',
       id: null,
       numberOfParts: 0
     };
