@@ -10,7 +10,14 @@
 }
 
 .partsList{
+  display: block;
+  padding-left: 100px;
+}
+
+.partsContent{
   display: flex;
+  padding-top: 20px;
+  padding-left: 40px;
 }
 
 

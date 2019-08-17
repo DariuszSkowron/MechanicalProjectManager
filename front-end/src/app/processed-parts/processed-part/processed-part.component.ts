@@ -25,4 +25,9 @@ export class ProcessedPartComponent implements OnInit {
     deleteProcessedPart() {
         this.processedPartDeleted.emit(this.processedPart);
     }
+
+    readinessOfProcessedPart() {
+      this.processedPart.partFinished = !this.processedPart.partFinished;
+      this.processedPartUpdated.emit(this.processedPart);
+    }
 }

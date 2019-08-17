@@ -11,6 +11,7 @@ public class ProcessedPartViewModel {
     private String material;
     private String mainProcess;
     private String manufacturer;
+    private boolean partFinished;
 
     @NotNull
     private String mechanicalProcessingId;
@@ -21,6 +22,14 @@ public class ProcessedPartViewModel {
 
     public void setMechanicalProcessingId(String mechanicalProcessingId) {
         this.mechanicalProcessingId = mechanicalProcessingId;
+    }
+
+    public boolean isPartFinished() {
+        return partFinished;
+    }
+
+    public void setPartFinished(boolean partFinished) {
+        this.partFinished = partFinished;
     }
 
     public String getId() {

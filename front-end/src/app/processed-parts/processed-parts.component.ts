@@ -25,7 +25,6 @@ export class ProcessedPartsComponent implements OnInit {
     this.processedParts.find(part => part.mainProcess === processingType);
   }
 
-
   getAllMechanicalProcessing() {
     this.projectService.getAllMechanicalProcessing().subscribe(res => {
         this.mechanicalProceedings = res;
@@ -112,6 +111,7 @@ export class ProcessedPartsComponent implements OnInit {
       mainProcess: '',
       material: '',
       manufacturer: '',
+      partFinished: false,
       mechanicalProcessingId: mechanicalProcessingId
     };
 

@@ -13,7 +13,24 @@ public class ProcessedPart {
     private String material;
     private String mainProcess;
     private String manufacturer;
+    private boolean partFinished;
 
+    public ProcessedPart(String drawingNumber, String material, String mainProcess, String manufacturer, boolean partFinished, MechanicalProcessing mechanicalProcessing) {
+        this.drawingNumber = drawingNumber;
+        this.material = material;
+        this.mainProcess = mainProcess;
+        this.manufacturer = manufacturer;
+        this.partFinished = false;
+        this.mechanicalProcessing = mechanicalProcessing;
+    }
+
+    public boolean isPartFinished() {
+        return partFinished;
+    }
+
+    public void setPartFinished(boolean partFinished) {
+        this.partFinished = partFinished;
+    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     private MechanicalProcessing mechanicalProcessing;

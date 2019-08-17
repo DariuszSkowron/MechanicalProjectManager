@@ -6,5 +6,6 @@ export class ProcessedPart {
   mainProcess: string;
   manufacturer: string;
   mechanicalProcessingId: string;
+  partFinished: boolean;
 
 }
