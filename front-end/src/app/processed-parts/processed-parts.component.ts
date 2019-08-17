@@ -111,6 +111,7 @@ export class ProcessedPartsComponent implements OnInit {
       mainProcess: '',
       material: '',
       manufacturer: '',
+      readinessOfPart: null,
       partFinished: false,
       mechanicalProcessingId: mechanicalProcessingId
     };

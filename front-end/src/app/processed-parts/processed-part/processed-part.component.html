@@ -36,8 +36,8 @@
 </td>
 
     <td>
+      <strong class="text-success" *ngIf="processedPart.partFinished == true">Ready since:{{processedPart.readinessOfPart | date:'dd-MM-yyy HH:mm'}}</strong>
       <strong class="text-danger" *ngIf="processedPart.partFinished == false">Part not ready</strong>
-      <strong class="text-success" *ngIf="processedPart.partFinished == true">Part ready</strong>
     </td>
 
 <td>

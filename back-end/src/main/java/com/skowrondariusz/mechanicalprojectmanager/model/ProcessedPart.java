@@ -1,9 +1,9 @@
 package com.skowrondariusz.mechanicalprojectmanager.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
-@Table
 public class ProcessedPart {
 
     @Id
@@ -14,44 +14,17 @@ public class ProcessedPart {
     private String mainProcess;
     private String manufacturer;
     private boolean partFinished;
-
-    public ProcessedPart(String drawingNumber, String material, String mainProcess, String manufacturer, boolean partFinished, MechanicalProcessing mechanicalProcessing) {
-        this.drawingNumber = drawingNumber;
-        this.material = material;
-        this.mainProcess = mainProcess;
-        this.manufacturer = manufacturer;
-        this.partFinished = false;
-        this.mechanicalProcessing = mechanicalProcessing;
-    }
-
-    public boolean isPartFinished() {
-        return partFinished;
-    }
-
-    public void setPartFinished(boolean partFinished) {
-        this.partFinished = partFinished;
-    }
-
+    private Date readinessOfPart;
     @ManyToOne(fetch = FetchType.LAZY)
     private MechanicalProcessing mechanicalProcessing;
 
-    public ProcessedPart() {
-    }
 
-    public ProcessedPart(String drawingNumber, String material, String mainProcess) {
-        this.drawingNumber = drawingNumber;
-        this.material = material;
-        this.mainProcess = mainProcess;
-    }
-
-    public ProcessedPart(String drawingNumber, String material, String mainProcess, String manufacturer) {
-        this.drawingNumber = drawingNumber;
-        this.material = material;
-        this.mainProcess = mainProcess;
-        this.manufacturer = manufacturer;
+    protected ProcessedPart() {
+        this.readinessOfPart = new Date();
     }
 
     public ProcessedPart(String drawingNumber, String material, String mainProcess, String manufacturer, MechanicalProcessing mechanicalProcessing) {
+        this();
         this.drawingNumber = drawingNumber;
         this.material = material;
         this.mainProcess = mainProcess;
@@ -105,5 +78,21 @@ public class ProcessedPart {
 
     public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
+    }
+
+    public Date getReadinessOfPart() {
+        return readinessOfPart;
+    }
+
+    public void setReadinessOfPart(Date readinessOfPart) {
+        this.readinessOfPart = readinessOfPart;
+    }
+
+    public boolean isPartFinished() {
+        return partFinished;
+    }
+
+    public void setPartFinished(boolean partFinished) {
+        this.partFinished = partFinished;
     }
 }

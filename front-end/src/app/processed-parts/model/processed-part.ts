@@ -7,5 +7,5 @@ export class ProcessedPart {
   manufacturer: string;
   mechanicalProcessingId: string;
   partFinished: boolean;
-
+  readinessOfPart: Date;
 }
