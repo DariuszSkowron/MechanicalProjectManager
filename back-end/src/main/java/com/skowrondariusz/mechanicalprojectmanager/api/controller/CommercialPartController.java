@@ -54,9 +54,7 @@ public class CommercialPartController {
             throw new EntityNotFoundException();
         }
 
-        var commercialPartViewModel = this.mapper.convertToCommercialPartViewModel(commercialPart);
-
-        return commercialPartViewModel;
+        return this.mapper.convertToCommercialPartViewModel(commercialPart);
     }
 
     @GetMapping("/byPartsOrder/{partsOrderId}")
@@ -68,11 +66,9 @@ public class CommercialPartController {
             commercialParts = this.commercialPartRepository.findAllByPartsOrder(partsOrder.get());
         }
 
-        var commercialPartsViewModel = commercialParts.stream()
+        return commercialParts.stream()
                 .map(commercialPart -> this.mapper.convertToCommercialPartViewModel(commercialPart))
                 .collect(Collectors.toList());
-
-        return commercialPartsViewModel;
     }
 
     @PostMapping

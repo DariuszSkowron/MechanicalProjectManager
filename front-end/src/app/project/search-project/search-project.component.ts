@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Project} from '../project';
-import {ProjectService} from '../project.service';
+import {ApiService} from '../../shared/api.service';
 
 @Component({
   selector: 'search-project',
@@ -12,7 +12,7 @@ export class SearchProjectComponent implements OnInit {
   projectNumber: number;
   projects: Project[];
 
-  constructor(private dataService: ProjectService) {
+  constructor(private dataService: ApiService) {
   }
 
   ngOnInit() {
@@ -25,7 +25,7 @@ export class SearchProjectComponent implements OnInit {
           this.projects = projects;
         },
         err => {
-          alert('An error has occured while downloading the notes;');
+          alert('Cant find any projects');
         }
       );
   }

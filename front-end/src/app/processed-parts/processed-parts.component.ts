@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MechanicalProcessing} from './model/mechanical-processing';
 import {ProcessedPart} from './model/processed-part';
-import {ProjectService} from '../project.service';
+import {ApiService} from '../shared/api.service';
 
 @Component({
   selector: 'processed-parts',
@@ -14,7 +14,7 @@ export class ProcessedPartsComponent implements OnInit {
   selectedMechanicalProcessing: MechanicalProcessing;
   nameSearch: string;
   mainProcessSearch: string;
-  constructor(private projectService: ProjectService) { }
+  constructor(private projectService: ApiService) { }
 
   ngOnInit() {
     this.getAllMechanicalProcessing();
@@ -24,7 +24,6 @@ export class ProcessedPartsComponent implements OnInit {
   filterPartsByProcessingType(processingType: any) {
     this.processedParts.find(part => part.mainProcess === processingType);
   }
-
 
   getAllMechanicalProcessing() {
     this.projectService.getAllMechanicalProcessing().subscribe(res => {
@@ -50,7 +49,7 @@ export class ProcessedPartsComponent implements OnInit {
 
   createMechanicalProcessing() {
     const newMechanicalProcessing: MechanicalProcessing = {
-      name: 'New mechanical processing',
+      name: 'New processing list',
       id: null,
       numberOfParts: 0
     };
@@ -112,6 +111,8 @@ export class ProcessedPartsComponent implements OnInit {
       mainProcess: '',
       material: '',
       manufacturer: '',
+      readinessOfPart: null,
+      partFinished: false,
       mechanicalProcessingId: mechanicalProcessingId
     };
 

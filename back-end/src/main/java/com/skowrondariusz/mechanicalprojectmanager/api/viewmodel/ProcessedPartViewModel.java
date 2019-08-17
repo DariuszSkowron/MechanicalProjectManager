@@ -1,6 +1,7 @@
 package com.skowrondariusz.mechanicalprojectmanager.api.viewmodel;
 
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 public class ProcessedPartViewModel {
 
@@ -11,6 +12,16 @@ public class ProcessedPartViewModel {
     private String material;
     private String mainProcess;
     private String manufacturer;
+    private boolean partFinished;
+    private Date readinessOfPart;
+
+    public Date getReadinessOfPart() {
+        return readinessOfPart;
+    }
+
+    public void setReadinessOfPart(Date readinessOfPart) {
+        this.readinessOfPart = readinessOfPart;
+    }
 
     @NotNull
     private String mechanicalProcessingId;
@@ -21,6 +32,14 @@ public class ProcessedPartViewModel {
 
     public void setMechanicalProcessingId(String mechanicalProcessingId) {
         this.mechanicalProcessingId = mechanicalProcessingId;
+    }
+
+    public boolean isPartFinished() {
+        return partFinished;
+    }
+
+    public void setPartFinished(boolean partFinished) {
+        this.partFinished = partFinished;
     }
 
     public String getId() {

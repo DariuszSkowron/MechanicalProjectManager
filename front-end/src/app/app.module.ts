@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { CreateProjectComponent } from './create-project/create-project.component';
-import { ProjectDetailsComponent } from './project-details/project-details.component';
-import { ProjectListComponent } from './project-list/project-list.component';
-import { SearchProjectComponent } from './search-project/search-project.component';
+import { CreateProjectComponent } from './project/create-project/create-project.component';
+import { ProjectDetailsComponent } from './project/project-details/project-details.component';
+import { ProjectListComponent } from './project/project-list/project-list.component';
+import { SearchProjectComponent } from './project/search-project/search-project.component';
 import {AppRoutingModule} from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
@@ -18,7 +18,9 @@ import {ProcessedPartsComponent} from './processed-parts/processed-parts.compone
 import { CommercialPartsComponent } from './commercial-parts/commercial-parts.component';
 import { CommercialPartComponent } from './commercial-parts/commercial-part/commercial-part.component';
 import { CommercialPartFilterPipe } from './shared/commercial-part-filter.pipe';
-import {NgbActiveModal, NgbDropdown, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {CollapseModule} from 'ngx-bootstrap';
+
 
 
 @NgModule({
@@ -42,9 +44,10 @@ import {NgbActiveModal, NgbDropdown, NgbModule} from '@ng-bootstrap/ng-bootstrap
     AppRoutingModule,
     HttpClientModule,
     CoreModule,
-    NgbModule.forRoot()
+    BrowserAnimationsModule,
+    CollapseModule.forRoot(),
   ],
-  providers: [NgbActiveModal],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

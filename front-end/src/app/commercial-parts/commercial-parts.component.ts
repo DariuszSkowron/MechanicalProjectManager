@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PartsOrder} from './model/parts-order';
 import {CommercialPart} from './model/commercial-part';
-import {ProjectService} from '../project.service';
+import {ApiService} from '../shared/api.service';
 
 
 @Component({
@@ -16,7 +16,7 @@ export class CommercialPartsComponent implements OnInit {
   nameOrOrderSymbolSearch: string;
   manufacturerSearch: string;
 
-  constructor(private projectService: ProjectService) {
+  constructor(private projectService: ApiService) {
   }
 
   ngOnInit() {

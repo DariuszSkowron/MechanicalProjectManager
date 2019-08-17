@@ -1,16 +1,16 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {MechanicalProcessing} from './processed-parts/model/mechanical-processing';
-import {ProcessedPart} from './processed-parts/model/processed-part';
-import {PartsOrder} from './commercial-parts/model/parts-order';
-import {CommercialPart} from './commercial-parts/model/commercial-part';
+import {MechanicalProcessing} from '../processed-parts/model/mechanical-processing';
+import {ProcessedPart} from '../processed-parts/model/processed-part';
+import {PartsOrder} from '../commercial-parts/model/parts-order';
+import {CommercialPart} from '../commercial-parts/model/commercial-part';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class ProjectService {
+export class ApiService {
 
   private BASE_URL = 'http://localhost:8080/api';
   private PROJECTS_URL = `${this.BASE_URL}/projects`;
@@ -49,11 +49,11 @@ export class ProjectService {
   }
 
   deleteProject(id: number): Observable<any> {
-    return this.http.delete(`${this.PROJECTS_URL}/${id}`, {responseType: 'text'});
+    return this.http.delete(`${this.PROJECTS_URL}/byId/${id}`, {responseType: 'text'});
   }
 
   getProjectList(): Observable<any> {
-    return this.http.get(`${this.PROJECTS_URL}`);
+    return this.http.get(`${this.PROJECTS_URL}/all`);
   }
 
   getProjectsByProjectNumber(projectNumber: number): Observable<any> {
