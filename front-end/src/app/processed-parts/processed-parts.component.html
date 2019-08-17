@@ -23,9 +23,9 @@
     </div>
 
     <div>
-      <label for="fieldOfStudies" class="text-title">Search by main process</label>
-      <select id="fieldOfStudies" [(ngModel)]="mainProcessSearch" class="custom-select" (change)="filterPartsByProcessingType($event.target)">
-        <option value="0" selected disabled hidden>Pick one of the options available</option>
+      <label for="dd" class="text-title">Search by main process</label>
+      <select id="dd" [(ngModel)]="mainProcessSearch" class="custom-select" (change)="filterPartsByProcessingType($event.target)">
+        <option [value]="undefined" selected disabled hidden>Pick one of the options available</option>
         <option *ngFor="let fos of processedParts" value={{fos.mainProcess}}>
           {{fos.mainProcess}}
         </option>
