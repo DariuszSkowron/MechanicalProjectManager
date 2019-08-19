@@ -1,41 +1,52 @@
 <div class="container">
-    <div>
-      <label>
+  <div>
+    <label>
       <input type="text"
              [(ngModel)]="nameSearch"
              class="form-control"
              placeholder="Search parts by name...">
-      </label>
+    </label>
 
-      <button type="buton"
-              (click)="createMechanicalProcessing()"
-              class="btn">
-        <i class="fas fa-plus"></i> New processing list
-      </button>
+    <button type="buton"
+            (click)="createMechanicalProcessing()"
+            class="btn">
+      <i class="fas fa-plus"></i> New processing list
+    </button>
 
 
-      <button type="button"
-              (click)="createProcessedPart(selectedMechanicalProcessing.id)"
-              [disabled]="selectedMechanicalProcessing == null"
-              class="btn">
-        <i class="fa fa-plus"></i> New part
-      </button>
-    </div>
-
-    <div>
-      <label for="fieldOfStudies" class="text-title">Search by main process</label>
-      <select id="fieldOfStudies" [(ngModel)]="mainProcessSearch" class="custom-select" (change)="filterPartsByProcessingType($event.target)">
-        <option value="0" selected disabled hidden>Pick one of the options available</option>
-        <option *ngFor="let fos of processedParts" value={{fos.mainProcess}}>
-          {{fos.mainProcess}}
-        </option>
-      </select>
-    </div>
-
+    <button type="button"
+            (click)="createProcessedPart(selectedMechanicalProcessing.id)"
+            [disabled]="selectedMechanicalProcessing == null"
+            class="btn">
+      <i class="fa fa-plus"></i> New part
+    </button>
   </div>
 
+  <div>
+    <label for="searchingByProcess" class="text-title">Search by main process</label>
+    <select id="searchingByProcess" [(ngModel)]="mainProcessSearch" class="custom-select"
+            (change)="filterPartsByProcessingType($event.target)">
+      <option [ngValue]="undefined" selected disabled hidden>Pick one of the options available</option>
+      <option [ngValue]="undefined">All parts</option>
+      <option *ngFor="let processedPart of processedParts" [value]='processedPart.mainProcess'>
+        {{processedPart.mainProcess}}
+      </option>
+    </select>
+  </div>
 
-  <div class="partsContent">
+  <!--  <mat-form-field>-->
+  <!--  disabled hidden-->
+  <!--    <mat-label>Select an option</mat-label>-->
+  <!--    <mat-select [(ngModel)]="mainProcessSearch" (change)="filterPartsByProcessingType($event.target)">-->
+  <!--      <mat-option>None</mat-option>-->
+  <!--      <mat-option *ngFor="let fos of processedParts" value={{fos.mainProcess}}>{{fos.mainProcess}}</mat-option>-->
+  <!--    </mat-select>-->
+  <!--  </mat-form-field>-->
+
+</div>
+
+
+<div class="partsContent">
   <div class="processList">
 
     <div>
@@ -49,8 +60,8 @@
            (click)="selectMechanicalProcessing(mechanicalProcess)" class="list-group-item list-group-item-action">
 
           <label>
-          <input [(ngModel)]="mechanicalProcess.name" (change)="updateMechanicalProcessing(mechanicalProcess)"
-                 type="text" class="input-label" style="width: 150px"/>
+            <input [(ngModel)]="mechanicalProcess.name" (change)="updateMechanicalProcessing(mechanicalProcess)"
+                   type="text" class="input-label" style="width: 150px"/>
           </label>
           <a (click)="deleteMechanicalProcessing(mechanicalProcess)" class="pull-right text-danger">
             <i class="fas fa-trash"></i>
@@ -61,16 +72,17 @@
   </div>
 
 
-    <div class="partsList">
+  <div class="partsList">
+    <div>
+
       <div>
+        <h3 *ngIf="selectedMechanicalProcessing != null">Processing list
+          name: {{selectedMechanicalProcessing.name}}</h3>
+        <h3 *ngIf="selectedMechanicalProcessing == null">All parts</h3>
+        <p *ngIf="this.processedParts.length === 0">There are no parts to display in this list</p>
+      </div>
 
-        <div>
-          <h3 *ngIf="selectedMechanicalProcessing != null">Processing list name: {{selectedMechanicalProcessing.name}}</h3>
-          <h3 *ngIf="selectedMechanicalProcessing == null">All parts</h3>
-          <p *ngIf="this.processedParts.length === 0">There are no parts to display in this list</p>
-        </div>
-
-        <div>
+      <div>
         <table *ngIf="this.processedParts.length != 0">
           <tr>
             <th>Drawing number</th>
@@ -81,19 +93,19 @@
             <th>Actions</th>
           </tr>
         </table>
-        </div>
-
-        <div>
-          <div *ngFor="let n of processedParts | ProcessedPartDwgNumberFilter:mainProcessSearch: nameSearch">
-            <processed-part
-                            [processedPart]="n"
-                            (processedPartUpdated)="updateProcessedPart($event)"
-                            (processedPartDeleted)="deleteProcessedPart($event)">
-            </processed-part>
-          </div>
-        </div>
       </div>
 
-
+      <div>
+        <div *ngFor="let n of processedParts | ProcessedPartDwgNumberFilter:mainProcessSearch: nameSearch">
+          <processed-part
+            [processedPart]="n"
+            (processedPartUpdated)="updateProcessedPart($event)"
+            (processedPartDeleted)="deleteProcessedPart($event)">
+          </processed-part>
+        </div>
       </div>
     </div>
+
+
+  </div>
+</div>

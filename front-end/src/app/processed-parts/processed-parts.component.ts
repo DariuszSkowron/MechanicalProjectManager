@@ -14,9 +14,11 @@ export class ProcessedPartsComponent implements OnInit {
   selectedMechanicalProcessing: MechanicalProcessing;
   nameSearch: string;
   mainProcessSearch: string;
+  defaultMechaning: any;
   constructor(private projectService: ApiService) { }
 
   ngOnInit() {
+    this.defaultMechaning = this.processedParts[0];
     this.getAllMechanicalProcessing();
     this.getAllProcessedParts();
   }
