@@ -6,6 +6,8 @@ import com.skowrondariusz.mechanicalprojectmanager.model.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class Mapper {
 
@@ -51,5 +53,15 @@ public class Mapper {
     public Manufacturer convertToManufacturerEntity(ManufacturerViewModel viewModel){
 
         return modelMapper.map(viewModel, Manufacturer.class);
+    }
+
+    public SalesRepresentativeViewModel convertToSalesRepresentativeViewModel(SalesRepresentative entity){
+
+        return modelMapper.map(entity, SalesRepresentativeViewModel.class);
+    }
+
+    public SalesRepresentative convertToSalesRepresentativeEntity(SalesRepresentativeViewModel viewModel){
+
+        return modelMapper.map(viewModel, SalesRepresentative.class);
     }
 }
