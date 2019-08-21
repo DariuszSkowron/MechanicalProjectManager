@@ -1,16 +1,12 @@
 package com.skowrondariusz.mechanicalprojectmanager.utility;
 
 
-import com.skowrondariusz.mechanicalprojectmanager.api.viewmodel.CommercialPartViewModel;
-import com.skowrondariusz.mechanicalprojectmanager.api.viewmodel.MechanicalProcessingViewModel;
-import com.skowrondariusz.mechanicalprojectmanager.api.viewmodel.PartsOrderViewModel;
-import com.skowrondariusz.mechanicalprojectmanager.api.viewmodel.ProcessedPartViewModel;
-import com.skowrondariusz.mechanicalprojectmanager.model.CommercialPart;
-import com.skowrondariusz.mechanicalprojectmanager.model.MechanicalProcessing;
-import com.skowrondariusz.mechanicalprojectmanager.model.PartsOrder;
-import com.skowrondariusz.mechanicalprojectmanager.model.ProcessedPart;
+import com.skowrondariusz.mechanicalprojectmanager.api.viewmodel.*;
+import com.skowrondariusz.mechanicalprojectmanager.model.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class Mapper {
@@ -47,5 +43,25 @@ public class Mapper {
 
     public CommercialPart convertToCommercialPartEntity(CommercialPartViewModel viewModel){
         return modelMapper.map(viewModel, CommercialPart.class);
+    }
+
+    public ManufacturerViewModel convertToManufacturerViewModel(Manufacturer entity){
+
+        return modelMapper.map(entity, ManufacturerViewModel.class);
+    }
+
+    public Manufacturer convertToManufacturerEntity(ManufacturerViewModel viewModel){
+
+        return modelMapper.map(viewModel, Manufacturer.class);
+    }
+
+    public SalesRepresentativeViewModel convertToSalesRepresentativeViewModel(SalesRepresentative entity){
+
+        return modelMapper.map(entity, SalesRepresentativeViewModel.class);
+    }
+
+    public SalesRepresentative convertToSalesRepresentativeEntity(SalesRepresentativeViewModel viewModel){
+
+        return modelMapper.map(viewModel, SalesRepresentative.class);
     }
 }
