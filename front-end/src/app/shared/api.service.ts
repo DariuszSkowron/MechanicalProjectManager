@@ -29,6 +29,14 @@ export class ApiService {
   private SAVE_UPDATE_COMMERCIAL_PART_URL = `${this.BASE_URL}/commercialParts`;
   private DELETE_COMMERCIAL_PART_URL = `${this.BASE_URL}/commercialParts/`;
 
+  private ALL_MANUFACTURERS_URL = `${this.BASE_URL}/manufacturer/all`;
+  private SAVE_UPDATE_MANUFACTURERS_URL = `${this.BASE_URL}/manufacturer`;
+  private DELETE_MANUFACTURERS_URL = `${this.BASE_URL}/manufacturer/`;
+  private ALL_SALES_REPRESENTATIVES_URL = `${this.BASE_URL}/salesRepresentative/all`;
+  private SALES_REPRESENTATIVES_BY_MANUFACTURER_URL = `${this.BASE_URL}/salesRepresentative/byManufacturer/`;
+  private SAVE_UPDATE_SALES_REPRESENTATIVE_URL = `${this.BASE_URL}/salesRepresentative`;
+  private DELETE_SALES_REPRESENTATIVE_URL = `${this.BASE_URL}/salesRepresentative/`;
+
 
 
 
@@ -91,8 +99,6 @@ export class ApiService {
   deleteProcessedPart(processedPartId: string): Observable<any> {
     return this.http.delete(this.DELETE_PROCESSED_PART_URL + processedPartId);
   }
-
-
 
   getAllPartsOrders(): Observable<PartsOrder[]> {
     return this.http.get<PartsOrder[]>(this.ALL_PARTS_ORDERS_URL);

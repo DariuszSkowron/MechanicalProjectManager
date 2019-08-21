@@ -6,6 +6,7 @@ import {ErrorComponent} from './error/error.component';
 import {RouterModule} from '@angular/router';
 import { AccordionMenuComponent } from './accordion-menu/accordion-menu.component';
 import {AccordionModule, CollapseModule} from "ngx-bootstrap";
+import { ManufuacturersComponent } from './manufuacturers/manufuacturers.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import {AccordionModule, CollapseModule} from "ngx-bootstrap";
     FooterComponent,
     NavbarComponent,
     ErrorComponent,
-    AccordionMenuComponent
+    AccordionMenuComponent,
+    ManufuacturersComponent
   ],
   exports: [
     NavbarComponent,
