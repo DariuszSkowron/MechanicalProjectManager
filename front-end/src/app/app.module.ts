@@ -20,6 +20,9 @@ import { CommercialPartComponent } from './commercial-parts/commercial-part/comm
 import { CommercialPartFilterPipe } from './shared/commercial-part-filter.pipe';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CollapseModule} from 'ngx-bootstrap';
+import { ManufacturersComponent } from './manufacturers/manufacturers.component';
+import { SalesRepresentativesComponent } from './manufacturers/sales-representatives/sales-representatives.component';
+import { SalesRepresentativeFilterPipe } from './shared/sales-representative-filter.pipe';
 
 
 
@@ -37,6 +40,9 @@ import {CollapseModule} from 'ngx-bootstrap';
     CommercialPartsComponent,
     CommercialPartComponent,
     CommercialPartFilterPipe,
+    ManufacturersComponent,
+    SalesRepresentativesComponent,
+    SalesRepresentativeFilterPipe,
   ],
   imports: [
     BrowserModule,

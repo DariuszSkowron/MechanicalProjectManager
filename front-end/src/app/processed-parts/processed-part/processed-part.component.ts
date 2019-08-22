@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ProcessedPart} from '../model/processed-part';
-import {getLocaleDateFormat} from "@angular/common";
+
 
 @Component({
     selector: 'processed-part',

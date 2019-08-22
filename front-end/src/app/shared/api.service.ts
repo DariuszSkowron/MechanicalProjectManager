@@ -5,6 +5,8 @@ import {MechanicalProcessing} from '../processed-parts/model/mechanical-processi
 import {ProcessedPart} from '../processed-parts/model/processed-part';
 import {PartsOrder} from '../commercial-parts/model/parts-order';
 import {CommercialPart} from '../commercial-parts/model/commercial-part';
+import {Manufacturer} from "../manufacturers/model/manufacturer";
+import {SalesRepresentative} from "../manufacturers/model/sales-representative";
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +30,13 @@ export class ApiService {
   private PARTS_BY_PARTS_ORDERS_URL = `${this.BASE_URL}/commercialParts/byPartsOrder/`;
   private SAVE_UPDATE_COMMERCIAL_PART_URL = `${this.BASE_URL}/commercialParts`;
   private DELETE_COMMERCIAL_PART_URL = `${this.BASE_URL}/commercialParts/`;
+  private ALL_MANUFACTURERS_URL = `${this.BASE_URL}/manufacturer/all`;
+  private SAVE_UPDATE_MANUFACTURERS_URL = `${this.BASE_URL}/manufacturer`;
+  private DELETE_MANUFACTURERS_URL = `${this.BASE_URL}/manufacturer/`;
+  private ALL_SALES_REPRESENTATIVES_URL = `${this.BASE_URL}/salesRepresentative/all`;
+  private SALES_REPRESENTATIVES_BY_MANUFACTURER_URL = `${this.BASE_URL}/salesRepresentative/byManufacturer/`;
+  private SAVE_UPDATE_SALES_REPRESENTATIVE_URL = `${this.BASE_URL}/salesRepresentative`;
+  private DELETE_SALES_REPRESENTATIVE_URL = `${this.BASE_URL}/salesRepresentative/`;
 
 
 
@@ -92,8 +101,6 @@ export class ApiService {
     return this.http.delete(this.DELETE_PROCESSED_PART_URL + processedPartId);
   }
 
-
-
   getAllPartsOrders(): Observable<PartsOrder[]> {
     return this.http.get<PartsOrder[]>(this.ALL_PARTS_ORDERS_URL);
   }
@@ -122,6 +129,36 @@ export class ApiService {
     return this.http.delete(this.DELETE_COMMERCIAL_PART_URL + commercialPartId);
   }
 
+
+
+
+  getAllManufacturers(): Observable<Manufacturer[]> {
+    return this.http.get<Manufacturer[]>(this.ALL_MANUFACTURERS_URL);
+  }
+
+  postManufacturer(manufacturer: Manufacturer): Observable<Manufacturer> {
+    return this.http.post<Manufacturer>(this.SAVE_UPDATE_MANUFACTURERS_URL, manufacturer);
+  }
+
+  deleteManufacturer(id: string): Observable<any> {
+    return this.http.delete(this.DELETE_MANUFACTURERS_URL + id);
+  }
+
+  getAllSalesRepresentatives(): Observable<SalesRepresentative[]> {
+    return this.http.get<SalesRepresentative[]>(this.ALL_SALES_REPRESENTATIVES_URL);
+  }
+
+  getSalesRepresentativeByManufacturer(manufacturerId: string): Observable<SalesRepresentative[]> {
+    return this.http.get<SalesRepresentative[]>(this.SALES_REPRESENTATIVES_BY_MANUFACTURER_URL + manufacturerId);
+  }
+
+  saveSalesRepresentative(salesRepresentative: SalesRepresentative): Observable<SalesRepresentative> {
+    return this.http.post<SalesRepresentative>(this.SAVE_UPDATE_SALES_REPRESENTATIVE_URL, salesRepresentative);
+  }
+
+  deleteSalesRepresentative(salesRepresentativeId: string): Observable<any> {
+    return this.http.delete(this.DELETE_SALES_REPRESENTATIVE_URL + salesRepresentativeId);
+  }
 
 
 }
