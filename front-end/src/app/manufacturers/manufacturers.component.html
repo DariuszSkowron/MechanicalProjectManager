@@ -1,3 +1,101 @@
-<p>
-  manufacturers works!
-</p>
+<div class="container">
+  <div>
+    <label>
+      <input type="text"
+             [(ngModel)]="nameSearch"
+             class="form-control"
+             placeholder="Search parts by name...">
+    </label>
+
+    <button type="buton"
+            (click)="createManufacturer()"
+            class="btn">
+      <i class="fas fa-plus"></i> New processing list
+    </button>
+
+
+    <button type="button"
+            (click)="createSalesRepresentative(selectedManufacturer.id)"
+            [disabled]="selectedManufacturer == null"
+            class="btn">
+      <i class="fa fa-plus"></i> New part
+    </button>
+  </div>
+
+  <div>
+    <label for="searchingByProcess" class="text-title">Search by main process</label>
+    <select id="searchingByProcess" [(ngModel)]="manufacturerSearch" class="custom-select"
+            (change)="filterSalesRepresentativesByManufacturer($event.target)">
+      <option [ngValue]="undefined" selected disabled hidden>Pick one of the options available</option>
+      <option [ngValue]="undefined">All parts</option>
+      <option *ngFor="let salesRepresentative of salesRepresentatives" [value]='salesRepresentative.manufacturerId'>
+        {{salesRepresentative.manufacturerId}}
+      </option>
+    </select>
+  </div>
+</div>
+
+
+<div class="partsContent">
+  <div class="processList">
+
+    <div>
+      <h3>Processing lists</h3>
+      <br>
+      <div class="list-group list-group-flush">
+        <a (click)="selectAllSalesRepresentatives()" class="list-group-item list-group-item-action">
+          <b>All parts</b>
+        </a>
+        <a *ngFor="let manufacturer of manufacturers"
+           (click)="selectManufacturer(manufacturer)" class="list-group-item list-group-item-action">
+
+          <label>
+            <input [(ngModel)]="manufacturer.name" (change)="updateManufacturer(manufacturer)"
+                   type="text" class="input-label" style="width: 150px"/>
+          </label>
+          <a (click)="deleteManufacturer(manufacturer)" class="pull-right text-danger">
+            <i class="fas fa-trash"></i>
+          </a>
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="partsList">
+    <div>
+
+      <div>
+        <h3 *ngIf="selectedManufacturer != null">Processing list
+          name: {{selectedManufacturer.name}}</h3>
+        <h3 *ngIf="selectedManufacturer == null">All parts</h3>
+        <p *ngIf="this.salesRepresentatives.length === 0">There are no parts to display in this list</p>
+      </div>
+
+      <div>
+        <table *ngIf="this.salesRepresentatives.length != 0">
+          <tr>
+            <th>Drawing number</th>
+            <th>Main process</th>
+            <th>Material</th>
+            <th>Manufacturer</th>
+            <th>Date of availability</th>
+            <th>Actions</th>
+          </tr>
+        </table>
+      </div>
+
+      <div>
+        <div *ngFor="let n of salesRepresentatives | salesRepresentativeFilter:manufacturerSearch: nameSearch">
+          <sales-representatives
+            [salesRepresentative]="n"
+            (processedPartUpdated)="updateSalesRepresentative($event)"
+            (processedPartDeleted)="deleteSalesRepresentative($event)">
+          </sales-representatives>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

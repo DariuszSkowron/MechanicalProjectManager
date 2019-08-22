@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Manufacturer} from './model/manufacturer';
 import {SalesRepresentative} from './model/sales-representative';
 import {ApiService} from '../shared/api.service';
-import {MechanicalProcessing} from "../processed-parts/model/mechanical-processing";
-import {ProcessedPart} from "../processed-parts/model/processed-part";
+import {MechanicalProcessing} from '../processed-parts/model/mechanical-processing';
+import {ProcessedPart} from '../processed-parts/model/processed-part';
 
 @Component({
   selector: 'manufacturers',
@@ -22,6 +22,10 @@ export class ManufacturersComponent implements OnInit {
   ngOnInit() {
     this.getAllManufacturers();
     this.getAllSalesRepresentatives();
+  }
+
+  filterSalesRepresentativesByManufacturer(manufacturer: any) {
+    this.salesRepresentatives.find(rep => rep.manufacturerId === manufacturer);
   }
 
   getAllManufacturers() {

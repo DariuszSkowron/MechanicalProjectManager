@@ -22,6 +22,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CollapseModule} from 'ngx-bootstrap';
 import { ManufacturersComponent } from './manufacturers/manufacturers.component';
 import { SalesRepresentativesComponent } from './manufacturers/sales-representatives/sales-representatives.component';
+import { SalesRepresentativeFilterPipe } from './shared/sales-representative-filter.pipe';
 
 
 
@@ -41,6 +42,7 @@ import { SalesRepresentativesComponent } from './manufacturers/sales-representat
     CommercialPartFilterPipe,
     ManufacturersComponent,
     SalesRepresentativesComponent,
+    SalesRepresentativeFilterPipe,
   ],
   imports: [
     BrowserModule,
