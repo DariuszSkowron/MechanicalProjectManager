@@ -14,6 +14,7 @@ public class SalesRepresentative {
     private String email;
 
     @OneToOne(fetch = FetchType.LAZY)
+//    @ManyToOne(fetch = FetchType.LAZY)
     private Manufacturer manufacturer;
 
     public SalesRepresentative() {

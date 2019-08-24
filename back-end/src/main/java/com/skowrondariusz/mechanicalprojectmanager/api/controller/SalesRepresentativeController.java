@@ -35,7 +35,7 @@ public class SalesRepresentativeController {
         var salesRepresentative = this.salesRepresentativeRepository.findAll();
 
         return salesRepresentative.stream()
-                .map(part -> this.mapper.convertToSalesRepresentativeViewModel((SalesRepresentative) salesRepresentative))
+                .map(rep -> this.mapper.convertToSalesRepresentativeViewModel(rep))
                 .collect(Collectors.toList());
     }
 
@@ -53,9 +53,9 @@ public class SalesRepresentativeController {
     }
 
     @GetMapping("/byManufacturer/{manufacturerId}")
-    public SalesRepresentativeViewModel salesRepresentative(@PathVariable Long manufacturerId) {
+    public SalesRepresentativeViewModel salesRepresentative(@PathVariable String manufacturerId) {
 
-        var manufacturer = this.manufacturerRepository.findById(manufacturerId);
+        var manufacturer = this.manufacturerRepository.findById(Long.valueOf(manufacturerId));
 
         var salesRepresentative = new SalesRepresentative();
 
@@ -63,7 +63,9 @@ public class SalesRepresentativeController {
             salesRepresentative = this.salesRepresentativeRepository.findByManufacturer(manufacturer.get());
         }
 
-        return this.mapper.convertToSalesRepresentativeViewModel(salesRepresentative);
+        var salesRepresentativeViewModel = this.mapper.convertToSalesRepresentativeViewModel(salesRepresentative);
+
+        return salesRepresentativeViewModel;
     }
 
     @PostMapping

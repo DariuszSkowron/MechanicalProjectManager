@@ -45,11 +45,6 @@ public class Mapper {
         return modelMapper.map(viewModel, CommercialPart.class);
     }
 
-    public ManufacturerViewModel convertToManufacturerViewModel(Manufacturer entity){
-
-        return modelMapper.map(entity, ManufacturerViewModel.class);
-    }
-
     public Manufacturer convertToManufacturerEntity(ManufacturerViewModel viewModel){
 
         return modelMapper.map(viewModel, Manufacturer.class);

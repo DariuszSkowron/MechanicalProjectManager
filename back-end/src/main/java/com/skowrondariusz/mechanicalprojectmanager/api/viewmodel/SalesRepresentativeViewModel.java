@@ -7,6 +7,15 @@ public class SalesRepresentativeViewModel {
     private String lastName;
     private String email;
     private String manufacturer;
+    private String manufacturerId;
+
+    public String getManufacturerId() {
+        return manufacturerId;
+    }
+
+    public void setManufacturerId(String manufacturerId) {
+        this.manufacturerId = manufacturerId;
+    }
 
     public Long getId() {
         return id;
