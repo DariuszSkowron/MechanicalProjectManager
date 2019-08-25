@@ -42,7 +42,7 @@ export class ManufacturersComponent implements OnInit {
   getAllSalesRepresentatives() {
     this.apiService.getAllSalesRepresentatives().subscribe(
       res => {
-        console.log(res);
+        this.salesRepresentatives = res;
       },
       err => {
         alert('While downloading sales representatives occurred an error');
