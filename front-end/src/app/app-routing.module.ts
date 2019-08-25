@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'about', component: AboutComponent},
   {path: 'processedParts', component: ProcessedPartsComponent},
   {path: 'commercialParts', component: CommercialPartsComponent },
-  {path: 'manufacturers', component: ManufacturersComponent },
+  {path: 'manufacturer', component: ManufacturersComponent },
   {path: 'salesRepresentative', component: SalesRepresentativesComponent }
 
 ];

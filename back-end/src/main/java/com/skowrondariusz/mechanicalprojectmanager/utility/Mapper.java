@@ -6,7 +6,6 @@ import com.skowrondariusz.mechanicalprojectmanager.model.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 
 @Component
 public class Mapper {
@@ -14,12 +13,12 @@ public class Mapper {
     private ModelMapper modelMapper = new ModelMapper();
 
     public ProcessedPartViewModel convertToProcessedPartViewModel(ProcessedPart entity){
-    
+
         return modelMapper.map(entity, ProcessedPartViewModel.class);
     }
 
     public ProcessedPart convertToProcessedPartEntity(ProcessedPartViewModel viewModel){
-    
+
         return modelMapper.map(viewModel, ProcessedPart.class);
     }
 
@@ -43,11 +42,6 @@ public class Mapper {
 
     public CommercialPart convertToCommercialPartEntity(CommercialPartViewModel viewModel){
         return modelMapper.map(viewModel, CommercialPart.class);
-    }
-
-    public ManufacturerViewModel convertToManufacturerViewModel(Manufacturer entity){
-
-        return modelMapper.map(entity, ManufacturerViewModel.class);
     }
 
     public Manufacturer convertToManufacturerEntity(ManufacturerViewModel viewModel){

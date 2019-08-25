@@ -1,3 +1,36 @@
-<p>
-  sales-representatives works!
-</p>
+<table>
+  <tr>
+    <td>
+      <label>
+        <input type="text" name="drawingnumber" placeholder="Name"
+               [(ngModel)]="salesRepresentative.name"
+               (change)="updateSalesRepresentative()"
+               class="input-label-lg"/>
+      </label>
+    </td>
+
+    <td>
+
+      <label>
+        <input type="text" placeholder="Last Name"
+               [(ngModel)]="salesRepresentative.lastName"
+               (change)="updateSalesRepresentative()"
+               class="input-label-lg"/>
+      </label>
+    </td>
+
+    <td>
+      <label>
+        <input type="text" placeholder="E-mail"
+               [(ngModel)]="salesRepresentative.email"
+               (change)="updateSalesRepresentative()"/>
+      </label>
+    </td>
+
+    <td>
+      <button type="button"
+              (click)="deleteSalesRepresentative()" class="btn btn-danger">
+        <i class="fas fa-trash"></i></button>
+    </td>
+  </tr>
+</table>

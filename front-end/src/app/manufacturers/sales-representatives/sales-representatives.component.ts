@@ -10,7 +10,7 @@ export class SalesRepresentativesComponent implements OnInit {
 
   @Input() salesRepresentative: SalesRepresentative;
   @Output() salesRepresentativeUpdated: EventEmitter<SalesRepresentative> = new EventEmitter<SalesRepresentative>();
-  @Output() salesRepresentativeDeleted: EventEmitter<SalesRepresentative> = new EventEmitter<SalesRepresentative>()
+  @Output() salesRepresentativeDeleted: EventEmitter<SalesRepresentative> = new EventEmitter<SalesRepresentative>();
 
   constructor() { }
 

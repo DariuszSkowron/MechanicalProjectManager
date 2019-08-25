@@ -5,8 +5,8 @@ import {MechanicalProcessing} from '../processed-parts/model/mechanical-processi
 import {ProcessedPart} from '../processed-parts/model/processed-part';
 import {PartsOrder} from '../commercial-parts/model/parts-order';
 import {CommercialPart} from '../commercial-parts/model/commercial-part';
-import {Manufacturer} from "../manufacturers/model/manufacturer";
-import {SalesRepresentative} from "../manufacturers/model/sales-representative";
+import {Manufacturer} from '../manufacturers/model/manufacturer';
+import {SalesRepresentative} from '../manufacturers/model/sales-representative';
 
 @Injectable({
   providedIn: 'root'
