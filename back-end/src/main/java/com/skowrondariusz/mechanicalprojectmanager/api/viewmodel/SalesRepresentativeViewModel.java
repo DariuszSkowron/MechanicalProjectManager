@@ -6,7 +6,6 @@ public class SalesRepresentativeViewModel {
     private String name;
     private String lastName;
     private String email;
-    private String manufacturer;
     private String manufacturerId;
 
     public String getManufacturerId() {
@@ -47,13 +46,5 @@ public class SalesRepresentativeViewModel {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getManufacturer() {
-        return manufacturer;
-    }
-
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
     }
 }

@@ -4,5 +4,5 @@ export class SalesRepresentative {
   name: string;
   lastName: string;
   email: string;
-  manufacturerId;
+  manufacturerId: string;
 }

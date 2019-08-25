@@ -78,7 +78,6 @@
             <th>Name</th>
             <th>Last Name</th>
             <th>E-mail</th>
-            <th>Manufacturer</th>
             <th>Actions</th>
           </tr>
         </table>
@@ -88,8 +87,8 @@
         <div *ngFor="let n of salesRepresentatives | salesRepresentativeFilter:manufacturerSearch: nameSearch">
           <sales-representatives
             [salesRepresentative]="n"
-            (processedPartUpdated)="updateSalesRepresentative($event)"
-            (processedPartDeleted)="deleteSalesRepresentative($event)">
+            (salesRepresentativeUpdated)="updateSalesRepresentative($event)"
+            (salesRepresentativeDeleted)="deleteSalesRepresentative($event)">
           </sales-representatives>
         </div>
       </div>

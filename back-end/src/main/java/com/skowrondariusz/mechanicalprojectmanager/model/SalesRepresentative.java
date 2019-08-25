@@ -20,6 +20,12 @@ public class SalesRepresentative {
     public SalesRepresentative() {
     }
 
+    public SalesRepresentative(String name, String lastName, String email) {
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
     public SalesRepresentative(String name, String lastName, String email, Manufacturer manufacturer) {
         this.name = name;
         this.lastName = lastName;

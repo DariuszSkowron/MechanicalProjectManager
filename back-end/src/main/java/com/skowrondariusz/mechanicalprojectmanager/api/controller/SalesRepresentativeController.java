@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.ValidationException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,19 +54,19 @@ public class SalesRepresentativeController {
     }
 
     @GetMapping("/byManufacturer/{manufacturerId}")
-    public SalesRepresentativeViewModel salesRepresentative(@PathVariable String manufacturerId) {
+    public List<SalesRepresentativeViewModel> salesRepresentative(@PathVariable String manufacturerId) {
 
         var manufacturer = this.manufacturerRepository.findById(Long.valueOf(manufacturerId));
 
-        var salesRepresentative = new SalesRepresentative();
+        List<SalesRepresentative> salesRepresentative = new ArrayList<>();
 
         if (manufacturer.isPresent()) {
             salesRepresentative = this.salesRepresentativeRepository.findByManufacturer(manufacturer.get());
         }
 
-        var salesRepresentativeViewModel = this.mapper.convertToSalesRepresentativeViewModel(salesRepresentative);
-
-        return salesRepresentativeViewModel;
+        return salesRepresentative.stream()
+                .map(salRep -> this.mapper.convertToSalesRepresentativeViewModel(salRep))
+                .collect(Collectors.toList());
     }
 
     @PostMapping
