@@ -42,7 +42,7 @@ export class ProcessedPartsComponent implements OnInit {
   getAllProcessedParts() {
     this.projectService.getAllProcessedParts().subscribe(
       res => {
-        console.log(res);
+        this.processedParts = res;
       },
       err => {
         alert('While downloading the processed parts occurred an error');

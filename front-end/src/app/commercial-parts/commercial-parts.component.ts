@@ -42,7 +42,7 @@ export class CommercialPartsComponent implements OnInit {
   getAllCommercialParts() {
     this.projectService.getAllCommercialParts().subscribe(
       res => {
-        console.log(res);
+        this.commercialParts = res;
       },
       err => {
         alert('While downloading the parts orders occurred an error');
