@@ -25,7 +25,7 @@ export class CommercialPartsComponent implements OnInit {
   }
 
   filterPartsByManufacturer(manufacturer: any) {
-    this.commercialParts.find(part => part.manufacturer === manufacturer);
+    this.commercialParts.find(part => part.manufacturerId === manufacturer);
   }
 
   getAllPartsOrders() {
@@ -113,12 +113,12 @@ export class CommercialPartsComponent implements OnInit {
       type: '',
       orderSymbol: '',
       name: '',
-      manufacturer: ``,
+      manufacturer: 'UNASSIGNED',
       quantity: '',
       orderDate: '',
       deliveryDate: '',
       price: '',
-      manufacturerId: '',
+      manufacturerId: '1',
       partsOrderId: partsOrderId,
     };
 

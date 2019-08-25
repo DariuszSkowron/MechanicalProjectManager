@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CommercialPart} from '../model/commercial-part';
+import {Manufacturer} from "../../manufacturers/model/manufacturer";
+import {ApiService} from "../../shared/api.service";
 
 @Component({
   selector: 'commercial-part',
@@ -7,14 +9,26 @@ import {CommercialPart} from '../model/commercial-part';
   styleUrls: ['./commercial-part.component.scss']
 })
 export class CommercialPartComponent implements OnInit {
+  manufacturers: Manufacturer[] = [];
   @Input() commercialPart: CommercialPart;
   @Output() commercialPartUpdated: EventEmitter<CommercialPart> = new EventEmitter<CommercialPart>();
   @Output() commercialPartDeleted: EventEmitter<CommercialPart> = new EventEmitter<CommercialPart>();
 
-  constructor() {
+  constructor(private apiService: ApiService) {
   }
 
   ngOnInit() {
+    this.getAllManufacturers();
+  }
+
+  getAllManufacturers() {
+    this.apiService.getAllManufacturers().subscribe(res => {
+        this.manufacturers = res;
+      },
+      err => {
+        alert(`An error has occurred` + err);
+      }
+    );
   }
 
   updateCommercialPart() {

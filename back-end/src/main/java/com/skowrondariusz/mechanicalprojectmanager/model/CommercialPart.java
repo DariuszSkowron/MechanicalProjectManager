@@ -30,6 +30,17 @@ public class CommercialPart {
     public CommercialPart() {
     }
 
+    public CommercialPart(String type, String orderSymbol, String name, int quantity, Date orderDate, Date deliveryDate, long price, PartsOrder partsOrder) {
+        this.type = type;
+        this.orderSymbol = orderSymbol;
+        this.name = name;
+        this.quantity = quantity;
+        this.orderDate = orderDate;
+        this.deliveryDate = deliveryDate;
+        this.price = price;
+        this.partsOrder = partsOrder;
+    }
+
     public CommercialPart(String type, String orderSymbol, String name, Manufacturer manufacturer, int quantity, Date orderDate, Date deliveryDate, long price, PartsOrder partsOrder) {
         this.type = type;
         this.orderSymbol = orderSymbol;

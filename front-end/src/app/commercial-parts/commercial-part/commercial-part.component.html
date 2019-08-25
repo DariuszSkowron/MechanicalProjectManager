@@ -27,13 +27,13 @@
       </label>
     </td>
 
-    <td>
-      <label>
-        <input type="text" placeholder="manufacturer"
-               [(ngModel)]="commercialPart.manufacturer"
-               (change)="updateCommercialPart()"/>
-      </label>
-    </td>
+<!--    <td>-->
+<!--      <label>-->
+<!--        <input type="text" placeholder="manufacturer"-->
+<!--               [(ngModel)]="commercialPart.manufacturer"-->
+<!--               (change)="updateCommercialPart()"/>-->
+<!--      </label>-->
+<!--    </td>-->
     <td>
       <label>
         <input type="text" placeholder="quantity"
@@ -61,6 +61,14 @@
                [(ngModel)]="commercialPart.price"
                (change)="updateCommercialPart()"/>
       </label>
+    </td>
+
+    <td>
+      <select [(ngModel)]="commercialPart.manufacturer">
+        <option *ngFor="let manufacturer of manufacturers" value={{manufacturer.name}}>
+          {{manufacturer.name}}
+        </option>
+      </select>
     </td>
 
     <td>
