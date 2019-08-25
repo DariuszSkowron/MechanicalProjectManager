@@ -1,57 +1,55 @@
 <div class="container">
-  <!-- Note menu -->
-  <div class="row" style="margin-top:12px;">
-    <div class="col-md-8">
-      <label>
-        <input type="text"
-               [(ngModel)]="nameOrOrderSymbolSearch"
-               class="form-control"
-               style="width: 100%;"
-               placeholder="Search parts...">
-      </label>
-    </div>
-    <div class="col-md-8">
-      <label for="Manufacturer" class="text-title">Search by manufacturer</label>
-      <select id="Manufacturer" [(ngModel)]="manufacturerSearch" class="custom-select" (change)="filterPartsByManufacturer($event.target)">
-        <option value="0" selected disabled hidden>Pick one of the options avaible</option>
-        <option *ngFor="let commercialPart of commercialParts" value={{commercialPart.manufacturer}}>
-          {{commercialPart.manufacturer}}
-        </option>
-      </select>
 
-    </div>
-    <div class="col-md-4">
-      <button type="buton"
-              (click)="createPartsOrder()"
-              class="btn btn-info pull-right"
-              style="margin-left:12px;"><i class="fas fa-plus"></i> New parts order list
-      </button>
-      <button type="button"
-              (click)="createCommercialPart(selectedPartsOrder.id)"
-              [disabled]="selectedPartsOrder == null"
-              class="btn btn-warning pull-right"
-              style="margin-left:12px;"><i class="fa fa-plus"></i> New part
-      </button>
-    </div>
+  <div>
+    <label>
+      <input type="text"
+             [(ngModel)]="nameOrOrderSymbolSearch"
+             class="form-control"
+             placeholder="Search parts...">
+    </label>
 
+    <button type="buton"
+            (click)="createPartsOrder()"
+            class="btn"><i class="fas fa-plus"></i> New parts order list
+    </button>
+
+    <button type="button"
+            (click)="createCommercialPart(selectedPartsOrder.id)"
+            [disabled]="selectedPartsOrder == null"
+            class="btn"><i class="fa fa-plus"></i> New part
+    </button>
   </div>
 
-  <!-- Parts content -->
-  <div class="row" style="margin-top: 28px;">
-    <!-- Mechanical processing list menu Menu -->
-    <div class="col-md-3">
+  <div>
+    <label for="Manufacturer" class="text-title">Search by manufacturer</label>
+    <select id="Manufacturer" [(ngModel)]="manufacturerSearch" class="custom-select"
+            (change)="filterPartsByManufacturer($event.target)">
+      <option [ngValue]="undefined" selected disabled hidden>Pick one of the options available</option>
+      <option [ngValue]="undefined">All parts</option>
+      <option *ngFor="let commercialPart of commercialParts" value={{commercialPart.manufacturer}}>
+        {{commercialPart.manufacturer}}
+      </option>
+    </select>
+  </div>
+</div>
+
+<div class="partsContent">
+  <div class="processList">
+
+    <div>
+      <h3>xx List</h3>
       <br>
       <div class="list-group list-group-flush">
         <a (click)="selectAllProcessedParts()" class="list-group-item list-group-item-action">
-          <i class="fa fa-book"></i>&nbsp;All
+          <i class="fa fa-book"></i>&nbsp;All parts
         </a>
-        <!-- Mechanical Processing List -->
         <a *ngFor="let partsOrder of partsOrders"
            (click)="selectPartsOrder(partsOrder)" class="list-group-item list-group-item-action">
           <i class="fa fa-book"></i>&nbsp;
+
           <label>
             <input [(ngModel)]="partsOrder.name" (change)="updatePartsOrder(partsOrder)"
-                   type="text" class="input-label" style="width: 80%"/>
+                   type="text" class="input-label" style="width: 200px"/>
           </label>
           <a (click)="deletePartsOrder(partsOrder)" class="pull-right text-danger">
             <i class="fas fa-trash"></i>
@@ -59,18 +57,18 @@
         </a>
       </div>
     </div>
+  </div>
 
-    <!-- Parts Panel -->
-    <div class="col-md-9">
-      <div class="row">
-        <div class="col-md-12">
-          <!-- Message if there are no parts -->
-          <h3 *ngIf="selectedPartsOrder != null">{{selectedPartsOrder.name}}</h3>
-          <h3 *ngIf="selectedPartsOrder == null">All parts</h3>
-          <p *ngIf="this.partsOrders.length === 0">There are no parts to display in this list</p>
+  <!-- Parts Panel -->
+  <div class="partsList">
+    <div>
+      <div>
+        <h3 *ngIf="selectedPartsOrder != null">{{selectedPartsOrder.name}}</h3>
+        <h3 *ngIf="selectedPartsOrder == null">All parts</h3>
+        <p *ngIf="this.partsOrders.length === 0">There are no parts to display in this list</p>
+      </div>
 
-        </div>
-
+      <div>
         <table *ngIf="this.commercialParts.length != 0">
           <tr>
             <th>Drawing number</th>
@@ -88,8 +86,8 @@
             (commercialPartDeleted)="deleteCommercialPart($event)">
           </commercial-part>
         </div>
-
       </div>
     </div>
   </div>
 </div>
+
