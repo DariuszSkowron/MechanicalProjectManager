@@ -26,7 +26,7 @@
             (change)="filterPartsByManufacturer($event.target)">
       <option [ngValue]="undefined" selected disabled hidden>Pick one of the options available</option>
       <option [ngValue]="undefined">All parts</option>
-      <option *ngFor="let commercialPart of commercialParts" value={{commercialPart.manufacturer}}>
+      <option *ngFor="let commercialPart of commercialParts | duplicateFilter" value={{commercialPart.manufacturer}}>
         {{commercialPart.manufacturer}}
       </option>
     </select>

@@ -27,6 +27,8 @@
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
     "jquery": "^3.4.1",
+    "lodash": "^4.17.15",
+    "lodash.uniqby": "^4.7.0",
     "mdbootstrap": "^4.8.8",
     "ngx-bootstrap": "5.1.2",
     "node-sass": "^4.12.0",
