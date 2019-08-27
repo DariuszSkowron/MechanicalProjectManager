@@ -26,7 +26,7 @@ export class CommercialPartsComponent implements OnInit {
   }
 
   filterPartsByManufacturer(manufacturer: any) {
-    this.commercialParts.find(part => part.manufacturerId === manufacturer);
+    this.commercialParts.find(part => part.manufacturer === manufacturer);
   }
 
   getAllPartsOrders() {
