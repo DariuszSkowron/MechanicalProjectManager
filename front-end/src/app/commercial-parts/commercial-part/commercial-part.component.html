@@ -64,9 +64,9 @@
     </td>
 
     <td>
-      <select [(ngModel)]="commercialPart.manufacturer" (change)="updateCommercialPart()">
-        <option *ngFor="let manufacturer of manufacturers" value={{manufacturer.name}} (change)="updateCommercialPart()">
-          {{manufacturer.name}}
+      <select [(ngModel)]="commercialPart.manufacturerId" (change)="updateCommercialPart()">
+        <option *ngFor="let manufacturer of manufacturers" [ngValue]="manufacturer.id">
+          {{manufacturer.id}}
         </option>
       </select>
     </td>

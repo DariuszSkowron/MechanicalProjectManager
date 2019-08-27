@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CommercialPart} from '../model/commercial-part';
-import {Manufacturer} from "../../manufacturers/model/manufacturer";
-import {ApiService} from "../../shared/api.service";
+import {Manufacturer} from '../../manufacturers/model/manufacturer';
+import {ApiService} from '../../shared/api.service';
 
 @Component({
   selector: 'commercial-part',
