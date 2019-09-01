@@ -156,7 +156,9 @@ export class ManufacturersComponent implements OnInit {
 
 
   selectUnassignedManufacturer() {
-    this.selectedManufacturer = null;
+    this.selectedManufacturer = new Manufacturer();
+    this.selectedManufacturer.id = '1';
+    this.selectedManufacturer.name = 'Unassigned manufacturer';
     this.apiService.getSalesRepresentativeByManufacturer('1').subscribe(
       res => {
         this.salesRepresentatives = res;
