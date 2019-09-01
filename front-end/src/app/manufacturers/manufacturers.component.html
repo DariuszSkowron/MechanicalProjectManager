@@ -46,6 +46,10 @@
         <a (click)="selectAllSalesRepresentatives()" class="list-group-item list-group-item-action">
           <b>All sales representatives</b>
         </a>
+        <a (click)="selectUnassignedManufacturer()" class="list-group-item list-group-item-action">
+          <b>UNASSIGNED MANUFACTURER</b>
+        </a>
+
         <a *ngFor="let manufacturer of manufacturers"
            (click)="selectManufacturer(manufacturer)" class="list-group-item list-group-item-action">
 

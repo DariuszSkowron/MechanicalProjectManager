@@ -154,4 +154,16 @@ export class ManufacturersComponent implements OnInit {
     this.getAllSalesRepresentatives();
   }
 
+
+  selectUnassignedManufacturer() {
+    this.selectedManufacturer = null;
+    this.apiService.getSalesRepresentativeByManufacturer('1').subscribe(
+      res => {
+        this.salesRepresentatives = res;
+      },
+      err => {
+        alert('An error has occurred while fetching sales representative');
+      }
+    );
+    }
 }

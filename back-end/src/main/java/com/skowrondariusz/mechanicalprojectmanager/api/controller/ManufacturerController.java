@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.ValidationException;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/manufacturer")
@@ -45,6 +46,12 @@ public class ManufacturerController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id){
         this.manufacturerRepository.deleteById(id);
+    }
+
+
+    @GetMapping("/{id}")
+    public Optional<Manufacturer> selectedManufacturer(@PathVariable Long id) {
+        return this.manufacturerRepository.findById(id);
     }
 
 
