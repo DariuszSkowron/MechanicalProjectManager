@@ -64,6 +64,22 @@
     </td>
 
     <td>
+      <select [(ngModel)]="commercialPart.manufacturerId" (change)="updateCommercialPart()">
+        <option *ngFor="let manufacturer of manufacturers" value= {{manufacturer.id}}>
+          {{manufacturer.name}}
+        </option>
+      </select>
+    </td>
+
+<!--    <td>-->
+<!--      <select [(ngModel)]="commercialPart.manufacturer" (change)="updateCommercialPart()">-->
+<!--        <option *ngFor="let manufacturer of manufacturers" [ngValue]="manufacturer.name">-->
+<!--          {{manufacturer.name}}-->
+<!--        </option>-->
+<!--      </select>-->
+<!--    </td>-->
+
+    <td>
       <button type="button"
               (click)="deleteCommercialPart()" class="btn btn-warning">
         <i class="fas fa-trash"></i></button>

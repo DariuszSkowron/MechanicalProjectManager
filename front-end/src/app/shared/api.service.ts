@@ -37,7 +37,7 @@ export class ApiService {
   private SALES_REPRESENTATIVES_BY_MANUFACTURER_URL = `${this.BASE_URL}/salesRepresentative/byManufacturer/`;
   private SAVE_UPDATE_SALES_REPRESENTATIVE_URL = `${this.BASE_URL}/salesRepresentative`;
   private DELETE_SALES_REPRESENTATIVE_URL = `${this.BASE_URL}/salesRepresentative/`;
-
+  private GET_MANUFACTURER_BY_ID_URL = `${this.BASE_URL}/manufacturer/`;
 
 
 
@@ -159,6 +159,11 @@ export class ApiService {
   deleteSalesRepresentative(salesRepresentativeId: string): Observable<any> {
     return this.http.delete(this.DELETE_SALES_REPRESENTATIVE_URL + salesRepresentativeId);
   }
+
+  getManufacturerById(manufacturerId: string): Observable<Manufacturer> {
+    return this.http.get<Manufacturer>(this.GET_MANUFACTURER_BY_ID_URL + manufacturerId);
+  }
+
 
 
 }

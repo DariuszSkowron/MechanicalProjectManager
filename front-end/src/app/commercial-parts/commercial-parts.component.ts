@@ -12,6 +12,7 @@ import {ApiService} from '../shared/api.service';
 export class CommercialPartsComponent implements OnInit {
   partsOrders: PartsOrder[] = [];
   commercialParts: CommercialPart[] = [];
+  commercialPart: CommercialPart;
   selectedPartsOrder: PartsOrder;
   nameOrOrderSymbolSearch: string;
   manufacturerSearch: string;
@@ -42,7 +43,7 @@ export class CommercialPartsComponent implements OnInit {
   getAllCommercialParts() {
     this.projectService.getAllCommercialParts().subscribe(
       res => {
-        console.log(res);
+        this.commercialParts = res;
       },
       err => {
         alert('While downloading the parts orders occurred an error');
@@ -113,12 +114,12 @@ export class CommercialPartsComponent implements OnInit {
       type: '',
       orderSymbol: '',
       name: '',
-      manufacturer: ``,
+      manufacturer: 'UNASSIGNED',
       quantity: '',
       orderDate: '',
       deliveryDate: '',
       price: '',
-      manufacturerId: '',
+      manufacturerId: '1',
       partsOrderId: partsOrderId,
     };
 

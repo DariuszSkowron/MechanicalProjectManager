@@ -23,6 +23,7 @@ import {CollapseModule} from 'ngx-bootstrap';
 import { ManufacturersComponent } from './manufacturers/manufacturers.component';
 import { SalesRepresentativesComponent } from './manufacturers/sales-representatives/sales-representatives.component';
 import { SalesRepresentativeFilterPipe } from './shared/sales-representative-filter.pipe';
+import { DuplicateFilterPipe } from './shared/duplicate-filter.pipe';
 
 
 
@@ -43,6 +44,7 @@ import { SalesRepresentativeFilterPipe } from './shared/sales-representative-fil
     ManufacturersComponent,
     SalesRepresentativesComponent,
     SalesRepresentativeFilterPipe,
+    DuplicateFilterPipe,
   ],
   imports: [
     BrowserModule,

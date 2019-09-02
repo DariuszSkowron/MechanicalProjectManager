@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {SalesRepresentative} from '../model/sales-representative';
+import {Manufacturer} from '../model/manufacturer';
 
 @Component({
   selector: 'sales-representatives',
@@ -8,6 +9,7 @@ import {SalesRepresentative} from '../model/sales-representative';
 })
 export class SalesRepresentativesComponent implements OnInit {
 
+  @Input() selectedManufacturer: Manufacturer;
   @Input() salesRepresentative: SalesRepresentative;
   @Output() salesRepresentativeUpdated: EventEmitter<SalesRepresentative> = new EventEmitter<SalesRepresentative>();
   @Output() salesRepresentativeDeleted: EventEmitter<SalesRepresentative> = new EventEmitter<SalesRepresentative>();

@@ -42,7 +42,7 @@ export class ManufacturersComponent implements OnInit {
   getAllSalesRepresentatives() {
     this.apiService.getAllSalesRepresentatives().subscribe(
       res => {
-        console.log(res);
+        this.salesRepresentatives = res;
       },
       err => {
         alert('While downloading sales representatives occurred an error');
@@ -154,4 +154,18 @@ export class ManufacturersComponent implements OnInit {
     this.getAllSalesRepresentatives();
   }
 
+
+  selectUnassignedManufacturer() {
+    this.selectedManufacturer = new Manufacturer();
+    this.selectedManufacturer.id = '1';
+    this.selectedManufacturer.name = 'Unassigned manufacturer';
+    this.apiService.getSalesRepresentativeByManufacturer('1').subscribe(
+      res => {
+        this.salesRepresentatives = res;
+      },
+      err => {
+        alert('An error has occurred while fetching sales representative');
+      }
+    );
+    }
 }
