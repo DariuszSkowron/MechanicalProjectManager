@@ -12,6 +12,18 @@ public class PartsOrderViewModel
 
     private int numberOfParts;
 
+    private String project;
+
+    private String projectId;
+
+    public String getProject() {
+        return project;
+    }
+
+    public void setProject(String project) {
+        this.project = project;
+    }
+
     public String getId() {
         return id;
     }
@@ -28,6 +40,14 @@ public class PartsOrderViewModel
         this.name = name;
     }
 
+    public String getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(String projectId) {
+        this.projectId = projectId;
+    }
+
     public int getNumberOfParts() {
         return numberOfParts;
     }
@@ -35,4 +55,6 @@ public class PartsOrderViewModel
     public void setNumberOfParts(int numberOfParts) {
         this.numberOfParts = numberOfParts;
     }
+
+
 }

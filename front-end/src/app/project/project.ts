@@ -3,4 +3,6 @@ export class Project {
   name: string;
   projectNumber: number;
   budget: number;
+  mechanicalProcessing: string;
+  partsOrder: string;
 }

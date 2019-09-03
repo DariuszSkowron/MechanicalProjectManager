@@ -36,8 +36,16 @@ public class Mapper {
     }
 
     public PartsOrder convertToPartsOrdersEntity(PartsOrderViewModel viewModel){
-    
+
+        var entity = modelMapper.map(viewModel, PartsOrder.class );
+
         return modelMapper.map(viewModel, PartsOrder.class);
+    }
+
+    public PartsOrderViewModel convertToPartsOrderViewModel(PartsOrder entity){
+
+        var viewModel = modelMapper.map(entity, PartsOrderViewModel.class);
+        return viewModel;
     }
 
     public CommercialPart convertToCommercialPartEntity(CommercialPartViewModel viewModel){

@@ -1,5 +1,7 @@
 package com.skowrondariusz.mechanicalprojectmanager.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -19,10 +21,14 @@ public class Project {
 
     private long budget;
 
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "project", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private MechanicalProcessing mechanicalProcessing;
 
-//    @OneToOne(fetch = FetchType.LAZY, mappedBy = "mechanical_processing", cascade = CascadeType.ALL)
-//    @JsonIgnore
-//    private MechanicalProcessing mechanicalProcessing;
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "project", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private PartsOrder partsOrder;
+
 
     public Project() {
     }
@@ -44,6 +50,14 @@ public class Project {
         this.name = name;
         this.projectNumber = projectNumber;
         this.budget = budget;
+    }
+
+    public Project(String name, int projectNumber, long budget, MechanicalProcessing mechanicalProcessing, PartsOrder partsOrder) {
+        this.name = name;
+        this.projectNumber = projectNumber;
+        this.budget = budget;
+        this.mechanicalProcessing = mechanicalProcessing;
+        this.partsOrder = partsOrder;
     }
 
     public long getId() {
@@ -70,13 +84,21 @@ public class Project {
         this.name = name;
     }
 
-//    public MechanicalProcessing getMechanicalProcessing() {
-//        return mechanicalProcessing;
-//    }
+    public MechanicalProcessing getMechanicalProcessing() {
+        return mechanicalProcessing;
+    }
 
-//    public boolean needProcessing(){
-//        return
-//    }
+    public void setMechanicalProcessing(MechanicalProcessing mechanicalProcessing) {
+        this.mechanicalProcessing = mechanicalProcessing;
+    }
+
+    public PartsOrder getPartsOrder() {
+        return partsOrder;
+    }
+
+    public void setPartsOrder(PartsOrder partsOrder) {
+        this.partsOrder = partsOrder;
+    }
 
 
     @Override

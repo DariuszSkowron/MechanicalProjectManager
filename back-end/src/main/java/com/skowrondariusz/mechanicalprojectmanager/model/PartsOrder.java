@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 public class PartsOrder
@@ -20,6 +21,11 @@ public class PartsOrder
     @JsonIgnore
     private List<CommercialPart> commercialParts;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Project project;
+
+
 
     public PartsOrder() {
     }
@@ -27,6 +33,12 @@ public class PartsOrder
     public PartsOrder(String name, List<CommercialPart> commercialParts) {
         this.name = name;
         this.commercialParts = commercialParts;
+    }
+
+    public PartsOrder(String name, List<CommercialPart> commercialParts, Project project) {
+        this.name = name;
+        this.commercialParts = commercialParts;
+        this.project = project;
     }
 
     public long getId() {
@@ -52,4 +64,13 @@ public class PartsOrder
     public void setCommercialParts(List<CommercialPart> commercialParts) {
         this.commercialParts = commercialParts;
     }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
 }
