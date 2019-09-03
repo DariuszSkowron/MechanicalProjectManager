@@ -3,6 +3,7 @@ package com.skowrondariusz.mechanicalprojectmanager.api.controller;
 import com.skowrondariusz.mechanicalprojectmanager.api.viewmodel.CommercialPartViewModel;
 import com.skowrondariusz.mechanicalprojectmanager.api.viewmodel.PartsOrderViewModel;
 import com.skowrondariusz.mechanicalprojectmanager.model.PartsOrder;
+import com.skowrondariusz.mechanicalprojectmanager.model.Project;
 import com.skowrondariusz.mechanicalprojectmanager.repository.PartsOrderRepository;
 import com.skowrondariusz.mechanicalprojectmanager.repository.ProjectRepository;
 import com.skowrondariusz.mechanicalprojectmanager.utility.Mapper;
@@ -58,8 +59,15 @@ public class PartsOrderController
         }
         var partsOrdersEntity = this.mapper.convertToPartsOrdersEntity(partsOrderViewModel);
 //        partsOrdersEntity.setProject(projectRepository.findById(Long.valueOf(partsOrderViewModel.getProject())));
-
         this.partsOrderRepository.save(partsOrdersEntity);
+
+        if (null != partsOrderViewModel.getProjectId()) {
+            var map = this.projectRepository.findByPartsOrder(partsOrdersEntity);
+            map.setPartsOrder(partsOrdersEntity);
+            this.projectRepository.save(map);
+            System.out.println("test");
+
+        }
 
         return partsOrdersEntity;
     }

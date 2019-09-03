@@ -25,30 +25,19 @@ public class Project {
     @JsonIgnore
     private MechanicalProcessing mechanicalProcessing;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "project", cascade = CascadeType.ALL)
-    @JsonIgnore
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "project", cascade = CascadeType.ALL)
     private PartsOrder partsOrder;
 
 
     public Project() {
     }
 
-    public Project(String name, int projectNumber) {
-        this.name = name;
-        this.projectNumber = projectNumber;
-    }
 
     public long getBudget() {
         return budget;
     }
 
     public void setBudget(long budget) {
-        this.budget = budget;
-    }
-
-    public Project(String name, int projectNumber, long budget) {
-        this.name = name;
-        this.projectNumber = projectNumber;
         this.budget = budget;
     }
 
