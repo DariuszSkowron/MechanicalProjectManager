@@ -18,7 +18,9 @@ public class MechanicalProcessing {
     @JsonIgnore
     private List<ProcessedPart> processedParts;
 
-
+    @OneToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Project project;
 
 
     protected MechanicalProcessing() {
@@ -30,6 +32,11 @@ public class MechanicalProcessing {
         this.name = name;
     }
 
+    public MechanicalProcessing(String name, List<ProcessedPart> processedParts, Project project) {
+        this.name = name;
+        this.processedParts = processedParts;
+        this.project = project;
+    }
 
     public long getId() {
         return id;
@@ -53,5 +60,13 @@ public class MechanicalProcessing {
 
     public void setProcessedParts(List<ProcessedPart> processedParts) {
         this.processedParts = processedParts;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 }

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {PartsOrder} from './model/parts-order';
 import {CommercialPart} from './model/commercial-part';
 import {ApiService} from '../shared/api.service';
+import {Project} from '../project/project';
 
 
 @Component({
@@ -11,8 +12,10 @@ import {ApiService} from '../shared/api.service';
 })
 export class CommercialPartsComponent implements OnInit {
   partsOrders: PartsOrder[] = [];
+  projects: Project[] = [];
   commercialParts: CommercialPart[] = [];
   commercialPart: CommercialPart;
+  partsOrder: PartsOrder;
   selectedPartsOrder: PartsOrder;
   nameOrOrderSymbolSearch: string;
   manufacturerSearch: string;
@@ -23,6 +26,17 @@ export class CommercialPartsComponent implements OnInit {
   ngOnInit() {
     this.getAllPartsOrders();
     this.getAllCommercialParts();
+    this.getAllProjects();
+  }
+
+  getAllProjects() {
+    this.projectService.getProjectList().subscribe(res => {
+      this.projects = res;
+    },
+    err => {
+      alert(`An error has occurred` + err);
+    }
+  );
   }
 
   filterPartsByManufacturer(manufacturer: any) {
@@ -55,7 +69,9 @@ export class CommercialPartsComponent implements OnInit {
     const newPartsOrder: PartsOrder = {
       name: 'Parts order number #',
       id: null,
-      numberOfParts: 0
+      numberOfParts: 0,
+      project: null,
+      projectId: null
     };
 
     this.projectService.postPartsOrder(newPartsOrder).subscribe(
@@ -70,6 +86,17 @@ export class CommercialPartsComponent implements OnInit {
   }
 
   updatePartsOrder(updatePartsOrder: PartsOrder) {
+    this.projectService.postPartsOrder(updatePartsOrder).subscribe(
+      res => {
+
+      },
+      err => {
+        alert('An error has occured while updating the mechanical processing list');
+      }
+    );
+  }
+
+  updateProject(updatePartsOrder: PartsOrder) {
     this.projectService.postPartsOrder(updatePartsOrder).subscribe(
       res => {
 
@@ -156,7 +183,7 @@ export class CommercialPartsComponent implements OnInit {
     );
   }
 
-  selectAllProcessedParts() {
+  selectAllCommercialParts() {
     this.selectedPartsOrder = null;
     this.getAllCommercialParts();
   }

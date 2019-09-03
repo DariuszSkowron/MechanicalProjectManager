@@ -7,6 +7,7 @@ import {PartsOrder} from '../commercial-parts/model/parts-order';
 import {CommercialPart} from '../commercial-parts/model/commercial-part';
 import {Manufacturer} from '../manufacturers/model/manufacturer';
 import {SalesRepresentative} from '../manufacturers/model/sales-representative';
+import {Project} from "../project/project";
 
 @Injectable({
   providedIn: 'root'
@@ -61,8 +62,8 @@ export class ApiService {
     return this.http.delete(`${this.PROJECTS_URL}/byId/${id}`, {responseType: 'text'});
   }
 
-  getProjectList(): Observable<any> {
-    return this.http.get(`${this.PROJECTS_URL}/all`);
+  getProjectList(): Observable<Project[]> {
+    return this.http.get<Project[]>(`${this.PROJECTS_URL}/all`);
   }
 
   getProjectsByProjectNumber(projectNumber: number): Observable<any> {

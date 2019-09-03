@@ -2,6 +2,7 @@ package com.skowrondariusz.mechanicalprojectmanager.api.controller;
 
 
 import com.skowrondariusz.mechanicalprojectmanager.model.Project;
+import com.skowrondariusz.mechanicalprojectmanager.repository.PartsOrderRepository;
 import com.skowrondariusz.mechanicalprojectmanager.repository.ProjectRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +19,11 @@ import java.util.Optional;
 public class ProjectController {
 
     private ProjectRepository projectRepository;
+    private PartsOrderRepository partsOrderRepository;
     
-    public ProjectController(ProjectRepository projectRepository){
+    public ProjectController(ProjectRepository projectRepository, PartsOrderRepository partsOrderRepository){
         this.projectRepository = projectRepository;
+        this.partsOrderRepository = partsOrderRepository;
     }
 
 

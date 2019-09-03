@@ -19,6 +19,13 @@
             class="btn"><i class="fa fa-plus"></i> New part
     </button>
   </div>
+<!--  <div>-->
+<!--    <select [(ngModel)]="partsOrder.projectId" (change)="updatePartsOrder()">-->
+<!--      <option *ngFor="let project of projects"  value= {{project.id}}>-->
+<!--        {{project.name}}-->
+<!--      </option>-->
+<!--    </select>-->
+<!--  </div>-->
 
   <div>
     <label for="Manufacturer" class="text-title">Search by manufacturer</label>
@@ -40,13 +47,17 @@
       <h3>xx List</h3>
       <br>
       <div class="list-group list-group-flush">
-        <a (click)="selectAllProcessedParts()" class="list-group-item list-group-item-action">
+        <a (click)="selectAllCommercialParts()" class="list-group-item list-group-item-action">
           <i class="fa fa-book"></i>&nbsp;All parts
         </a>
         <a *ngFor="let partsOrder of partsOrders"
            (click)="selectPartsOrder(partsOrder)" class="list-group-item list-group-item-action">
           <i class="fa fa-book"></i>&nbsp;
-
+              <select [(ngModel)]="partsOrder.projectId" (change)="updatePartsOrder(partsOrder)">
+                <option *ngFor="let project of projects"  value= {{project.id}}>
+                  {{project.name}}
+                </option>
+              </select>
           <label>
             <input [(ngModel)]="partsOrder.name" (change)="updatePartsOrder(partsOrder)"
                    type="text" class="input-label" style="width: 200px"/>
