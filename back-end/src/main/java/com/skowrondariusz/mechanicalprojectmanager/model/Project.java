@@ -25,7 +25,7 @@ public class Project {
     @JsonIgnore
     private MechanicalProcessing mechanicalProcessing;
 
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "project", cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "project", cascade = CascadeType.ALL)
     private PartsOrder partsOrder;
 
 

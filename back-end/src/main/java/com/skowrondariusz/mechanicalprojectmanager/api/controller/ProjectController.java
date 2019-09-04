@@ -1,17 +1,20 @@
 package com.skowrondariusz.mechanicalprojectmanager.api.controller;
 
 
+import com.skowrondariusz.mechanicalprojectmanager.api.viewmodel.ProjectViewModel;
 import com.skowrondariusz.mechanicalprojectmanager.model.Project;
-import com.skowrondariusz.mechanicalprojectmanager.repository.PartsOrderRepository;
 import com.skowrondariusz.mechanicalprojectmanager.repository.ProjectRepository;
+import com.skowrondariusz.mechanicalprojectmanager.utility.Mapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.ArrayList;
+import javax.validation.ValidationException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -19,24 +22,37 @@ import java.util.Optional;
 public class ProjectController {
 
     private ProjectRepository projectRepository;
-    private PartsOrderRepository partsOrderRepository;
+    private Mapper mapper;
+
     
-    public ProjectController(ProjectRepository projectRepository, PartsOrderRepository partsOrderRepository){
+    public ProjectController(ProjectRepository projectRepository, Mapper mapper){
         this.projectRepository = projectRepository;
-        this.partsOrderRepository = partsOrderRepository;
+        this.mapper = mapper;
     }
 
 
     @GetMapping("/all")
-    public List<Project> getAllProjects() {
+    public List<ProjectViewModel> getAllProjects() {
         var projects = projectRepository.findAll();
-        return new ArrayList<>(projects);
+
+        return projects.stream()
+                .map(project -> this.mapper.convertToProjectViewModel(project))
+                .collect(Collectors.toList());
     }
 
     @PostMapping(value = "create")
-    public Project postProject(@RequestBody Project project) {
-    
-        return projectRepository.save(project);
+    public Project postProject(@RequestBody ProjectViewModel projectViewModel, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            throw new ValidationException();
+        }
+
+        var projectEntity = this.mapper.convertToProjectEntity(projectViewModel);
+
+        this.projectRepository.save(projectEntity);
+
+        return projectEntity;
+
     }
 
     @DeleteMapping("/byId/{id}")
@@ -56,14 +72,16 @@ public class ProjectController {
     }
     
     @GetMapping(value = "/number/{projectNumber}")
-    public List<Project> findByProjectNumber(@PathVariable int projectNumber) {
+    public List<ProjectViewModel> findByProjectNumber(@PathVariable int projectNumber) {
 
         var project = this.projectRepository.findByProjectNumber(projectNumber);
-
         if (project == null){
             throw new EntityNotFoundException();
         }
-        return project;
+
+        return project.stream()
+                .map(project1 -> mapper.convertToProjectViewModel(project1))
+                .collect(Collectors.toList());
     }
 
     @PutMapping("/projects/{id}")
