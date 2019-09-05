@@ -14,7 +14,7 @@ public class Manufacturer {
 
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "manufacturer", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "manufacturer", cascade = CascadeType.PERSIST)
     @JsonIgnore
     private List<CommercialPart> commercialParts;
 

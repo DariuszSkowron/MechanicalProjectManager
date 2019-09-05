@@ -66,4 +66,18 @@ public class Mapper {
 
         return modelMapper.map(viewModel, SalesRepresentative.class);
     }
+
+    public ProjectViewModel convertToProjectViewModel(Project entity){
+        var viewModel = modelMapper.map(entity, ProjectViewModel.class);
+
+        if(entity.getPartsOrder() != null) {
+            viewModel.setPartsOrder(entity.getPartsOrder().getName());
+        }
+
+        return viewModel;
+    }
+
+    public Project convertToProjectEntity(ProjectViewModel viewModel){
+        return modelMapper.map(viewModel, Project.class);
+    }
 }

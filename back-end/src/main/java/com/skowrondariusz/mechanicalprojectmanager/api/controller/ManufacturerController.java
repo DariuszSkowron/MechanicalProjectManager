@@ -2,6 +2,8 @@ package com.skowrondariusz.mechanicalprojectmanager.api.controller;
 
 import com.skowrondariusz.mechanicalprojectmanager.api.viewmodel.ManufacturerViewModel;
 import com.skowrondariusz.mechanicalprojectmanager.model.Manufacturer;
+import com.skowrondariusz.mechanicalprojectmanager.model.Project;
+import com.skowrondariusz.mechanicalprojectmanager.repository.CommercialPartRepository;
 import com.skowrondariusz.mechanicalprojectmanager.repository.ManufacturerRepository;
 import com.skowrondariusz.mechanicalprojectmanager.utility.Mapper;
 import org.springframework.validation.BindingResult;
@@ -18,9 +20,11 @@ public class ManufacturerController {
 
     private ManufacturerRepository manufacturerRepository;
     private Mapper mapper;
+    private CommercialPartRepository commercialPartRepository;
 
-    public ManufacturerController(ManufacturerRepository manufacturerRepository, Mapper mapper) {
+    public ManufacturerController(ManufacturerRepository manufacturerRepository, CommercialPartRepository commercialPartRepository, Mapper mapper) {
         this.manufacturerRepository = manufacturerRepository;
+        this.commercialPartRepository = commercialPartRepository;
         this.mapper = mapper;
     }
 
@@ -45,6 +49,15 @@ public class ManufacturerController {
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id){
+
+        var manufacturer = manufacturerRepository.getManufacturerById(id);
+
+        if(!commercialPartRepository.findAllByManufacturer(manufacturer).isEmpty()){
+            var commercialPartsList = this.commercialPartRepository.findAllByManufacturer(manufacturer);
+            commercialPartsList.forEach(commercialPart -> commercialPart.setManufacturer(manufacturerRepository.getManufacturerById(1)));
+            System.out.println("test2");
+        }
+
         this.manufacturerRepository.deleteById(id);
     }
 
