@@ -52,7 +52,7 @@ public class ManufacturerController {
 
         var manufacturer = manufacturerRepository.getManufacturerById(id);
 
-        if(manufacturer.getCommercialParts() != null){
+        if(!commercialPartRepository.findAllByManufacturer(manufacturer).isEmpty()){
             var commercialPartsList = this.commercialPartRepository.findAllByManufacturer(manufacturer);
             commercialPartsList.forEach(commercialPart -> commercialPart.setManufacturer(manufacturerRepository.getManufacturerById(1)));
             System.out.println("test2");
