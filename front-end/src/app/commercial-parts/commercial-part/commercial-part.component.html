@@ -62,13 +62,14 @@
                (change)="updateCommercialPart()"/>
       </label>
     </td>
-
     <td>
-      <select [(ngModel)]="commercialPart.manufacturerId" (change)="updateCommercialPart()">
+      <label>
+      <select class="custom-select" [(ngModel)]="commercialPart.manufacturerId" (change)="updateCommercialPart()">
         <option *ngFor="let manufacturer of manufacturers" value= {{manufacturer.id}}>
           {{manufacturer.name}}
         </option>
       </select>
+      </label>
     </td>
 
     <td>

@@ -61,7 +61,7 @@ public class PartsOrderController
 //        partsOrdersEntity.setProject(projectRepository.findById(Long.valueOf(partsOrderViewModel.getProject())));
         this.partsOrderRepository.save(partsOrdersEntity);
 
-        if (null != partsOrderViewModel.getProjectId()) {
+        if (partsOrdersEntity.getProject() != null) {
             var map = this.projectRepository.findByPartsOrder(partsOrdersEntity);
             map.setPartsOrder(partsOrdersEntity);
             this.projectRepository.save(map);
