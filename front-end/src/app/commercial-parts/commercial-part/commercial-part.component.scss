@@ -18,13 +18,14 @@ table td {
 .order-date{
   text-align: right;
   width: 100px;
-  font-size: 20px;
   color: red;
 }
 
-
-
-//.text-success{
-//  border: #3498db 5px;
-//  text-align: center;
-//}
+.border {
+  //display: inherit;
+  height: 2px;
+  width: 99%;
+  margin-bottom: 5px;
+  //border: none !important;
+  background-color: #48bef8;
+}
