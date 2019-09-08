@@ -1,9 +1,27 @@
 table{
   table-layout:fixed;
   width:100%;
-  border:2px;
+  //border:10px;
 }
 
 table td {
-  width:10%;
+  //width:10%;
+  text-align: center;
 }
+
+.input-label-lg{
+  text-align: center;
+  width: 100px;
+}
+.order-date{
+  text-align: center;
+  width: 100px;
+  //width: 200px;
+}
+
+
+
+//.text-success{
+//  border: #3498db 5px;
+//  text-align: center;
+//}

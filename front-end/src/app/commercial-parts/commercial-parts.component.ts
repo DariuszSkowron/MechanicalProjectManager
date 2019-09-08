@@ -20,6 +20,7 @@ export class CommercialPartsComponent implements OnInit {
   nameOrOrderSymbolSearch: string;
   manufacturerSearch: string;
   index = 1;
+  todaysDate: Date = new Date();
 
   constructor(private projectService: ApiService) {
   }
@@ -145,8 +146,8 @@ export class CommercialPartsComponent implements OnInit {
       name: '',
       manufacturer: 'UNASSIGNED',
       quantity: '',
-      orderDate: '',
-      deliveryDate: '',
+      orderDate: this.todaysDate,
+      deliveryDate: null,
       price: '',
       manufacturerId: '1',
       partsOrderId: partsOrderId,

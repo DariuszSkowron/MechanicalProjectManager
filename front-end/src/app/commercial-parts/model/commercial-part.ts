@@ -5,8 +5,8 @@ export class CommercialPart {
   name: string;
   manufacturer: string;
   quantity: string;
-  orderDate: string;
-  deliveryDate: string;
+  orderDate: Date;
+  deliveryDate: Date;
   price: string;
   partsOrderId: string;
   manufacturerId: string;

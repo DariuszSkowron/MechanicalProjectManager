@@ -2,8 +2,14 @@
   display: none;
 }
 
-.project-select {
+.custom-select {
   display: inline-block;
+  //width: 150px;
+}
+
+.project-select {
+  @extend .custom-select;
+  width: 150px;
 }
 
 .processList{
@@ -32,11 +38,11 @@ table{
   border:1px;
 }
 table td {
-  width:20%;
+  width:10%;
 }
 
 table th{
-  width:20%;
+  width:10%;
 }
 
 .titleTable{

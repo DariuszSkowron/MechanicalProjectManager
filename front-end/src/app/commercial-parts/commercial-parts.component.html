@@ -54,6 +54,7 @@
            (click)="selectPartsOrder(partsOrder)" class="list-group-item list-group-item-action">
           &nbsp;
               <select class="project-select" [(ngModel)]="partsOrder.projectId" (change)="updatePartsOrder(partsOrder)">
+                <option [ngValue]="null" selected disabled hidden>Please specify project</option>
                 <option *ngFor="let project of projects"  value= {{project.id}}>
                   {{project.name}}
                 </option>
@@ -85,7 +86,6 @@
             <th>Type</th>
             <th>Order Symbol</th>
             <th>Name</th>
-            <th>Manufacturer</th>
             <th>Quantity</th>
             <th>Order Date</th>
             <th>Expected delivery date</th>
