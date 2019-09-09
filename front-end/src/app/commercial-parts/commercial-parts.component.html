@@ -14,9 +14,15 @@
     </button>
 
     <button type="button"
-            (click)="createCommercialPart(selectedPartsOrder.id)"
-            [disabled]="selectedPartsOrder == null"
-            class="btn"><i class="fa fa-plus"></i> New part
+                       (click)="createCommercialPart(selectedPartsOrder.id)"
+                       [disabled]="selectedPartsOrder == null"
+                       class="btn"><i class="fa fa-plus"></i> New part
+  </button>
+
+    <button type="button"
+            (click)="generateInvoce(selectedCommercialParts)"
+            [disabled]="selectedCommercialPart == null"
+            class="btn"><i class="fa fa-plus"></i> Generate invoce from selected parts
     </button>
   </div>
 <!--  <div>-->

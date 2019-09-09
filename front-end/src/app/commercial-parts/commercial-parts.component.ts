@@ -17,6 +17,8 @@ export class CommercialPartsComponent implements OnInit {
   commercialPart: CommercialPart;
   partsOrder: PartsOrder;
   selectedPartsOrder: PartsOrder;
+  selectedCommercialParts: CommercialPart[] = [];
+  selectedCommercialPart: CommercialPart;
   nameOrOrderSymbolSearch: string;
   manufacturerSearch: string;
   index = 1;
@@ -186,10 +188,22 @@ export class CommercialPartsComponent implements OnInit {
     );
   }
 
+
+
   selectAllCommercialParts() {
     this.selectedPartsOrder = null;
     this.getAllCommercialParts();
   }
 
+  selectCommercialPart(commercialPart: CommercialPart) {
+    this.selectedCommercialPart = commercialPart;
+  }
+
+
+  generateInvoce(commercialParts: CommercialPart []) {
+    this.selectedCommercialParts = commercialParts;
+
+
+  }
 
 }

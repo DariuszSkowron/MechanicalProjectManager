@@ -13,6 +13,7 @@ export class CommercialPartComponent implements OnInit {
   @Input() commercialPart: CommercialPart;
   @Output() commercialPartUpdated: EventEmitter<CommercialPart> = new EventEmitter<CommercialPart>();
   @Output() commercialPartDeleted: EventEmitter<CommercialPart> = new EventEmitter<CommercialPart>();
+  @Output() commercialPartSelected: EventEmitter<CommercialPart> = new EventEmitter<CommercialPart>()
 
   constructor(private apiService: ApiService) {
   }
@@ -37,5 +38,9 @@ export class CommercialPartComponent implements OnInit {
 
   deleteCommercialPart() {
     this.commercialPartDeleted.emit(this.commercialPart);
+  }
+
+  selectCommercialPart() {
+    this.commercialPartSelected.emit(this.commercialPart);
   }
 }
