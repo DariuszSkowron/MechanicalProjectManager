@@ -19,6 +19,8 @@ export class CommercialPartsComponent implements OnInit {
   selectedPartsOrder: PartsOrder;
   nameOrOrderSymbolSearch: string;
   manufacturerSearch: string;
+  index = 1;
+  todaysDate: Date = new Date();
 
   constructor(private projectService: ApiService) {
   }
@@ -67,7 +69,7 @@ export class CommercialPartsComponent implements OnInit {
 
   createPartsOrder() {
     const newPartsOrder: PartsOrder = {
-      name: 'Parts order number #',
+      name: 'Parts order No.' + this.index,
       id: null,
       numberOfParts: 0,
       project: null,
@@ -78,6 +80,7 @@ export class CommercialPartsComponent implements OnInit {
       res => {
         newPartsOrder.id = res.id;
         this.partsOrders.push(newPartsOrder);
+        this.index = this.index + 1;
       },
       err => {
         alert('An error has occurred while trying to save the parts order list');
@@ -143,8 +146,8 @@ export class CommercialPartsComponent implements OnInit {
       name: '',
       manufacturer: 'UNASSIGNED',
       quantity: '',
-      orderDate: '',
-      deliveryDate: '',
+      orderDate: this.todaysDate,
+      deliveryDate: null,
       price: '',
       manufacturerId: '1',
       partsOrderId: partsOrderId,

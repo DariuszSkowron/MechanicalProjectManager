@@ -1,5 +1,6 @@
 package com.skowrondariusz.mechanicalprojectmanager.api.viewmodel;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -8,6 +9,8 @@ public class CommercialPartViewModel {
     private String id;
     private String type;
     private String orderSymbol;
+
+    @Min(5)
     private String name;
     private String manufacturer;
     private int quantity;

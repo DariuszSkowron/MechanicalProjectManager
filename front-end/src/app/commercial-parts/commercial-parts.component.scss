@@ -2,9 +2,19 @@
   display: none;
 }
 
+.custom-select {
+  display: inline-block;
+  //width: 150px;
+}
+
+.project-select {
+  @extend .custom-select;
+  width: 150px;
+}
+
 .processList{
   display: block;
-  min-width: 350px;
+  min-width: 400px;
   float: left;
 
 }
@@ -28,11 +38,11 @@ table{
   border:1px;
 }
 table td {
-  width:20%;
+  width:10%;
 }
 
 table th{
-  width:20%;
+  width:10%;
 }
 
 .titleTable{

@@ -33,7 +33,7 @@
             (change)="filterPartsByManufacturer($event.target)">
       <option [ngValue]="undefined" selected disabled hidden>Pick one of the options available</option>
       <option [ngValue]="undefined">All parts</option>
-      <option *ngFor="let commercialPart of commercialParts | duplicateFilter" [value]='commercialPart.manufacturer'>
+      <option *ngFor="let commercialPart of commercialParts | duplicateFilter" [ngValue]='commercialPart.manufacturer'>
         {{commercialPart.manufacturer}}
       </option>
     </select>
@@ -48,19 +48,20 @@
       <br>
       <div class="list-group list-group-flush">
         <a (click)="selectAllCommercialParts()" class="list-group-item list-group-item-action">
-          <i class="fa fa-book"></i>&nbsp;All parts
+          All parts
         </a>
         <a *ngFor="let partsOrder of partsOrders"
            (click)="selectPartsOrder(partsOrder)" class="list-group-item list-group-item-action">
-          <i class="fa fa-book"></i>&nbsp;
-              <select [(ngModel)]="partsOrder.projectId" (change)="updatePartsOrder(partsOrder)">
+          &nbsp;
+              <select class="project-select" [(ngModel)]="partsOrder.projectId" (change)="updatePartsOrder(partsOrder)">
+                <option [ngValue]="null" selected disabled hidden>Please specify project</option>
                 <option *ngFor="let project of projects"  value= {{project.id}}>
                   {{project.name}}
                 </option>
               </select>
           <label>
             <input [(ngModel)]="partsOrder.name" (change)="updatePartsOrder(partsOrder)"
-                   type="text" class="input-label" style="width: 200px"/>
+                   type="text" class="input-label" style="width: 150px"/>
           </label>
           <a (click)="deletePartsOrder(partsOrder)" class="pull-right text-danger">
             <i class="fas fa-trash"></i>
@@ -85,7 +86,6 @@
             <th>Type</th>
             <th>Order Symbol</th>
             <th>Name</th>
-            <th>Manufacturer</th>
             <th>Quantity</th>
             <th>Order Date</th>
             <th>Expected delivery date</th>

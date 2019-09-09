@@ -1,6 +1,9 @@
 package com.skowrondariusz.mechanicalprojectmanager.model;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -19,6 +22,7 @@ public class CommercialPart {
     private Manufacturer manufacturer;
 
     private int quantity;
+//    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date orderDate;
     private Date deliveryDate;
     private long price;

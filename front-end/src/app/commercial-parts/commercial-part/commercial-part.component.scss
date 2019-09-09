@@ -1,9 +1,31 @@
 table{
   table-layout:fixed;
   width:100%;
-  border:2px;
+  //border:10px;
 }
 
 table td {
-  width:10%;
+  //width:10%;
+  text-align: center;
+}
+
+.input-label-lg{
+  text-align: center;
+  width: 100px;
+  border: none;
+}
+
+.order-date{
+  text-align: right;
+  width: 100px;
+  color: red;
+}
+
+.border {
+  //display: inherit;
+  height: 2px;
+  width: 99%;
+  margin-bottom: 5px;
+  //border: none !important;
+  background-color: #48bef8;
 }

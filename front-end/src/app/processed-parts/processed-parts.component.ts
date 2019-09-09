@@ -15,6 +15,7 @@ export class ProcessedPartsComponent implements OnInit {
   nameSearch: string;
   mainProcessSearch: string;
   defaultMachining: any;
+  processedPartsNumber = 1;
 
   constructor(private projectService: ApiService) { }
 
@@ -52,7 +53,7 @@ export class ProcessedPartsComponent implements OnInit {
 
   createMechanicalProcessing() {
     const newMechanicalProcessing: MechanicalProcessing = {
-      name: 'New processing list',
+      name: 'Processing list No. ' + this.processedPartsNumber,
       id: null,
       numberOfParts: 0
     };
@@ -61,6 +62,7 @@ export class ProcessedPartsComponent implements OnInit {
       res => {
         newMechanicalProcessing.id = res.id;
         this.mechanicalProceedings.push(newMechanicalProcessing);
+        this.processedPartsNumber = this.processedPartsNumber + 1;
       },
       err => {
         alert('An error has occurred while trying to save the mechanical processing list');
