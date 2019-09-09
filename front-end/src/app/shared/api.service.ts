@@ -8,6 +8,7 @@ import {CommercialPart} from '../commercial-parts/model/commercial-part';
 import {Manufacturer} from '../manufacturers/model/manufacturer';
 import {SalesRepresentative} from '../manufacturers/model/sales-representative';
 import {Project} from "../project/project";
+import {Invoice} from "../commercial-parts/model/invoice";
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,7 @@ export class ApiService {
   private SAVE_UPDATE_SALES_REPRESENTATIVE_URL = `${this.BASE_URL}/salesRepresentative`;
   private DELETE_SALES_REPRESENTATIVE_URL = `${this.BASE_URL}/salesRepresentative/`;
   private GET_MANUFACTURER_BY_ID_URL = `${this.BASE_URL}/manufacturer/`;
+  private SAVE_UPDATE_INVOICE_URL = `${this.BASE_URL}/invoice`;
 
 
 
@@ -164,6 +166,11 @@ export class ApiService {
   getManufacturerById(manufacturerId: string): Observable<Manufacturer> {
     return this.http.get<Manufacturer>(this.GET_MANUFACTURER_BY_ID_URL + manufacturerId);
   }
+
+  postInvoice(invoice: Invoice): Observable<Invoice> {
+    return this.http.post<Invoice>(this.SAVE_UPDATE_INVOICE_URL, invoice);
+  }
+
 
 
 

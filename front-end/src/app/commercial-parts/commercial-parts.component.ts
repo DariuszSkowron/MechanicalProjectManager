@@ -3,6 +3,7 @@ import {PartsOrder} from './model/parts-order';
 import {CommercialPart} from './model/commercial-part';
 import {ApiService} from '../shared/api.service';
 import {Project} from '../project/project';
+import {Invoice} from "./model/invoice";
 
 
 @Component({
@@ -15,6 +16,7 @@ export class CommercialPartsComponent implements OnInit {
   projects: Project[] = [];
   commercialParts: CommercialPart[] = [];
   commercialPart: CommercialPart;
+  invoices: Invoice[] = [];
   partsOrder: PartsOrder;
   selectedPartsOrder: PartsOrder;
   selectedCommercialParts: CommercialPart[] = [];
@@ -195,15 +197,22 @@ export class CommercialPartsComponent implements OnInit {
     this.getAllCommercialParts();
   }
 
-  selectCommercialPart(commercialPart: CommercialPart) {
-    this.selectedCommercialPart = commercialPart;
+
+  generateInvoice() {
+    const selectedCommercialParts = this.commercialParts.filter((commercial) => commercial.checked);
+    const newInvoice: Invoice = {
+      id: null,
+      // commercialPartList: selectedCommercialParts,
+    };
+
+    this.projectService.postInvoice(newInvoice).subscribe(
+      res => {
+        newInvoice.id = res.id;
+        this.invoices.push(newInvoice);
+      },
+      err => {
+        alert('An error has occurred while saving part');
+      }
+    );
   }
-
-
-  generateInvoce(commercialParts: CommercialPart []) {
-    this.selectedCommercialParts = commercialParts;
-
-
-  }
-
 }
