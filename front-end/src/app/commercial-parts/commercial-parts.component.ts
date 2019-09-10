@@ -199,10 +199,10 @@ export class CommercialPartsComponent implements OnInit {
 
 
   generateInvoice() {
-    const selectedCommercialParts = this.commercialParts.filter((commercial) => commercial.checked);
+    // const selectedCommercialParts = this.commercialParts.filter((commercial) => commercial.checked).map(commercial => commercial.id);
     const newInvoice: Invoice = {
       id: null,
-      // commercialPartList: selectedCommercialParts,
+      commercialParts: this.commercialParts.filter(commercial => commercial.checked === true).map(commercial => commercial)
     };
 
     this.projectService.postInvoice(newInvoice).subscribe(

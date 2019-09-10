@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.ValidationException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/invoice")
@@ -28,10 +29,23 @@ public class InvoiceController {
 
     @PostMapping
     public Invoice save(@RequestBody Invoice invoice) {
-//        Invoice invoiceEntity = new Invoice(invoice.getCommercialParts());
+//
+//        if (bindingResult.hasErrors()) {
+//            throw new ValidationException();
+//        }
+
+        List<CommercialPart> result = invoice.getCommercialParts();
+//
+//        var invoiceRes = new Invoice(invoice.getCommercialParts());
+        this.invoiceRepository.save(invoice);
+//
+        for (CommercialPart commercialPart : result) {
+            commercialPart.setInvoice(invoice);
+//            commercialPartRepository.save(commercialPart);
+        }
 
 
-        return this.invoiceRepository.save(invoice);
+       return  this.invoiceRepository.save(invoice);
 
     }
 
