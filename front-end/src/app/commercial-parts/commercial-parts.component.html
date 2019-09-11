@@ -21,7 +21,7 @@
 
     <button type="button"
             (click)="generateInvoice()"
-            [disabled]="selectedCommercialParts == null"
+            [disabled]="selectedCommercialParts.length === 0"
             class="btn"><i class="fa fa-plus"></i> Generate invoce from selected parts
     </button>
   </div>
@@ -84,6 +84,7 @@
         <h3 *ngIf="selectedPartsOrder != null">{{selectedPartsOrder.name}}</h3>
         <h3 *ngIf="selectedPartsOrder == null">All parts</h3>
         <p *ngIf="this.partsOrders.length === 0">There are no parts to display in this list</p>
+        <p *ngIf="selectedCommercialParts.length === 0">dddd</p>
       </div>
 
       <div>

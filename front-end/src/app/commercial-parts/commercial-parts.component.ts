@@ -3,7 +3,7 @@ import {PartsOrder} from './model/parts-order';
 import {CommercialPart} from './model/commercial-part';
 import {ApiService} from '../shared/api.service';
 import {Project} from '../project/project';
-import {Invoice} from "./model/invoice";
+import {Invoice} from './model/invoice';
 
 
 @Component({
@@ -20,7 +20,6 @@ export class CommercialPartsComponent implements OnInit {
   partsOrder: PartsOrder;
   selectedPartsOrder: PartsOrder;
   selectedCommercialParts: CommercialPart[] = [];
-  selectedCommercialPart: CommercialPart;
   nameOrOrderSymbolSearch: string;
   manufacturerSearch: string;
   index = 1;
@@ -34,6 +33,7 @@ export class CommercialPartsComponent implements OnInit {
     this.getAllCommercialParts();
     this.getAllProjects();
   }
+
 
   getAllProjects() {
     this.projectService.getProjectList().subscribe(res => {
@@ -198,6 +198,8 @@ export class CommercialPartsComponent implements OnInit {
   }
 
 
+
+
   generateInvoice() {
     // const selectedCommercialParts = this.commercialParts.filter((commercial) => commercial.checked).map(commercial => commercial.id);
     const newInvoice: Invoice = {
@@ -205,14 +207,15 @@ export class CommercialPartsComponent implements OnInit {
       commercialParts: this.commercialParts.filter(commercial => commercial.checked === true).map(commercial => commercial.id)
     };
 
-    this.projectService.postInvoice(newInvoice).subscribe(
-      res => {
-        newInvoice.id = res.id;
-        this.invoices.push(newInvoice);
-      },
-      err => {
-        alert('An error has occurred while saving part');
-      }
-    );
-  }
+    if (confirm('You will create new invoice from selected parts, do you want to continue?')) {
+      this.projectService.postInvoice(newInvoice).subscribe(
+        res => {
+          newInvoice.id = res.id;
+          this.invoices.push(newInvoice);
+        },
+        err => {
+          alert('An error has occurred while saving part');
+        }
+      );
+    }
 }
