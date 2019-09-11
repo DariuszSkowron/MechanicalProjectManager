@@ -202,7 +202,7 @@ export class CommercialPartsComponent implements OnInit {
     // const selectedCommercialParts = this.commercialParts.filter((commercial) => commercial.checked).map(commercial => commercial.id);
     const newInvoice: Invoice = {
       id: null,
-      commercialParts: this.commercialParts.filter(commercial => commercial.checked === true).map(commercial => commercial)
+      commercialParts: this.commercialParts.filter(commercial => commercial.checked === true).map(commercial => commercial.id)
     };
 
     this.projectService.postInvoice(newInvoice).subscribe(

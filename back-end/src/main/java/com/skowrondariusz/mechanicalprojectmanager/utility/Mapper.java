@@ -80,4 +80,8 @@ public class Mapper {
     public Project convertToProjectEntity(ProjectViewModel viewModel){
         return modelMapper.map(viewModel, Project.class);
     }
+
+    public Invoice convertToInvoiceEntity(InvoiceViewModel viewModel){
+        return modelMapper.map(viewModel,Invoice.class );
+    }
 }

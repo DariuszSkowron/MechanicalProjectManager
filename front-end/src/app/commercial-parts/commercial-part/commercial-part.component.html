@@ -75,7 +75,7 @@
     <td>
       <label>
       <input type="checkbox"
-             [(ngModel)]="commercialPart.checked" class="btn btn-success">
+             [(ngModel)]="commercialPart.checked" (click)="selectCommercialPart()" (change)="updateCommercialPart()" class="btn btn-success">
         <i class="fas fa-file-invoice-dollar"></i>
       </label>
     </td>
