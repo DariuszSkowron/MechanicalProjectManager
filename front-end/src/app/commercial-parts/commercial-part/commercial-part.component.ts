@@ -8,19 +8,19 @@ import {ApiService} from '../../shared/api.service';
   templateUrl: './commercial-part.component.html',
   styleUrls: ['./commercial-part.component.scss']
 })
-export class CommercialPartComponent implements AfterViewInit, OnInit {
+export class CommercialPartComponent implements  OnInit {
   manufacturers: Manufacturer[] = [];
   @Input() commercialPart: CommercialPart;
   @Output() commercialPartUpdated: EventEmitter<any> = new EventEmitter<any>();
   @Output() commercialPartDeleted: EventEmitter<CommercialPart> = new EventEmitter<CommercialPart>();
   @Output() commercialPartSelected: EventEmitter<CommercialPart> = new EventEmitter<CommercialPart>();
 
-  constructor(private apiService: ApiService, private cd: ChangeDetectorRef) {
+  constructor(private apiService: ApiService) {
   }
 
-  ngAfterViewInit() {
-    this.cd.detectChanges();
-  }
+  // ngAfterViewInit() {
+  //   this.cd.detectChanges();
+  // }
 
 
   ngOnInit() {
@@ -40,7 +40,7 @@ export class CommercialPartComponent implements AfterViewInit, OnInit {
   updateCommercialPart() {
     // this.commercialPartUpdated.emit(this.commercialPart);
     this.commercialPartUpdated.emit(this.commercialPart);
-    this.cd.detectChanges();
+    // this.cd.detectChanges();
   }
 
   deleteCommercialPart() {
@@ -49,6 +49,6 @@ export class CommercialPartComponent implements AfterViewInit, OnInit {
 
   selectCommercialPart() {
     this.commercialPartUpdated.emit(this.commercialPart);
-    this.cd.detectChanges();
+    // this.cd.detectChanges();
   }
 }

@@ -19,7 +19,7 @@ import {Invoice} from './model/invoice';
   templateUrl: './commercial-parts.component.html',
   styleUrls: ['./commercial-parts.component.scss']
 })
-export class CommercialPartsComponent implements OnInit, AfterViewInit, OnChanges {
+export class CommercialPartsComponent implements OnInit {
   partsOrders: PartsOrder[] = [];
   projects: Project[] = [];
   commercialParts: CommercialPart[] = [];
@@ -32,25 +32,21 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit, OnChange
   manufacturerSearch: string;
   index = 1;
   todaysDate: Date = new Date();
+  test11 = this.commercialParts.filter(commercial => commercial.checked === true).map(commercial => commercial.id);
 
-  constructor(private projectService: ApiService, private cd: ChangeDetectorRef) {
+  constructor(private projectService: ApiService) {
   }
 
-  ngAfterViewInit() {
-    this.cd.detectChanges();
-  }
+  // private cd: ChangeDetectorRef
+  // ngAfterViewInit() {
+  //   this.cd.detectChanges();
+  // }
 
   ngOnInit() {
     this.getAllPartsOrders();
     this.getAllCommercialParts();
     this.getAllProjects();
-    this.filterPartsByManufacturer();
   }
-
-  ngOnChanges(changes: SimpleChanges){
-
-  }
-
 
   getAllProjects() {
     this.projectService.getProjectList().subscribe(res => {
@@ -81,7 +77,6 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit, OnChange
     this.projectService.getAllCommercialParts().subscribe(
       res => {
         this.commercialParts = res;
-        this.ngAfterViewInit();
       },
       err => {
         alert('While downloading the parts orders occurred an error');
@@ -217,7 +212,6 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit, OnChange
 
 
   generateInvoice() {
-    // const selectedCommercialParts = this.commercialParts.filter((commercial) => commercial.checked).map(commercial => commercial.id);
     const newInvoice: Invoice = {
       id: null,
       commercialParts: this.commercialParts.filter(commercial => commercial.checked === true).map(commercial => commercial.id)
@@ -236,7 +230,7 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit, OnChange
     }
   }
 
-  selected1CommercialParts() {
+  selectCommercialPart() {
     this.commercialParts.filter((commercialPart: CommercialPart) => commercialPart.checked === true);
 
   }
