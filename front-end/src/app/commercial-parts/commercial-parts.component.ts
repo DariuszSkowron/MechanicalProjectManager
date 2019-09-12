@@ -1,4 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  OnChanges,
+  OnInit,
+  SimpleChange,
+  SimpleChanges
+} from '@angular/core';
 import {PartsOrder} from './model/parts-order';
 import {CommercialPart} from './model/commercial-part';
 import {ApiService} from '../shared/api.service';
@@ -11,7 +19,7 @@ import {Invoice} from './model/invoice';
   templateUrl: './commercial-parts.component.html',
   styleUrls: ['./commercial-parts.component.scss']
 })
-export class CommercialPartsComponent implements OnInit {
+export class CommercialPartsComponent implements OnInit, AfterViewInit, OnChanges {
   partsOrders: PartsOrder[] = [];
   projects: Project[] = [];
   commercialParts: CommercialPart[] = [];
@@ -19,34 +27,43 @@ export class CommercialPartsComponent implements OnInit {
   invoices: Invoice[] = [];
   partsOrder: PartsOrder;
   selectedPartsOrder: PartsOrder;
-  selectedCommercialParts: CommercialPart[] = [];
+  selectedCommercialParts =  this.commercialParts.filter((commercialPart: CommercialPart) => commercialPart.checked === true);
   nameOrOrderSymbolSearch: string;
   manufacturerSearch: string;
   index = 1;
   todaysDate: Date = new Date();
 
-  constructor(private projectService: ApiService) {
+  constructor(private projectService: ApiService, private cd: ChangeDetectorRef) {
+  }
+
+  ngAfterViewInit() {
+    this.cd.detectChanges();
   }
 
   ngOnInit() {
     this.getAllPartsOrders();
     this.getAllCommercialParts();
     this.getAllProjects();
+    this.filterPartsByManufacturer();
+  }
+
+  ngOnChanges(changes: SimpleChanges){
+
   }
 
 
   getAllProjects() {
     this.projectService.getProjectList().subscribe(res => {
-      this.projects = res;
-    },
-    err => {
-      alert(`An error has occurred` + err);
-    }
-  );
+        this.projects = res;
+      },
+      err => {
+        alert(`An error has occurred` + err);
+      }
+    );
   }
 
-  filterPartsByManufacturer(manufacturer: any) {
-    this.commercialParts.find(part => part.manufacturer === manufacturer);
+  filterPartsByManufacturer() {
+    this.commercialParts.map(commercialPart => commercialPart.manufacturer);
   }
 
   getAllPartsOrders() {
@@ -64,6 +81,7 @@ export class CommercialPartsComponent implements OnInit {
     this.projectService.getAllCommercialParts().subscribe(
       res => {
         this.commercialParts = res;
+        this.ngAfterViewInit();
       },
       err => {
         alert('While downloading the parts orders occurred an error');
@@ -183,6 +201,7 @@ export class CommercialPartsComponent implements OnInit {
   updateCommercialParts(updatedCommercialPart: CommercialPart) {
     this.projectService.saveCommercialPart(updatedCommercialPart).subscribe(
       res => {
+        this.ngOnInit();
       },
       err => {
         alert('An error occurred while updating the part' + JSON.stringify(err));
@@ -191,13 +210,10 @@ export class CommercialPartsComponent implements OnInit {
   }
 
 
-
   selectAllCommercialParts() {
     this.selectedPartsOrder = null;
     this.getAllCommercialParts();
   }
-
-
 
 
   generateInvoice() {
@@ -218,4 +234,10 @@ export class CommercialPartsComponent implements OnInit {
         }
       );
     }
+  }
+
+  selected1CommercialParts() {
+    this.commercialParts.filter((commercialPart: CommercialPart) => commercialPart.checked === true);
+
+  }
 }
