@@ -27,20 +27,13 @@ export class CommercialPartsComponent implements OnInit {
   invoices: Invoice[] = [];
   partsOrder: PartsOrder;
   selectedPartsOrder: PartsOrder;
-  selectedCommercialParts =  this.commercialParts.filter((commercialPart: CommercialPart) => commercialPart.checked === true);
   nameOrOrderSymbolSearch: string;
   manufacturerSearch: string;
   index = 1;
   todaysDate: Date = new Date();
-  test11 = this.commercialParts.filter(commercial => commercial.checked === true).map(commercial => commercial.id);
 
   constructor(private projectService: ApiService) {
   }
-
-  // private cd: ChangeDetectorRef
-  // ngAfterViewInit() {
-  //   this.cd.detectChanges();
-  // }
 
   ngOnInit() {
     this.getAllPartsOrders();
