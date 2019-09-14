@@ -20,8 +20,8 @@
   </button>
 
     <button type="button"
-            (click)="generateInvoice()" [ngModel]="test22"
-            [disabled]="test22 === 0"
+            (click)="generateInvoice()"
+            [disabled]="selectedCommercialParts.length === 0"
             class="btn"><i class="fa fa-plus"></i> Generate invoce from selected parts
     </button>
   </div>

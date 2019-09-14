@@ -31,6 +31,7 @@ export class CommercialPartsComponent implements OnInit {
   manufacturerSearch: string;
   index = 1;
   todaysDate: Date = new Date();
+  selectedCommercialParts: Array<any>;
 
   constructor(private projectService: ApiService) {
   }
@@ -39,6 +40,11 @@ export class CommercialPartsComponent implements OnInit {
     this.getAllPartsOrders();
     this.getAllCommercialParts();
     this.getAllProjects();
+    this.getAllSelected();
+  }
+
+  getAllSelected() {
+    this.selectedCommercialParts = this.commercialParts.filter(commercial => commercial.type === 'dupa');
   }
 
   getAllProjects() {
