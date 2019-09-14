@@ -3,7 +3,9 @@ package com.skowrondariusz.mechanicalprojectmanager.utility;
 
 import com.skowrondariusz.mechanicalprojectmanager.api.viewmodel.*;
 import com.skowrondariusz.mechanicalprojectmanager.model.*;
+import com.skowrondariusz.mechanicalprojectmanager.repository.ManufacturerRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
@@ -11,6 +13,11 @@ import org.springframework.stereotype.Component;
 public class Mapper {
 
     private ModelMapper modelMapper = new ModelMapper();
+    private final ManufacturerRepository manufacturerRepository;
+
+    public Mapper(ManufacturerRepository manufacturerRepository) {
+        this.manufacturerRepository = manufacturerRepository;
+    }
 
     public ProcessedPartViewModel convertToProcessedPartViewModel(ProcessedPart entity){
 
@@ -49,7 +56,9 @@ public class Mapper {
     }
 
     public CommercialPart convertToCommercialPartEntity(CommercialPartViewModel viewModel){
-        return modelMapper.map(viewModel, CommercialPart.class);
+       var entity = modelMapper.map(viewModel, CommercialPart.class);
+       entity.setManufacturer(manufacturerRepository.getManufacturerByName(viewModel.getManufacturer()));
+       return entity;
     }
 
     public Manufacturer convertToManufacturerEntity(ManufacturerViewModel viewModel){

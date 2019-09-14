@@ -32,6 +32,7 @@ export class CommercialPartsComponent implements OnInit {
   index = 1;
   todaysDate: Date = new Date();
   selectedCommercialParts: Array<any>;
+  existingManufacturers: Array<any>;
 
   constructor(private projectService: ApiService) {
   }
@@ -41,6 +42,7 @@ export class CommercialPartsComponent implements OnInit {
     this.getAllCommercialParts();
     this.getAllProjects();
     this.getAllSelected();
+    this.filterPartsByManufacturer();
   }
 
   getAllSelected() {
@@ -58,7 +60,7 @@ export class CommercialPartsComponent implements OnInit {
   }
 
   filterPartsByManufacturer() {
-    this.commercialParts.map(commercialPart => commercialPart.manufacturer);
+    this.existingManufacturers = this.commercialParts.map(commercialPart => commercialPart.manufacturer);
   }
 
   getAllPartsOrders() {
