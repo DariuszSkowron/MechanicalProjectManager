@@ -1,4 +1,13 @@
-import {AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output, SimpleChanges
+} from '@angular/core';
 import {CommercialPart} from '../model/commercial-part';
 import {Manufacturer} from '../../manufacturers/model/manufacturer';
 import {ApiService} from '../../shared/api.service';
@@ -8,7 +17,7 @@ import {ApiService} from '../../shared/api.service';
   templateUrl: './commercial-part.component.html',
   styleUrls: ['./commercial-part.component.scss']
 })
-export class CommercialPartComponent implements  OnInit {
+export class CommercialPartComponent implements  OnInit, OnChanges {
   manufacturers: Manufacturer[] = [];
   @Input() commercialPart: CommercialPart;
   @Output() commercialPartUpdated: EventEmitter<any> = new EventEmitter<any>();
@@ -50,5 +59,11 @@ export class CommercialPartComponent implements  OnInit {
   selectCommercialPart() {
     this.commercialPartUpdated.emit(this.commercialPart);
     // this.cd.detectChanges();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('ngOnChanges,, previous CommercialPart: ', changes.commercialPart.previousValue);
+    console.log('ngOnChanges,, next CommercialPart: ', changes.commercialPart.currentValue);
+    console.log('ngOnChanges,, previous CommercialPart: ', changes.commercialPart.isFirstChange());
   }
 }

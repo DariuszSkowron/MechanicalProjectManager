@@ -44,7 +44,7 @@ export class CommercialPartsComponent implements OnInit {
   }
 
   getAllSelected() {
-    this.selectedCommercialParts = this.commercialParts.filter(commercial => commercial.type === 'dupa');
+    this.selectedCommercialParts = this.commercialParts.filter(commercial => commercial.checked === true);
   }
 
   getAllProjects() {
@@ -107,7 +107,6 @@ export class CommercialPartsComponent implements OnInit {
   updatePartsOrder(updatePartsOrder: PartsOrder) {
     this.projectService.postPartsOrder(updatePartsOrder).subscribe(
       res => {
-
       },
       err => {
         alert('An error has occured while updating the mechanical processing list');
@@ -195,7 +194,7 @@ export class CommercialPartsComponent implements OnInit {
   updateCommercialParts(updatedCommercialPart: CommercialPart) {
     this.projectService.saveCommercialPart(updatedCommercialPart).subscribe(
       res => {
-        this.ngOnInit();
+        this.getAllSelected();
       },
       err => {
         alert('An error occurred while updating the part' + JSON.stringify(err));
