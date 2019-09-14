@@ -9,5 +9,6 @@ public interface ManufacturerRepository  extends JpaRepository<Manufacturer, Lon
 
     Manufacturer getManufacturerById (long id);
 
+    Manufacturer getManufacturerByName (String name);
 
 }

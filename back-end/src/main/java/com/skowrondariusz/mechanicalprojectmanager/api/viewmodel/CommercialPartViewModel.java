@@ -22,6 +22,8 @@ public class CommercialPartViewModel {
     private String partsOrderId;
     private String manufacturerId;
 
+
+
     public String getId() {
         return id;
     }

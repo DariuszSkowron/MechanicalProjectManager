@@ -1,8 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  OnChanges,
+  OnInit,
+  SimpleChange,
+  SimpleChanges
+} from '@angular/core';
 import {PartsOrder} from './model/parts-order';
 import {CommercialPart} from './model/commercial-part';
 import {ApiService} from '../shared/api.service';
 import {Project} from '../project/project';
+import {Invoice} from './model/invoice';
 
 
 @Component({
@@ -15,12 +24,15 @@ export class CommercialPartsComponent implements OnInit {
   projects: Project[] = [];
   commercialParts: CommercialPart[] = [];
   commercialPart: CommercialPart;
+  invoices: Invoice[] = [];
   partsOrder: PartsOrder;
   selectedPartsOrder: PartsOrder;
   nameOrOrderSymbolSearch: string;
   manufacturerSearch: string;
   index = 1;
   todaysDate: Date = new Date();
+  selectedCommercialParts: Array<any>;
+  existingManufacturers: Array<any>;
 
   constructor(private projectService: ApiService) {
   }
@@ -29,20 +41,26 @@ export class CommercialPartsComponent implements OnInit {
     this.getAllPartsOrders();
     this.getAllCommercialParts();
     this.getAllProjects();
+    this.getAllSelected();
+    this.filterPartsByManufacturer();
+  }
+
+  getAllSelected() {
+    this.selectedCommercialParts = this.commercialParts.filter(commercial => commercial.checked === true);
   }
 
   getAllProjects() {
     this.projectService.getProjectList().subscribe(res => {
-      this.projects = res;
-    },
-    err => {
-      alert(`An error has occurred` + err);
-    }
-  );
+        this.projects = res;
+      },
+      err => {
+        alert(`An error has occurred` + err);
+      }
+    );
   }
 
-  filterPartsByManufacturer(manufacturer: any) {
-    this.commercialParts.find(part => part.manufacturer === manufacturer);
+  filterPartsByManufacturer() {
+    this.existingManufacturers = this.commercialParts.map(commercialPart => commercialPart.manufacturer);
   }
 
   getAllPartsOrders() {
@@ -91,7 +109,6 @@ export class CommercialPartsComponent implements OnInit {
   updatePartsOrder(updatePartsOrder: PartsOrder) {
     this.projectService.postPartsOrder(updatePartsOrder).subscribe(
       res => {
-
       },
       err => {
         alert('An error has occured while updating the mechanical processing list');
@@ -179,6 +196,7 @@ export class CommercialPartsComponent implements OnInit {
   updateCommercialParts(updatedCommercialPart: CommercialPart) {
     this.projectService.saveCommercialPart(updatedCommercialPart).subscribe(
       res => {
+        this.getAllSelected();
       },
       err => {
         alert('An error occurred while updating the part' + JSON.stringify(err));
@@ -186,10 +204,34 @@ export class CommercialPartsComponent implements OnInit {
     );
   }
 
+
   selectAllCommercialParts() {
     this.selectedPartsOrder = null;
     this.getAllCommercialParts();
   }
 
 
+  generateInvoice() {
+    const newInvoice: Invoice = {
+      id: null,
+      commercialParts: this.commercialParts.filter(commercial => commercial.checked === true).map(commercial => commercial.id)
+    };
+
+    if (confirm('You will create new invoice from selected parts, do you want to continue?')) {
+      this.projectService.postInvoice(newInvoice).subscribe(
+        res => {
+          newInvoice.id = res.id;
+          this.invoices.push(newInvoice);
+        },
+        err => {
+          alert('An error has occurred while saving part');
+        }
+      );
+    }
+  }
+
+  selectCommercialPart() {
+    this.commercialParts.filter((commercialPart: CommercialPart) => commercialPart.checked === true);
+
+  }
 }

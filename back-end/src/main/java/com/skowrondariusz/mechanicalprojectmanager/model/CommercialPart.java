@@ -21,6 +21,9 @@ public class CommercialPart {
     @ManyToOne(fetch = FetchType.LAZY)
     private Manufacturer manufacturer;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Invoice invoice;
+
     private int quantity;
 //    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date orderDate;
@@ -55,6 +58,27 @@ public class CommercialPart {
         this.deliveryDate = deliveryDate;
         this.price = price;
         this.partsOrder = partsOrder;
+    }
+
+    public CommercialPart(String type, String orderSymbol, String name, Manufacturer manufacturer, Invoice invoice, int quantity, Date orderDate, Date deliveryDate, long price, PartsOrder partsOrder) {
+        this.type = type;
+        this.orderSymbol = orderSymbol;
+        this.name = name;
+        this.manufacturer = manufacturer;
+        this.invoice = invoice;
+        this.quantity = quantity;
+        this.orderDate = orderDate;
+        this.deliveryDate = deliveryDate;
+        this.price = price;
+        this.partsOrder = partsOrder;
+    }
+
+    public Invoice getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
     }
 
     public long getId() {

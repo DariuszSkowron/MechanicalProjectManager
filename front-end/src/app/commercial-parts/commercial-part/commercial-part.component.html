@@ -59,18 +59,38 @@
     </td>
     <td>
       <label>
-        <select class="custom-select" [(ngModel)]="commercialPart.manufacturerId" (change)="updateCommercialPart()">
-          <option *ngFor="let manufacturer of manufacturers" value={{manufacturer.id}}>
+        <select class="custom-select" [(ngModel)]="commercialPart.manufacturer" (ngModelChange)="updateCommercialPart()">
+          <option *ngFor="let manufacturer of manufacturers" value={{manufacturer.name}}>
             {{manufacturer.name}}
           </option>
         </select>
       </label>
     </td>
 
+<!--    <td>-->
+<!--      <label>-->
+<!--        <select class="custom-select" [(ngModel)]="commercialPart.manufacturerId" (ngModelChange)="updateCommercialPart()">-->
+<!--          <option *ngFor="let manufacturer of manufacturers" value={{manufacturer.id}}>-->
+<!--            {{manufacturer.name}}-->
+<!--          </option>-->
+<!--        </select>-->
+<!--      </label>-->
+<!--    </td>-->
+
     <td>
       <button type="button"
               (click)="deleteCommercialPart()" class="btn btn-warning">
         <i class="fas fa-trash"></i></button>
+    </td>
+    <td>
+      <label>
+      <input type="checkbox"
+             [(ngModel)]="commercialPart.checked"  (change)="selectCommercialPart()" class="btn btn-success">
+        <i class="fas fa-file-invoice-dollar"></i>
+      </label>
+    </td>
+    <td>
+      <p *ngIf="!commercialPart.checked == false">huj</p>
     </td>
   </tr>
 </table>

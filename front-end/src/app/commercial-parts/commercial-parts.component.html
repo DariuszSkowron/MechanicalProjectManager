@@ -14,9 +14,15 @@
     </button>
 
     <button type="button"
-            (click)="createCommercialPart(selectedPartsOrder.id)"
-            [disabled]="selectedPartsOrder == null"
-            class="btn"><i class="fa fa-plus"></i> New part
+                       (click)="createCommercialPart(selectedPartsOrder.id)"
+                       [disabled]="selectedPartsOrder == null"
+                       class="btn"><i class="fa fa-plus"></i> New part
+  </button>
+
+    <button type="button"
+            (click)="generateInvoice()"
+            [disabled]="selectedCommercialParts.length === 0"
+            class="btn"><i class="fa fa-plus"></i> Generate invoce from selected parts
     </button>
   </div>
 <!--  <div>-->
@@ -29,11 +35,11 @@
 
   <div>
     <label for="Manufacturer" class="text-title">Search by manufacturer</label>
-    <select id="Manufacturer" [(ngModel)]="manufacturerSearch" class="custom-select"
-            (change)="filterPartsByManufacturer($event.target)">
+    <select id="Manufacturer" [(ngModel)]="manufacturerSearch" class="custom-select">
+<!--            (click)="filterPartsByManufacturer()">-->
       <option [ngValue]="undefined" selected disabled hidden>Pick one of the options available</option>
       <option [ngValue]="undefined">All parts</option>
-      <option *ngFor="let commercialPart of commercialParts | duplicateFilter" [ngValue]='commercialPart.manufacturer'>
+      <option *ngFor="let commercialPart of commercialParts | duplicateFilter" [value]='commercialPart.manufacturer'>
         {{commercialPart.manufacturer}}
       </option>
     </select>
@@ -99,6 +105,7 @@
 
         <div *ngFor="let n of commercialParts | commercialPartFilter:nameOrOrderSymbolSearch: manufacturerSearch">
           <commercial-part
+            (commercialPartSelected)="selectCommercialPart()"
             [commercialPart]="n"
             (commercialPartUpdated)="updateCommercialParts($event)"
             (commercialPartDeleted)="deleteCommercialPart($event)">
@@ -108,4 +115,5 @@
     </div>
   </div>
 </div>
+
 

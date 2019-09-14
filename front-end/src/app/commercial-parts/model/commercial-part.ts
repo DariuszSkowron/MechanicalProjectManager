@@ -10,4 +10,5 @@ export class CommercialPart {
   price: string;
   partsOrderId: string;
   manufacturerId: string;
+  checked?: boolean;
 }
