@@ -233,7 +233,9 @@ export class CommercialPartsComponent implements OnInit {
           this.updatecc();
         },
         err => {
-          alert('An error has occurred while saving part');
+          alert('An error has occurred while saving part'),
+          console.log('oops', err.err);
+          console.log(JSON.stringify(err));
         }
       );
     }

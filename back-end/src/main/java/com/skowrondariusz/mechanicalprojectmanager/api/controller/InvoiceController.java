@@ -34,8 +34,10 @@ public class InvoiceController {
     @PostMapping
     public Invoice save(@RequestBody InvoiceViewModel invoice, BindingResult bindingResult) {
 
-        if (bindingResult.hasErrors()) {
-            throw new ValidationException();
+        for (Long commercialPart : invoice.getCommercialParts()) {
+            if (commercialPartRepository.getOne(commercialPart).getInvoice() != null){
+                throw new ValidationException();
+            }
         }
 
         var invoiceEntity = this.mapper.convertToInvoiceEntity(invoice);
