@@ -210,6 +210,14 @@ export class CommercialPartsComponent implements OnInit {
     this.getAllCommercialParts();
   }
 
+  updatecc() {
+    this.projectService.getCommercialPartsByPartsOrder(this.selectedPartsOrder.id).subscribe(
+      res => {
+        this.commercialParts = res;
+      }
+    );
+  }
+
 
   generateInvoice() {
     const newInvoice: Invoice = {
@@ -222,6 +230,7 @@ export class CommercialPartsComponent implements OnInit {
         res => {
           newInvoice.id = res.id;
           this.invoices.push(newInvoice);
+          this.updatecc();
         },
         err => {
           alert('An error has occurred while saving part');
@@ -230,8 +239,5 @@ export class CommercialPartsComponent implements OnInit {
     }
   }
 
-  selectCommercialPart() {
 
-
-  }
 }
