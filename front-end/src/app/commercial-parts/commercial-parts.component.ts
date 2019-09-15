@@ -42,7 +42,6 @@ export class CommercialPartsComponent implements OnInit {
     this.getAllCommercialParts();
     this.getAllProjects();
     this.getAllSelected();
-    this.filterPartsByManufacturer();
   }
 
   getAllSelected() {
@@ -168,6 +167,7 @@ export class CommercialPartsComponent implements OnInit {
       price: '',
       manufacturerId: '1',
       partsOrderId: partsOrderId,
+      invoiceId: null,
     };
 
     this.projectService.saveCommercialPart(newCommercialPart).subscribe(
@@ -231,7 +231,7 @@ export class CommercialPartsComponent implements OnInit {
   }
 
   selectCommercialPart() {
-    this.commercialParts.filter((commercialPart: CommercialPart) => commercialPart.checked === true);
+
 
   }
 }

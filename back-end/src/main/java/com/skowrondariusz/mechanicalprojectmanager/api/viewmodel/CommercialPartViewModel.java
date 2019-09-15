@@ -21,8 +21,15 @@ public class CommercialPartViewModel {
     @NotNull
     private String partsOrderId;
     private String manufacturerId;
+    private String invoiceId;
 
+    public String getInvoiceId() {
+        return invoiceId;
+    }
 
+    public void setInvoiceId(String invoiceId) {
+        this.invoiceId = invoiceId;
+    }
 
     public String getId() {
         return id;
