@@ -47,9 +47,7 @@ export class CommercialPartComponent implements  OnInit, OnChanges {
   }
 
   updateCommercialPart() {
-    // this.commercialPartUpdated.emit(this.commercialPart);
     this.commercialPartUpdated.emit(this.commercialPart);
-    // this.cd.detectChanges();
   }
 
   deleteCommercialPart() {
@@ -58,7 +56,6 @@ export class CommercialPartComponent implements  OnInit, OnChanges {
 
   selectCommercialPart() {
     this.commercialPartUpdated.emit(this.commercialPart);
-    // this.cd.detectChanges();
   }
 
   ngOnChanges(changes: SimpleChanges) {

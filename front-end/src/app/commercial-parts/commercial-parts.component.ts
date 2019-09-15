@@ -42,7 +42,6 @@ export class CommercialPartsComponent implements OnInit {
     this.getAllCommercialParts();
     this.getAllProjects();
     this.getAllSelected();
-    this.filterPartsByManufacturer();
   }
 
   getAllSelected() {
@@ -168,6 +167,7 @@ export class CommercialPartsComponent implements OnInit {
       price: '',
       manufacturerId: '1',
       partsOrderId: partsOrderId,
+      invoiceId: null,
     };
 
     this.projectService.saveCommercialPart(newCommercialPart).subscribe(
@@ -210,6 +210,14 @@ export class CommercialPartsComponent implements OnInit {
     this.getAllCommercialParts();
   }
 
+  updatecc() {
+    this.projectService.getCommercialPartsByPartsOrder(this.selectedPartsOrder.id).subscribe(
+      res => {
+        this.commercialParts = res;
+      }
+    );
+  }
+
 
   generateInvoice() {
     const newInvoice: Invoice = {
@@ -222,16 +230,16 @@ export class CommercialPartsComponent implements OnInit {
         res => {
           newInvoice.id = res.id;
           this.invoices.push(newInvoice);
+          this.updatecc();
         },
         err => {
-          alert('An error has occurred while saving part');
+          alert('An error has occurred while saving part'),
+          console.log('oops', err.err);
+          console.log(JSON.stringify(err));
         }
       );
     }
   }
 
-  selectCommercialPart() {
-    this.commercialParts.filter((commercialPart: CommercialPart) => commercialPart.checked === true);
 
-  }
 }
