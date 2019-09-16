@@ -44,6 +44,11 @@
       </option>
     </select>
   </div>
+  <button type="button"
+          (click)="generateInvoiceForSpecifiedManufacturer(manufacturerSearch)"
+          [disabled]="this.manufacturerSearch == null"
+          class="btn"><i class="fa fa-plus"></i>Generate invoice for {{manufacturerSearch}}
+  </button>
 </div>
 
 <div class="partsContent">
