@@ -14,37 +14,39 @@
     </button>
 
     <button type="button"
-                       (click)="createCommercialPart(selectedPartsOrder.id)"
-                       [disabled]="selectedPartsOrder == null"
-                       class="btn"><i class="fa fa-plus"></i> New part
-  </button>
+            (click)="createCommercialPart(selectedPartsOrder.id)"
+            [disabled]="selectedPartsOrder == null"
+            class="btn"><i class="fa fa-plus"></i> New part
+    </button>
 
     <button type="button"
             (click)="generateInvoice()"
             [disabled]="this.selectedCommercialParts.length === 0"
-            class="btn-invoice"> <i class="fas fa-file-invoice-dollar"></i> Generate invoce from selected parts
+            class="btn-invoice"><i class="fas fa-file-invoice-dollar"></i> Generate invoce from selected parts
     </button>
   </div>
 
   <div>
-    <label for="Manufacturer" class="text-title">Search by manufacturer</label>
-    <select id="Manufacturer" [(ngModel)]="manufacturerSearch" class="custom-select">
-      <option [ngValue]="undefined" selected disabled hidden>Pick one of the options available</option>
-      <option [ngValue]="undefined">All parts</option>
-      <option *ngFor="let commercialPart of commercialParts | duplicateFilter" [value]='commercialPart.manufacturer'>
+    <mat-form-field>
+    <mat-label>Search by manufacturer</mat-label>
+    <mat-select [(ngModel)]="manufacturerSearch">
+<!--      <mat-option [value]="undefined" disabled hidden>Pick one of the options available</mat-option>-->
+      <mat-option [value]="undefined">All parts</mat-option>
+      <mat-option *ngFor="let commercialPart of commercialParts | duplicateFilter" [value]='commercialPart.manufacturer'>
         {{commercialPart.manufacturer}}
-      </option>
-    </select>
-  </div>
+      </mat-option>
+    </mat-select>
+    </mat-form-field>
   <button type="button"
           (click)="generateInvoiceForSpecifiedManufacturer(manufacturerSearch)"
           [disabled]="this.manufacturerSearch == null || manufacturerSearch === 'UNASSIGNED'"
-          class="btn-invoice"><i class="fas fa-file-invoice-dollar"></i>
+          class="btn-invoice-manufacturer">
     <span>
-      <span *ngIf="manufacturerSearch == null || manufacturerSearch === 'UNASSIGNED'"> To unblock generation button select Manufacturer</span>
-      <span *ngIf="manufacturerSearch != null"> Generate invoice for {{manufacturerSearch}}</span>
+      <span *ngIf="manufacturerSearch == null || manufacturerSearch === 'UNASSIGNED'">Select specified Manufacturer</span>
+      <span *ngIf="manufacturerSearch != null && manufacturerSearch != 'UNASSIGNED'"> Generate invoice for {{manufacturerSearch}}</span>
     </span>
   </button>
+</div>
 </div>
 
 <div class="partsContent">
@@ -60,12 +62,12 @@
         <a *ngFor="let partsOrder of partsOrders"
            (click)="selectPartsOrder(partsOrder)" class="list-group-item list-group-item-action">
           &nbsp;
-              <select class="project-select" [(ngModel)]="partsOrder.projectId" (change)="updatePartsOrder(partsOrder)">
-                <option [ngValue]="null" selected disabled hidden>Please specify project</option>
-                <option *ngFor="let project of projects"  value= {{project.id}}>
-                  {{project.name}}
-                </option>
-              </select>
+          <select class="project-select" [(ngModel)]="partsOrder.projectId" (change)="updatePartsOrder(partsOrder)">
+            <option [ngValue]="null" selected disabled hidden>Please specify project</option>
+            <option *ngFor="let project of projects" value={{project.id}}>
+              {{project.name}}
+            </option>
+          </select>
           <label>
             <input [(ngModel)]="partsOrder.name" (change)="updatePartsOrder(partsOrder)"
                    type="text" class="input-label" style="width: 150px"/>
@@ -99,8 +101,6 @@
             <th>Price</th>
             <th>Manufacturer</th>
             <th>Actions</th>
-
-
           </tr>
         </table>
 

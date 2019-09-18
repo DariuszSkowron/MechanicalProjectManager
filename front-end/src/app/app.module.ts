@@ -24,6 +24,7 @@ import { ManufacturersComponent } from './manufacturers/manufacturers.component'
 import { SalesRepresentativesComponent } from './manufacturers/sales-representatives/sales-representatives.component';
 import { SalesRepresentativeFilterPipe } from './shared/sales-representative-filter.pipe';
 import { DuplicateFilterPipe } from './shared/duplicate-filter.pipe';
+import {MatButtonModule, MatCheckboxModule, MatSelectModule} from '@angular/material';
 
 
 
@@ -54,6 +55,10 @@ import { DuplicateFilterPipe } from './shared/duplicate-filter.pipe';
     CoreModule,
     BrowserAnimationsModule,
     CollapseModule.forRoot(),
+    MatButtonModule,
+    MatCheckboxModule,
+    BrowserAnimationsModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

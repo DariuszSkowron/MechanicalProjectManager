@@ -27,9 +27,6 @@ export class CommercialPartComponent implements  OnInit, OnChanges {
   constructor(private apiService: ApiService) {
   }
 
-  // ngAfterViewInit() {
-  //   this.cd.detectChanges();
-  // }
 
 
   ngOnInit() {

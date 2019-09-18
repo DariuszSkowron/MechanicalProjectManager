@@ -28,3 +28,54 @@ table td {
   margin-bottom: 5px;
   background-color: #48bef8;
 }
+
+ .checkbox-isDisabled{
+  margin-top: 20px;
+   align-items: center;
+   align-content: center;
+}
+
+/deep/ .mat-checkbox.mat-accent {
+  .mat-checkbox-frame {
+    border: 2px solid red;
+    border-radius: 5px;
+
+
+  }
+
+  &.mat-checkbox-checked .mat-checkbox-background {
+    background-color: white;
+    border: 2px solid green;
+    border-radius: 5px;
+
+  }
+
+  .mat-checkbox-checkmark-path {
+    stroke: green !important;
+
+  }
+
+  .mat-checkbox-inner-container {
+    height: 32px!important;
+    width: 32px!important;
+
+
+  }
+}
+
+.btn-delete{
+  padding-top: 5px;
+  padding-bottom: 4px;
+  height: 32px !important;
+  width: 32px !important;
+  display: inline-block;
+  border-radius: 5px;
+  background: red;
+  border: none;
+  align-items: center;
+}
+
+span{
+  padding-right: 5px;
+}
+
