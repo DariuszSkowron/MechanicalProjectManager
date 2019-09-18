@@ -27,14 +27,16 @@
   </div>
 
   <div>
-    <label for="Manufacturer" class="text-title">Search by manufacturer</label>
-    <select id="Manufacturer" [(ngModel)]="manufacturerSearch" class="custom-select">
-      <option [ngValue]="undefined" selected disabled hidden>Pick one of the options available</option>
-      <option [ngValue]="undefined">All parts</option>
-      <option *ngFor="let commercialPart of commercialParts | duplicateFilter" [value]='commercialPart.manufacturer'>
+    <mat-form-field>
+    <mat-label>Search by manufacturer</mat-label>
+    <mat-select [(ngModel)]="manufacturerSearch">
+<!--      <mat-option [value]="undefined" disabled hidden>Pick one of the options available</mat-option>-->
+      <mat-option [value]="undefined">All parts</mat-option>
+      <mat-option *ngFor="let commercialPart of commercialParts | duplicateFilter" [value]='commercialPart.manufacturer'>
         {{commercialPart.manufacturer}}
-      </option>
-    </select>
+      </mat-option>
+    </mat-select>
+    </mat-form-field>
   </div>
   <button type="button"
           (click)="generateInvoiceForSpecifiedManufacturer(manufacturerSearch)"
