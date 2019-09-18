@@ -56,7 +56,7 @@ table th{
 
 
 .btn-invoice{
-  background: #4fbf42;
+  background: rgba(102, 239, 101, 0.51);
   color: white;
   display: inline-block;
   border-radius: 5px;
@@ -68,6 +68,6 @@ table th{
 }
 
 .btn-invoice:disabled{
-  color: red;
+  color: rgba(74, 36, 8, 0.56);
   background: burlywood;
 }

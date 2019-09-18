@@ -68,16 +68,17 @@
     </td>
 
     <td>
+      <span>
       <button type="button"
-              (click)="deleteCommercialPart()" class="btn btn-warning">
+              (click)="deleteCommercialPart()" class="btn-delete">
         <i class="fas fa-trash"></i></button>
-    </td>
-    <td>
-      <label>
-      <input type="checkbox" [disabled]="commercialPart.invoiceId != null"
-             [(ngModel)]="commercialPart.checked"  (change)="selectCommercialPart()" class="btn btn-success">
-        <i class="fas fa-file-invoice-dollar"></i>
-      </label>
+      </span>
+      <span>
+      <mat-checkbox [disabled]="commercialPart.invoiceId != null"
+              [(ngModel)]="commercialPart.checked"  (change)="selectCommercialPart()">
+      </mat-checkbox>
+      </span>
+
     </td>
   </tr>
 </table>
