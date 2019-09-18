@@ -71,3 +71,9 @@ table th{
   color: rgba(74, 36, 8, 0.56);
   background: burlywood;
 }
+
+.btn-invoice-manufacturer{
+  @extend .btn-invoice;
+  min-width: 700px;
+
+}
