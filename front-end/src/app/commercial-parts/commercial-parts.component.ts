@@ -12,6 +12,7 @@ import {CommercialPart} from './model/commercial-part';
 import {ApiService} from '../shared/api.service';
 import {Project} from '../project/project';
 import {Invoice} from './model/invoice';
+import {Manufacturer} from "../manufacturers/model/manufacturer";
 
 
 @Component({
@@ -235,6 +236,30 @@ export class CommercialPartsComponent implements OnInit {
         err => {
           alert('An error has occurred while saving part'),
           console.log('oops', err.err);
+          console.log(JSON.stringify(err));
+        }
+      );
+    }
+  }
+
+  generateInvoiceForSpecifiedManufacturer(manufacturer: string) {
+    const newInvoice: Invoice = {
+      id: null,
+      commercialParts: this.commercialParts
+        .filter(commercial => commercial.manufacturer === manufacturer)
+        .map(commercial => commercial.id)
+    };
+
+    if (confirm('You will now create new invoice containing all yet unordered parts from manufacturer - ' + manufacturer)) {
+      this.projectService.postInvoice(newInvoice).subscribe(
+        res => {
+          newInvoice.id = res.id;
+          this.invoices.push(newInvoice);
+          this.updatecc();
+        },
+        err => {
+          alert('An error has occurred while saving part'),
+            console.log('oops', err.err);
           console.log(JSON.stringify(err));
         }
       );
