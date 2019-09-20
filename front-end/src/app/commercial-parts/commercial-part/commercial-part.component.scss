@@ -29,19 +29,25 @@ table td {
   background-color: #48bef8;
 }
 
- .checkbox-isDisabled{
-  margin-top: 20px;
-   align-items: center;
-   align-content: center;
-}
+
 
 /deep/ .mat-checkbox.mat-accent {
   .mat-checkbox-frame {
-    border: 2px solid red;
+    //border: 2px solid darkgrey;
     border-radius: 5px;
-
-
   }
+
+  &.mat-checkbox-disabled .mat-checkbox-background{
+    background-color: lightgray;
+    border: 2px solid darkslategray;
+    border-radius: 5px;
+    //color: red;
+
+    .mat-checkbox-checkmark-path{
+      stroke: green !important;
+    }
+  }
+
 
   &.mat-checkbox-checked .mat-checkbox-background {
     background-color: white;
@@ -62,6 +68,7 @@ table td {
 
   }
 }
+
 
 .btn-delete{
   padding-top: 5px;

@@ -74,7 +74,7 @@
         <i class="fas fa-trash"></i></button>
       </span>
       <span>
-      <mat-checkbox [disabled]="commercialPart.invoiceId != null"
+      <mat-checkbox [disabled]="commercialPart.invoiceId != null" [checked]="commercialPart.type == 'dupa'"
               [(ngModel)]="commercialPart.checked"  (change)="selectCommercialPart()">
       </mat-checkbox>
       </span>
