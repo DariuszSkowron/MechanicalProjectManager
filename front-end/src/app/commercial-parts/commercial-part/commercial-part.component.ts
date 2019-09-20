@@ -52,6 +52,7 @@ export class CommercialPartComponent implements  OnInit, OnChanges {
   }
 
   selectCommercialPart() {
+    this.commercialPart.checked = true;
     this.commercialPartUpdated.emit(this.commercialPart);
   }
 

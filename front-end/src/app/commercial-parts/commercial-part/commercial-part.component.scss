@@ -33,7 +33,6 @@ table td {
 
 /deep/ .mat-checkbox.mat-accent {
   .mat-checkbox-frame {
-    //border: 2px solid darkgrey;
     border-radius: 5px;
   }
 
@@ -41,11 +40,6 @@ table td {
     background-color: lightgray;
     border: 2px solid darkslategray;
     border-radius: 5px;
-    //color: red;
-
-    .mat-checkbox-checkmark-path{
-      stroke: green !important;
-    }
   }
 
 
@@ -64,8 +58,6 @@ table td {
   .mat-checkbox-inner-container {
     height: 32px!important;
     width: 32px!important;
-
-
   }
 }
 
