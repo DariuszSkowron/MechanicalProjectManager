@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PartsOrderRepository extends JpaRepository<PartsOrder, Long> {
+
+    PartsOrder findByProjectId(long id);
 }

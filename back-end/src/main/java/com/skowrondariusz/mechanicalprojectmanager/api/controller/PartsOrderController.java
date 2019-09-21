@@ -1,18 +1,15 @@
 package com.skowrondariusz.mechanicalprojectmanager.api.controller;
 
-import com.skowrondariusz.mechanicalprojectmanager.api.viewmodel.CommercialPartViewModel;
 import com.skowrondariusz.mechanicalprojectmanager.api.viewmodel.PartsOrderViewModel;
 import com.skowrondariusz.mechanicalprojectmanager.model.PartsOrder;
-import com.skowrondariusz.mechanicalprojectmanager.model.Project;
 import com.skowrondariusz.mechanicalprojectmanager.repository.PartsOrderRepository;
 import com.skowrondariusz.mechanicalprojectmanager.repository.ProjectRepository;
 import com.skowrondariusz.mechanicalprojectmanager.utility.Mapper;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.ValidationException;
+import javax.ws.rs.BadRequestException;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
 
@@ -41,14 +38,6 @@ public class PartsOrderController
         return partsOrders.stream()
                 .map(order -> this.mapper.convertToPartsOrderViewModel(order))
                 .collect(Collectors.toList());
-
-
-//        public List<CommercialPartViewModel> all(){
-//            var commercialParts = this.commercialPartRepository.findAll();
-//
-//            return commercialParts.stream()
-//                    .map(part -> this.mapper.convertToCommercialPartViewModel(part))
-//                    .collect(Collectors.toList());
     }
 
     @PostMapping
@@ -57,19 +46,29 @@ public class PartsOrderController
         if (bindingResult.hasErrors()) {
             throw new ValidationException();
         }
-        var partsOrdersEntity = this.mapper.convertToPartsOrdersEntity(partsOrderViewModel);
-//        partsOrdersEntity.setProject(projectRepository.findById(Long.valueOf(partsOrderViewModel.getProject())));
-        this.partsOrderRepository.save(partsOrdersEntity);
 
-        if (partsOrdersEntity.getProject() != null) {
-            var map = this.projectRepository.findByPartsOrder(partsOrdersEntity);
-            map.setPartsOrder(partsOrdersEntity);
-            this.projectRepository.save(map);
-            System.out.println("test");
+//        if (partsOrderRepository.findByProjectId(Long.valueOf(partsOrderViewModel.getProjectId())) == null) {
+            var partsOrdersEntity = this.mapper.convertToPartsOrdersEntity(partsOrderViewModel);
+//            this.partsOrderRepository.save(partsOrdersEntity);
 
-        }
+            if (partsOrdersEntity.getProject() != null) {
+                var check = partsOrderRepository.findByProjectId(partsOrdersEntity.getProject().getId());
+                if (check != null){
+                    throw new IllegalArgumentException("Co się odjebało nieistotne");
+                }else {
+                    var map = this.projectRepository.findProjectById(partsOrdersEntity.getProject().getId());
+                    map.setPartsOrder(partsOrdersEntity);
+                    this.projectRepository.save(map);
+                    System.out.println("test");
+                }
+            }
 
-        return partsOrdersEntity;
+            this.partsOrderRepository.save(partsOrdersEntity);
+            return partsOrdersEntity;
+
+//        }else{
+//            throw new BadRequestException();
+//        }
     }
 
     @DeleteMapping("/{id}")

@@ -14,5 +14,9 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 
     Project findByPartsOrder(PartsOrder partsOrder);
 
+    Project findProjectById(long id);
+
+
+
 }
 
