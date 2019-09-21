@@ -52,8 +52,7 @@ public class PartsOrderController
 //            this.partsOrderRepository.save(partsOrdersEntity);
 
             if (partsOrdersEntity.getProject() != null) {
-                var check = partsOrderRepository.findByProjectId(partsOrdersEntity.getProject().getId());
-                if (check != null){
+                if (projectRepository.findProjectById(partsOrdersEntity.getProject().getId()).getPartsOrder() != null){
                     throw new IllegalArgumentException("Co się odjebało nieistotne");
                 }else {
                     var map = this.projectRepository.findProjectById(partsOrdersEntity.getProject().getId());
