@@ -12,7 +12,6 @@ import {CommercialPart} from './model/commercial-part';
 import {ApiService} from '../shared/api.service';
 import {Project} from '../project/project';
 import {Invoice} from './model/invoice';
-import {Manufacturer} from "../manufacturers/model/manufacturer";
 
 
 @Component({
@@ -30,8 +29,8 @@ export class CommercialPartsComponent implements OnInit {
   selectedPartsOrder: PartsOrder;
   nameOrOrderSymbolSearch: string;
   manufacturerSearch: string;
-  index = 1;
-  todaysDate: Date = new Date();
+  index: number;
+  todayDate: Date = new Date();
   selectedCommercialParts: Array<any>;
   existingManufacturers: Array<any>;
 
@@ -66,6 +65,7 @@ export class CommercialPartsComponent implements OnInit {
   getAllPartsOrders() {
     this.projectService.getAllPartsOrders().subscribe(res => {
         this.partsOrders = res;
+        this.index = this.partsOrders.length;
       },
       err => {
         alert(`An error has occurred` + err);
@@ -109,6 +109,7 @@ export class CommercialPartsComponent implements OnInit {
   updatePartsOrder(updatePartsOrder: PartsOrder) {
     this.projectService.postPartsOrder(updatePartsOrder).subscribe(
       res => {
+        this.getAllProjects();
       },
       err => {
         alert('An error has occured while updating the mechanical processing list');
@@ -133,6 +134,8 @@ export class CommercialPartsComponent implements OnInit {
         res => {
           const indexOfPartsOrder = this.partsOrders.indexOf(partsOrder);
           this.partsOrders.splice(indexOfPartsOrder, 1);
+          this.selectedPartsOrder = null;
+          this.getAllCommercialParts();
         },
         err => {
           alert('Failed to delete parts order list');
@@ -163,7 +166,7 @@ export class CommercialPartsComponent implements OnInit {
       name: '',
       manufacturer: 'UNASSIGNED',
       quantity: '',
-      orderDate: this.todaysDate,
+      orderDate: this.todayDate,
       deliveryDate: null,
       price: '',
       manufacturerId: '1',
