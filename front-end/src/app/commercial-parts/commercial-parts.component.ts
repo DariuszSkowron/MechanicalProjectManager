@@ -34,7 +34,6 @@ export class CommercialPartsComponent implements OnInit {
   todaysDate: Date = new Date();
   selectedCommercialParts: Array<any>;
   existingManufacturers: Array<any>;
-  projectsWithoutPartsOrder: Array<any>;
 
   constructor(private projectService: ApiService) {
   }
@@ -44,17 +43,6 @@ export class CommercialPartsComponent implements OnInit {
     this.getAllCommercialParts();
     this.getAllProjects();
     this.getAllSelected();
-    this.filterProjects();
-  }
-
-  filterProjects() {
-   this.projectService.getProjectList().subscribe(res => {
-     this.projectsWithoutPartsOrder = res.filter(as => as.partsOrder != null);
-     },
-    err => {
-     alert('szto słocziłos' + err);
-    }
-  );
   }
 
   getAllSelected() {
@@ -121,6 +109,7 @@ export class CommercialPartsComponent implements OnInit {
   updatePartsOrder(updatePartsOrder: PartsOrder) {
     this.projectService.postPartsOrder(updatePartsOrder).subscribe(
       res => {
+        this.getAllProjects();
       },
       err => {
         alert('An error has occured while updating the mechanical processing list');
@@ -145,6 +134,8 @@ export class CommercialPartsComponent implements OnInit {
         res => {
           const indexOfPartsOrder = this.partsOrders.indexOf(partsOrder);
           this.partsOrders.splice(indexOfPartsOrder, 1);
+          this.selectedPartsOrder = null;
+          this.getAllCommercialParts();
         },
         err => {
           alert('Failed to delete parts order list');
