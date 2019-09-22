@@ -34,6 +34,7 @@ export class CommercialPartsComponent implements OnInit {
   todaysDate: Date = new Date();
   selectedCommercialParts: Array<any>;
   existingManufacturers: Array<any>;
+  projectsWithoutPartsOrder: Array<any>;
 
   constructor(private projectService: ApiService) {
   }
@@ -43,6 +44,17 @@ export class CommercialPartsComponent implements OnInit {
     this.getAllCommercialParts();
     this.getAllProjects();
     this.getAllSelected();
+    this.filterProjects();
+  }
+
+  filterProjects() {
+   this.projectService.getProjectList().subscribe(res => {
+     this.projectsWithoutPartsOrder = res.filter(as => as.partsOrder != null);
+     },
+    err => {
+     alert('szto słocziłos' + err);
+    }
+  );
   }
 
   getAllSelected() {

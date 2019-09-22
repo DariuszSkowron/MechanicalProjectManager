@@ -47,9 +47,7 @@ public class PartsOrderController
             throw new ValidationException();
         }
 
-//        if (partsOrderRepository.findByProjectId(Long.valueOf(partsOrderViewModel.getProjectId())) == null) {
             var partsOrdersEntity = this.mapper.convertToPartsOrdersEntity(partsOrderViewModel);
-//            this.partsOrderRepository.save(partsOrdersEntity);
 
             if (partsOrdersEntity.getProject() != null) {
                 if (projectRepository.findProjectById(partsOrdersEntity.getProject().getId()).getPartsOrder() != null){
@@ -64,10 +62,6 @@ public class PartsOrderController
 
             this.partsOrderRepository.save(partsOrdersEntity);
             return partsOrdersEntity;
-
-//        }else{
-//            throw new BadRequestException();
-//        }
     }
 
     @DeleteMapping("/{id}")
