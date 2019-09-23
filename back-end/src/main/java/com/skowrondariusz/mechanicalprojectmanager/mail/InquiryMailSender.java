@@ -1,6 +1,8 @@
 package com.skowrondariusz.mechanicalprojectmanager.mail;
 
+import com.skowrondariusz.mechanicalprojectmanager.model.Invoice;
 import org.springframework.core.env.Environment;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +21,12 @@ public InquiryMailSender(Environment environment){
 
 
     @Override
-    public void sendInquiry(String from, String name, String invoice) {
+    public void sendInquiry(String from, String to, String title, Invoice invoice) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom(from);
+        message.setTo(to);
+        message.setSubject(title);
+        message.setText(invoice.getCommercialParts().toString());
 
     }
 }
