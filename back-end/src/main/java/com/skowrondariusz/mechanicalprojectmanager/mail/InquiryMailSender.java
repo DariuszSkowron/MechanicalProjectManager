@@ -6,6 +6,10 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 public class InquiryMailSender implements InquirySender  {
 
@@ -21,12 +25,15 @@ public InquiryMailSender(Environment environment){
 
 
     @Override
-    public void sendInquiry(String from, String to, String title, Invoice invoice) {
+    public void sendInquiry(String from, String to, String title, List<String> invoice) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(from);
         message.setTo(to);
         message.setSubject(title);
-        message.setText(invoice.getCommercialParts().toString());
+
+        List<String> invoiceList = new ArrayList<>(invoice);
+        message.setText(invoiceList.toString());
 
     }
 }
+
