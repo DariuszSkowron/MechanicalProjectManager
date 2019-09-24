@@ -41,6 +41,7 @@ export class ApiService {
   private DELETE_SALES_REPRESENTATIVE_URL = `${this.BASE_URL}/salesRepresentative/`;
   private GET_MANUFACTURER_BY_ID_URL = `${this.BASE_URL}/manufacturer/`;
   private SAVE_UPDATE_INVOICE_URL = `${this.BASE_URL}/invoice`;
+  private SAVE_INQUIRY_URL = `${this.BASE_URL}/inquiry`;
 
 
 
@@ -171,6 +172,9 @@ export class ApiService {
     return this.http.post<Invoice>(this.SAVE_UPDATE_INVOICE_URL, invoice);
   }
 
+  postInquiry(inquiry: InquiryViewModel): Observable<any>{
+    return this.http.post(this.SAVE_INQUIRY_URL, inquiry);
+  }
 
 
 

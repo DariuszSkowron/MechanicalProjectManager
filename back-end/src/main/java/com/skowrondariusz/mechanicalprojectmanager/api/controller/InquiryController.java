@@ -38,7 +38,7 @@ public class InquiryController {
 
         List<CommercialPart> parts = new ArrayList<>();
 
-        Invoice selectedInvoice = this.invoiceRepository.getSpecifiedInvoice(Long.valueOf(inquiryViewModel.getInvoiceId()));
+        Invoice selectedInvoice = this.invoiceRepository.getInvoiceById(Long.valueOf(inquiryViewModel.getInvoiceId()));
 
         parts = selectedInvoice.getCommercialParts();
 
