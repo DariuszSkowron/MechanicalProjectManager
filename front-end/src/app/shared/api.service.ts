@@ -9,6 +9,7 @@ import {Manufacturer} from '../manufacturers/model/manufacturer';
 import {SalesRepresentative} from '../manufacturers/model/sales-representative';
 import {Project} from "../project/project";
 import {Invoice} from "../commercial-parts/model/invoice";
+import {InquiryViewModel} from "../inquiry/inquiry.component";
 
 @Injectable({
   providedIn: 'root'
