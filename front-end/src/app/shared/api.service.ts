@@ -7,9 +7,9 @@ import {PartsOrder} from '../commercial-parts/model/parts-order';
 import {CommercialPart} from '../commercial-parts/model/commercial-part';
 import {Manufacturer} from '../manufacturers/model/manufacturer';
 import {SalesRepresentative} from '../manufacturers/model/sales-representative';
-import {Project} from "../project/project";
-import {Invoice} from "../commercial-parts/model/invoice";
-import {InquiryViewModel} from "../inquiry/inquiry.component";
+import {Project} from '../project/project';
+import {Invoice} from '../commercial-parts/model/invoice';
+import {InquiryViewModel} from '../inquiry/inquiry.component';
 
 @Injectable({
   providedIn: 'root'
