@@ -8,6 +8,7 @@ import {ProcessedPartsComponent} from './processed-parts/processed-parts.compone
 import {CommercialPartsComponent} from './commercial-parts/commercial-parts.component';
 import {ManufacturersComponent} from './manufacturers/manufacturers.component';
 import {SalesRepresentativesComponent} from './manufacturers/sales-representatives/sales-representatives.component';
+import {InquiryComponent} from './inquiry/inquiry.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'project', pathMatch: 'full'},
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path: 'processedParts', component: ProcessedPartsComponent},
   {path: 'commercialParts', component: CommercialPartsComponent },
   {path: 'manufacturer', component: ManufacturersComponent },
-  {path: 'salesRepresentative', component: SalesRepresentativesComponent }
+  {path: 'salesRepresentative', component: SalesRepresentativesComponent },
+  {path: 'inquiry', component: InquiryComponent}
 
 ];
 
