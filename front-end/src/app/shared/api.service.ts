@@ -7,8 +7,9 @@ import {PartsOrder} from '../commercial-parts/model/parts-order';
 import {CommercialPart} from '../commercial-parts/model/commercial-part';
 import {Manufacturer} from '../manufacturers/model/manufacturer';
 import {SalesRepresentative} from '../manufacturers/model/sales-representative';
-import {Project} from "../project/project";
-import {Invoice} from "../commercial-parts/model/invoice";
+import {Project} from '../project/project';
+import {Invoice} from '../commercial-parts/model/invoice';
+import {InquiryViewModel} from '../inquiry/inquiry.component';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +42,7 @@ export class ApiService {
   private DELETE_SALES_REPRESENTATIVE_URL = `${this.BASE_URL}/salesRepresentative/`;
   private GET_MANUFACTURER_BY_ID_URL = `${this.BASE_URL}/manufacturer/`;
   private SAVE_UPDATE_INVOICE_URL = `${this.BASE_URL}/invoice`;
+  private SAVE_INQUIRY_URL = `${this.BASE_URL}/inquiry`;
 
 
 
@@ -171,6 +173,9 @@ export class ApiService {
     return this.http.post<Invoice>(this.SAVE_UPDATE_INVOICE_URL, invoice);
   }
 
+  postInquiry(inquiry: InquiryViewModel): Observable<any>{
+    return this.http.post(this.SAVE_INQUIRY_URL, inquiry);
+  }
 
 
 

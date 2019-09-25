@@ -25,6 +25,7 @@ import { SalesRepresentativesComponent } from './manufacturers/sales-representat
 import { SalesRepresentativeFilterPipe } from './shared/sales-representative-filter.pipe';
 import { DuplicateFilterPipe } from './shared/duplicate-filter.pipe';
 import {MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatSelectModule} from '@angular/material';
+import { InquiryComponent } from './inquiry/inquiry.component';
 
 
 
@@ -46,6 +47,7 @@ import {MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatSelectModule
     SalesRepresentativesComponent,
     SalesRepresentativeFilterPipe,
     DuplicateFilterPipe,
+    InquiryComponent,
   ],
   imports: [
     BrowserModule,
