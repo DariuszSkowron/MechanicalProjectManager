@@ -20,7 +20,8 @@ const routes: Routes = [
   {path: 'commercialParts', component: CommercialPartsComponent },
   {path: 'manufacturer', component: ManufacturersComponent },
   {path: 'salesRepresentative', component: SalesRepresentativesComponent },
-  {path: 'inquiry', component: InquiryComponent}
+  {path: 'inquiry', component: InquiryComponent},
+  // {path: 'invoice', component: InvoiceComponent}
 
 ];
 
