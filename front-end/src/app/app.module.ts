@@ -26,6 +26,7 @@ import { SalesRepresentativeFilterPipe } from './shared/sales-representative-fil
 import { DuplicateFilterPipe } from './shared/duplicate-filter.pipe';
 import {MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatSelectModule} from '@angular/material';
 import { InquiryComponent } from './inquiry/inquiry.component';
+import { InvoicesComponent } from './invoices/invoices.component';
 
 
 
@@ -48,6 +49,7 @@ import { InquiryComponent } from './inquiry/inquiry.component';
     SalesRepresentativeFilterPipe,
     DuplicateFilterPipe,
     InquiryComponent,
+    InvoicesComponent,
   ],
   imports: [
     BrowserModule,
