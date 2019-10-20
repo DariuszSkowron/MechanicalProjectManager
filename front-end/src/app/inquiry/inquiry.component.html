@@ -3,7 +3,8 @@
     <div class="offset-3"></div>
     <div class="col-md-6">
       <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && sendInquiry()" novalidate class="feedback-form">
-        <!-- Name -->
+
+        <!-- From e-mail -->
         <div class="form-group">
           <label for="name">From</label>
           <input type="text"
@@ -21,19 +22,11 @@
             <div *ngIf="from.errors?.required">Field is required</div>
           </div>
         </div>
-        <!-- Email -->
+
+        <!-- Manufacturer sales rep email -->
         <div class="form-group">
           <label for="SalesRepEmail">Sales Representative email</label>
-<!--          <input type="text"-->
-<!--                 id="SalesRepEmail"-->
-<!--                 class="form-control"-->
-<!--                 name="Sales representative email"-->
-<!--                 placeholder="Sales representative email"-->
-<!--                 [(ngModel)]="model.sendTo"-->
-<!--                 #sendTo="ngModel"-->
-<!--                 [ngClass]="{ 'is-invalid': f.submitted && sendTo.invalid }"-->
-<!--                 required email/>-->
-          <select  id="SalesRepEmail" class="custom-select" [(ngModel)]="model.sendTo" #sendTo="ngModel"
+          <select   id="SalesRepEmail" class="custom-select" [(ngModel)]="model.sendTo" #sendTo="ngModel" (change)="onMailChange($event)"
                    [ngClass]="{ 'is-invalid': f.submitted && sendTo.invalid }"
                    required email>
             <option *ngFor="let salesRepresentative of salesRepresentatives" value={{salesRepresentative.email}}>
@@ -48,15 +41,15 @@
           </div>
         </div>
 
-        <!-- Feedback -->
+        <!-- Title of mail -->
         <div class="form-group">
-          <label for="Topic">Topic</label>
+          <label for="Topic">Title</label>
           <textarea
             id="Topic"
             class="form-control"
             name="Topic"
             placeholder="Email topic"
-            rows="10"
+            rows="1"
             [(ngModel)]="model.title"
             #title="ngModel"
             [ngClass]="{ 'is-invalid': f.submitted && title.invalid }"
@@ -70,7 +63,7 @@
           </div>
         </div>
 
-        <!-- Feedback -->
+
         <div class="form-group">
           <label for="invoice">Invoice</label>
           <textarea
@@ -92,13 +85,13 @@
           </div>
         </div>
 
-        <label>
-          <select class="custom-select" [(ngModel)]="model.sendTo">
-            <option *ngFor="let salesRepresentative of salesRepresentatives" value={{salesRepresentative.email}}>
-              {{salesRepresentative.email}}
-            </option>
-          </select>
-        </label>
+<!--        <label>-->
+<!--          <select class="form-control" [(ngModel)]="model.sendTo" (change)="onMailChange($event)">-->
+<!--            <option *ngFor="let salesRepresentative of salesRepresentatives" [value]='salesRepresentative.email' (click)="getInnerText(salesRepresentative.email)">-->
+<!--              {{salesRepresentative.email}}-->
+<!--            </option>-->
+<!--          </select>-->
+<!--        </label>-->
 
 
         <button type="submit" class="btn btn-info pull-right">
