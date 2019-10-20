@@ -55,3 +55,29 @@ table td {
   }
 
 }
+
+.manufacturer-list {
+  height: 80vh;
+  overflow-y: auto;
+  min-width: 320px;
+  overflow-x: hidden;
+}
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    border: 1px solid #34495e;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #34495e;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #34495e;
+  }
+
