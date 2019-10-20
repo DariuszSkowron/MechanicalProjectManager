@@ -1,18 +1,18 @@
 <div class="container">
-  <div>
-    <label>
-      <input type="text"
-             [(ngModel)]="nameSearch"
-             class="form-control"
-             placeholder="Search parts by name...">
-    </label>
-    <button type="button"
-            (click)="createSalesRepresentative(selectedManufacturer.id)"
-            [disabled]="selectedManufacturer == null || this.salesRepresentatives.length != 0"
-            class="btn">
-      <i class="fa fa-plus"></i> New sales representative
-    </button>
-  </div>
+<!--  <div>-->
+<!--    <label>-->
+<!--      <input type="text"-->
+<!--             [(ngModel)]="nameSearch"-->
+<!--             class="form-control"-->
+<!--             placeholder="Search parts by name...">-->
+<!--    </label>-->
+<!--    <button type="button"-->
+<!--            (click)="createSalesRepresentative(selectedManufacturer.id)"-->
+<!--            [disabled]="selectedManufacturer == null || this.salesRepresentatives.length != 0"-->
+<!--            class="btn">-->
+<!--      <i class="fa fa-plus"></i>Add sales representative-->
+<!--    </button>-->
+<!--  </div>-->
 
 
 <!--  <div>-->
@@ -32,7 +32,7 @@
 <div class="partsContent">
   <div class="processList">
     <div class="manufacturer-list">
-      <h3>Manufacturer</h3>
+      <h3>Manufacturers</h3>
       <button type="buton" title="Add new manufacturer"
               (click)="createManufacturer()"
               class="btn-add">
@@ -69,10 +69,22 @@
       <div>
         <h3 *ngIf="selectedManufacturer != null">Manufacturer list
           name: {{selectedManufacturer.name}}</h3>
-        <h3 *ngIf="selectedManufacturer == null">All sales representatives</h3>
-        <p *ngIf="this.salesRepresentatives.length === 0">There are no sales representative for this manufacturer</p>
+        <div *ngIf="selectedManufacturer == null"><h3>All sales representatives</h3>
+          <label class="filter-byName">
+            <input type="text"
+                   [(ngModel)]="nameSearch"
+                   class="form-control"
+                   placeholder="Filter sales prepresentatives by Last Name">
+          </label>
+        </div>
+        <p *ngIf="this.salesRepresentatives.length === 0">There are no sales representative for this manufacturer. Do you want to
+          <button type="button"
+                  (click)="createSalesRepresentative(selectedManufacturer.id)"
+                  [disabled]="selectedManufacturer == null || this.salesRepresentatives.length != 0"
+                  class="btn">
+            <i class="fa fa-plus"></i>Add sales representative
+          </button></p>
       </div>
-
       <div>
         <table *ngIf="this.salesRepresentatives.length != 0">
           <tr>

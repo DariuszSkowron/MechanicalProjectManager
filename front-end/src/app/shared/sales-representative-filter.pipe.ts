@@ -16,11 +16,12 @@ export class SalesRepresentativeFilterPipe implements PipeTransform {
     }
 
     if (manufacturerSearch == null) {
-      return salesRepresentatives = [...salesRepresentatives.filter(n => n.name.includes(nameSearch))];
+      return salesRepresentatives = [...salesRepresentatives.filter(n => n.lastName.includes(nameSearch))];
 
     }
 
-    salesRepresentatives = [...salesRepresentatives.filter(n => n.name.includes(nameSearch) && n.manufacturerId === manufacturerSearch)];
+    salesRepresentatives = [...salesRepresentatives
+      .filter(n => n.lastName.includes(nameSearch) && n.manufacturerId === manufacturerSearch)];
 
     return salesRepresentatives;
   }

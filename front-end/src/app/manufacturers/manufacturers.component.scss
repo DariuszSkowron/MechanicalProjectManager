@@ -4,7 +4,7 @@
 
 .processList{
   display: block;
-  min-width: 270px;
+  min-width: 280px;
   float: left;
 
 }
@@ -43,7 +43,7 @@ table td {
   border-radius: 3px;
   box-shadow: none;
   height: 50px;
-  width: 280px;
+  width: 260px;
   border: none;
   color: white;
   text-align: center;
@@ -59,9 +59,14 @@ table td {
 .manufacturer-list {
   height: 80vh;
   overflow-y: auto;
-  min-width: 320px;
+  //min-width: 300px;
   overflow-x: hidden;
+
+  h3{
+    text-align: center;
+  }
 }
+
   ::-webkit-scrollbar {
     width: 12px;
     height: 12px;
@@ -73,7 +78,7 @@ table td {
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #34495e;
+    background: lighten(#34495e, 0.7);
     border-radius: 3px;
   }
 
@@ -81,3 +86,6 @@ table td {
     background: #34495e;
   }
 
+  label.filter-byName{
+    width: 100%;
+  }
