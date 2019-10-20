@@ -3,7 +3,8 @@
     <div class="offset-3"></div>
     <div class="col-md-6">
       <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && sendInquiry()" novalidate class="feedback-form">
-        <!-- Name -->
+
+        <!-- From e-mail -->
         <div class="form-group">
           <label for="name">From</label>
           <input type="text"
@@ -21,34 +22,26 @@
             <div *ngIf="from.errors?.required">Field is required</div>
           </div>
         </div>
-<!--         Email-->
-<!--        <div class="form-group">-->
-<!--          <label for="SalesRepEmail">Sales Representative email</label>-->
-<!--&lt;!&ndash;          <input type="text"&ndash;&gt;-->
-<!--&lt;!&ndash;                 id="SalesRepEmail"&ndash;&gt;-->
-<!--&lt;!&ndash;                 class="form-control"&ndash;&gt;-->
-<!--&lt;!&ndash;                 name="Sales representative email"&ndash;&gt;-->
-<!--&lt;!&ndash;                 placeholder="Sales representative email"&ndash;&gt;-->
-<!--&lt;!&ndash;                 [(ngModel)]="model.sendTo"&ndash;&gt;-->
-<!--&lt;!&ndash;                 #sendTo="ngModel"&ndash;&gt;-->
-<!--&lt;!&ndash;                 [ngClass]="{ 'is-invalid': f.submitted && sendTo.invalid }"&ndash;&gt;-->
-<!--&lt;!&ndash;                 required email/>&ndash;&gt;-->
-<!--          <select  id="SalesRepEmail" class="custom-select" [(ngModel)]="model.sendTo" #sendTo="ngModel"-->
-<!--                   [ngClass]="{ 'is-invalid': f.submitted && sendTo.invalid }"-->
-<!--                   required email>-->
-<!--            <option *ngFor="let salesRepresentative of salesRepresentatives" value={{salesRepresentative.email}}>-->
-<!--              {{salesRepresentative.email}}-->
-<!--            </option>-->
-<!--          </select>-->
-<!--          &lt;!&ndash; input validation group &ndash;&gt;-->
-<!--          <div *ngIf="f.submitted && sendTo.invalid" class="invalid-input">-->
-<!--            &lt;!&ndash; individual validation errors &ndash;&gt;-->
-<!--            <div *ngIf="sendTo.errors?.required">Field is required</div>-->
-<!--            <div *ngIf="sendTo.errors?.email">Field is not a valid email</div>-->
-<!--          </div>-->
-<!--        </div>-->
 
-        <!-- Feedback -->
+        <!-- Manufacturer sales rep email -->
+        <div class="form-group">
+          <label for="SalesRepEmail">Sales Representative email</label>
+          <select   id="SalesRepEmail" class="custom-select" [(ngModel)]="model.sendTo" #sendTo="ngModel" (change)="onMailChange($event)"
+                   [ngClass]="{ 'is-invalid': f.submitted && sendTo.invalid }"
+                   required email>
+            <option *ngFor="let salesRepresentative of salesRepresentatives" value={{salesRepresentative.email}}>
+              {{salesRepresentative.email}}
+            </option>
+          </select>
+          <!-- input validation group -->
+          <div *ngIf="f.submitted && sendTo.invalid" class="invalid-input">
+            <!-- individual validation errors -->
+            <div *ngIf="sendTo.errors?.required">Field is required</div>
+            <div *ngIf="sendTo.errors?.email">Field is not a valid email</div>
+          </div>
+        </div>
+
+        <!-- Title of mail -->
         <div class="form-group">
           <label for="Topic">Title</label>
           <textarea
@@ -70,7 +63,7 @@
           </div>
         </div>
 
-         Feedback
+
         <div class="form-group">
           <label for="invoice">Invoice</label>
           <textarea
@@ -92,13 +85,13 @@
           </div>
         </div>
 
-        <label>
-          <select class="form-control" [(ngModel)]="model.sendTo" (change)="onMailChange($event)">
-            <option *ngFor="let salesRepresentative of salesRepresentatives" [value]='salesRepresentative.email' (click)="getInnerText(salesRepresentative.email)">
-              {{salesRepresentative.email}}
-            </option>
-          </select>
-        </label>
+<!--        <label>-->
+<!--          <select class="form-control" [(ngModel)]="model.sendTo" (change)="onMailChange($event)">-->
+<!--            <option *ngFor="let salesRepresentative of salesRepresentatives" [value]='salesRepresentative.email' (click)="getInnerText(salesRepresentative.email)">-->
+<!--              {{salesRepresentative.email}}-->
+<!--            </option>-->
+<!--          </select>-->
+<!--        </label>-->
 
 
         <button type="submit" class="btn btn-info pull-right">
