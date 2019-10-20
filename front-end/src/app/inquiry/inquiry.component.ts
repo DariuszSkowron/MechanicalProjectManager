@@ -12,6 +12,7 @@ export class InquiryComponent implements OnInit {
   manufacturers: Manufacturer[] = [];
   salesRepresentatives: SalesRepresentative[] = [];
   salesRepresentative: SalesRepresentative;
+  selectedManufacturerMail: string;
   model: InquiryViewModel = {
     title: '',
     from: '',
@@ -24,6 +25,10 @@ export class InquiryComponent implements OnInit {
 
   ngOnInit() {
     this.getAllSalesRepresentatives();
+  }
+
+  onMailChange(event: any) {
+    this.model.sendTo = event.target.value;
   }
 
   getAllSalesRepresentatives() {

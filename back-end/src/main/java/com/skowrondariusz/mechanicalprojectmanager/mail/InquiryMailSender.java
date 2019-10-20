@@ -42,6 +42,8 @@ public InquiryMailSender(Environment environment, InvoiceRepository invoiceRepos
                 .map(CommercialPart::getOrderSymbol)
                 .collect(Collectors.joining(","));
         message.setText(invoice);
+
+
 //        List<String> invoiceList = new ArrayList<>(invoice);
 //        message.setText(invoiceList.toString());
 
