@@ -29,28 +29,11 @@ public class InquiryController {
             throw new ValidationException("Could'nt send inquiry, check your parameters and try again");
         }
 
-//        inquiryViewModel.getInvoiceId();
-//
-//        List<CommercialPart> parts = new ArrayList<>();
-//
-//        Invoice selectedInvoice = this.invoiceRepository.getInvoiceById(Long.valueOf(inquiryViewModel.getInvoiceId()));
-//
-//        parts = selectedInvoice.getCommercialParts();
-//
-//        List<String> result = parts.stream()
-//                .map(CommercialPart::getOrderSymbol)
-//                .collect(Collectors.toList());
-
-
         this.inquirySender.sendInquiry(
                 inquiryViewModel.getFrom(),
                 inquiryViewModel.getSendTo(),
                 inquiryViewModel.getTitle(),
                 inquiryViewModel.getInvoiceId());
 
-//                result);
-
     }
-
-
 }

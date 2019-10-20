@@ -12,7 +12,6 @@ export class InquiryComponent implements OnInit {
   manufacturers: Manufacturer[] = [];
   salesRepresentatives: SalesRepresentative[] = [];
   salesRepresentative: SalesRepresentative;
-  selectedManufacturerMail: string;
   model: InquiryViewModel = {
     title: '',
     from: '',
