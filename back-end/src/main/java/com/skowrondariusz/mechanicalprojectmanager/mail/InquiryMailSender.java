@@ -38,10 +38,10 @@ public InquiryMailSender(Environment environment, InvoiceRepository invoiceRepos
         List<CommercialPart> partsList = this.invoiceRepository.getInvoiceById(Long.valueOf(invoiceId)).getCommercialParts();
 
         String invoice = partsList.stream()
-                .map(CommercialPart::getOrderSymbol)
+                .map(CommercialPart::toString)
                 .collect(Collectors.joining("\n"));
 
-        
+
         message.setText(invoice);
 
 
