@@ -8,6 +8,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 
 @Component
 public class Mapper {
@@ -87,7 +90,14 @@ public class Mapper {
     }
 
     public Project convertToProjectEntity(ProjectViewModel viewModel){
-        return modelMapper.map(viewModel, Project.class);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        var entity = modelMapper.map(viewModel, Project.class);
+        try {
+            entity.setProjectAssemblingDate(formatter.parse(viewModel.getProjectAssemblingDate()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return entity;
     }
 
     public Invoice convertToInvoiceEntity(InvoiceViewModel viewModel){
