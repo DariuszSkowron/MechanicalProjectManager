@@ -178,6 +178,11 @@ public class CommercialPart {
                 ", partsOrder=" + partsOrder +
                 '}';
     }
+
+
+    public String inquiryCommercialPart() {
+        return name + "\t" + orderSymbol + "\t" + quantity;
+    }
 }
 
 
