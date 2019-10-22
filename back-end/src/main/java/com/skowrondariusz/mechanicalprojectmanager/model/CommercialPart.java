@@ -180,7 +180,7 @@ public class CommercialPart {
     }
 
 
-    public String inquiryCommercialPart() {
+    public String commercialPartToInquiryString() {
         return name + "\t" + orderSymbol + "\t" + quantity;
     }
 }

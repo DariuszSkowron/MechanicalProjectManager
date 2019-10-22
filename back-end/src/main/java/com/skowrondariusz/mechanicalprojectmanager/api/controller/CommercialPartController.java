@@ -78,13 +78,7 @@ public class CommercialPartController {
         }
 
         var commercialPartEntity = this.mapper.convertToCommercialPartEntity(commercialPartViewModel);
-//        Manufacturer manufacturer = commercialPartEntity.getManufacturer();
-//        manufacturer.setName(commercialPartViewModel.getManufacturer());
-//        this.manufacturerRepository.save(manufacturer);
         this.commercialPartRepository.save(commercialPartEntity);
-        
-        
-
         return commercialPartEntity;
     }
 

@@ -1,15 +1,12 @@
 package com.skowrondariusz.mechanicalprojectmanager.mail;
 
 import com.skowrondariusz.mechanicalprojectmanager.model.CommercialPart;
-import com.skowrondariusz.mechanicalprojectmanager.model.Invoice;
 import com.skowrondariusz.mechanicalprojectmanager.repository.InvoiceRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,16 +35,10 @@ public InquiryMailSender(Environment environment, InvoiceRepository invoiceRepos
         List<CommercialPart> partsList = this.invoiceRepository.getInvoiceById(Long.valueOf(invoiceId)).getCommercialParts();
 
         String invoice = partsList.stream()
-                .map(CommercialPart::inquiryCommercialPart)
+                .map(CommercialPart::commercialPartToInquiryString)
                 .collect(Collectors.joining("\n"));
 
-
         message.setText("Name" + "\t" + "Order Symbol" + "\t" + "Quantity" +"\n" + invoice);
-
-
-//        List<String> invoiceList = new ArrayList<>(invoice);
-//        message.setText(invoiceList.toString());
-
         this.mailSender.send(message);
     }
 }

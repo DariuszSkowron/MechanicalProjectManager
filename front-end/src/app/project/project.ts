@@ -5,4 +5,5 @@ export class Project {
   budget: number;
   mechanicalProcessing: string;
   partsOrder: string;
+  projectAssemblingDate: string;
 }

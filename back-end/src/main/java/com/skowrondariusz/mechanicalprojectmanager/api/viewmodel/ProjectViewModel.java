@@ -10,7 +10,16 @@ public class ProjectViewModel {
     private String budget;
     private String mechanicalProcessing;
     private String partsOrder;
+    private String projectAssemblingDate;
 
+
+    public String getProjectAssemblingDate() {
+        return projectAssemblingDate;
+    }
+
+    public void setProjectAssemblingDate(String projectAssemblingDate) {
+        this.projectAssemblingDate = projectAssemblingDate;
+    }
 
     public String getId() {
         return id;
