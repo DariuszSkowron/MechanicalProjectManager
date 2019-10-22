@@ -160,4 +160,31 @@ public class CommercialPart {
     public void setPartsOrder(PartsOrder partsOrder) {
         this.partsOrder = partsOrder;
     }
+
+
+    @Override
+    public String toString() {
+        return "CommercialPart{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", orderSymbol='" + orderSymbol + '\'' +
+                ", name='" + name + '\'' +
+                ", manufacturer=" + manufacturer +
+                ", invoice=" + invoice +
+                ", quantity=" + quantity +
+                ", orderDate=" + orderDate +
+                ", deliveryDate=" + deliveryDate +
+                ", price=" + price +
+                ", partsOrder=" + partsOrder +
+                '}';
+    }
+
+
+    public String commercialPartToInquiryString() {
+        return name + "\t" + orderSymbol + "\t" + quantity;
+    }
 }
+
+
+
+

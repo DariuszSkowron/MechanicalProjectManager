@@ -3,6 +3,7 @@ package com.skowrondariusz.mechanicalprojectmanager.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "project")
@@ -18,7 +19,6 @@ public class Project {
     @Column(name = "project_number", unique = true)
     private int projectNumber;
 
-
     private long budget;
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "project", cascade = CascadeType.ALL)
@@ -29,17 +29,15 @@ public class Project {
     private PartsOrder partsOrder;
 
 
+    private Date projectStartDate;
+    private Date projectEndDate;
+    private Date projectAssemblingDate;
+
+
     public Project() {
     }
 
 
-    public long getBudget() {
-        return budget;
-    }
-
-    public void setBudget(long budget) {
-        this.budget = budget;
-    }
 
     public Project(String name, int projectNumber, long budget, MechanicalProcessing mechanicalProcessing, PartsOrder partsOrder) {
         this.name = name;
@@ -47,6 +45,49 @@ public class Project {
         this.budget = budget;
         this.mechanicalProcessing = mechanicalProcessing;
         this.partsOrder = partsOrder;
+    }
+
+    public Project(String name, int projectNumber, long budget, MechanicalProcessing mechanicalProcessing, PartsOrder partsOrder, Date projectStartDate, Date projectEndDate, Date projectAssemblingDate) {
+        this.name = name;
+        this.projectNumber = projectNumber;
+        this.budget = budget;
+        this.mechanicalProcessing = mechanicalProcessing;
+        this.partsOrder = partsOrder;
+        this.projectStartDate = projectStartDate;
+        this.projectEndDate = projectEndDate;
+        this.projectAssemblingDate = projectAssemblingDate;
+    }
+
+    public Date getProjectStartDate() {
+        return projectStartDate;
+    }
+
+    public void setProjectStartDate(Date projectStartDate) {
+        this.projectStartDate = projectStartDate;
+    }
+
+    public Date getProjectEndDate() {
+        return projectEndDate;
+    }
+
+    public void setProjectEndDate(Date projectEndDate) {
+        this.projectEndDate = projectEndDate;
+    }
+
+    public Date getProjectAssemblingDate() {
+        return projectAssemblingDate;
+    }
+
+    public void setProjectAssemblingDate(Date projectAssemblingDate) {
+        this.projectAssemblingDate = projectAssemblingDate;
+    }
+
+    public long getBudget() {
+        return budget;
+    }
+
+    public void setBudget(long budget) {
+        this.budget = budget;
     }
 
     public long getId() {
@@ -95,7 +136,13 @@ public class Project {
         return "Project{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", projectNumber='" + "P" + projectNumber + '\'' +
+                ", projectNumber=" + projectNumber +
+                ", budget=" + budget +
+                ", mechanicalProcessing=" + mechanicalProcessing +
+                ", partsOrder=" + partsOrder +
+                ", projectStartDate=" + projectStartDate +
+                ", projectEndDate=" + projectEndDate +
+                ", projectAssemblingDate=" + projectAssemblingDate +
                 '}';
     }
 }
