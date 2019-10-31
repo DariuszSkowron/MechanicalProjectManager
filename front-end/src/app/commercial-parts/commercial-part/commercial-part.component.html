@@ -42,12 +42,15 @@
       </span>
     </td>
     <td>
-      <label>
-        <input type="date" placeholder="deliveryDate"
-               [(ngModel)]="commercialPart.deliveryDate"
-               (change)="updateCommercialPart()"
-               class="input-label-lg"/>
-      </label>
+<!--      <label>-->
+<!--        <input type="date" placeholder="deliveryDate"-->
+<!--               [(ngModel)]="commercialPart.deliveryDate"-->
+<!--               (change)="updateCommercialPart()"-->
+<!--               class="input-label-lg"/>-->
+<!--      </label>-->
+      <span class="delivery-date">
+        {{commercialPart.deliveryDate | date:'dd-MM-yyy'}}
+      </span>
     </td>
     <td>
       <label>

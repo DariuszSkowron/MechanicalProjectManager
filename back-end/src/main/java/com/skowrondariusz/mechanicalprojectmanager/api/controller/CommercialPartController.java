@@ -6,7 +6,9 @@ import com.skowrondariusz.mechanicalprojectmanager.model.Manufacturer;
 import com.skowrondariusz.mechanicalprojectmanager.repository.CommercialPartRepository;
 import com.skowrondariusz.mechanicalprojectmanager.repository.ManufacturerRepository;
 import com.skowrondariusz.mechanicalprojectmanager.repository.PartsOrderRepository;
+import com.skowrondariusz.mechanicalprojectmanager.service.CommercialPartService;
 import com.skowrondariusz.mechanicalprojectmanager.utility.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +25,8 @@ import java.util.stream.Collectors;
 public class CommercialPartController {
 
 
+    @Autowired
+    private CommercialPartService commercialPartService;
     private PartsOrderRepository partsOrderRepository;
     private CommercialPartRepository commercialPartRepository;
     private Mapper mapper;
@@ -78,6 +82,7 @@ public class CommercialPartController {
         }
 
         var commercialPartEntity = this.mapper.convertToCommercialPartEntity(commercialPartViewModel);
+        commercialPartEntity.setDeliveryDate(commercialPartService.checkDeliveryDate(commercialPartEntity.getPartsOrder().getId()));
         this.commercialPartRepository.save(commercialPartEntity);
         return commercialPartEntity;
     }

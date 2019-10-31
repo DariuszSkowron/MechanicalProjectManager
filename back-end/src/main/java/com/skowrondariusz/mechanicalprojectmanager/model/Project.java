@@ -1,5 +1,6 @@
 package com.skowrondariusz.mechanicalprojectmanager.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -31,6 +32,8 @@ public class Project {
 
     private Date projectStartDate;
     private Date projectEndDate;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date projectAssemblingDate;
 
 
