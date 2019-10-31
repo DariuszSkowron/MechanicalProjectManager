@@ -27,7 +27,6 @@ public class CommercialPartController {
 
     @Autowired
     private CommercialPartService commercialPartService;
-
     private PartsOrderRepository partsOrderRepository;
     private CommercialPartRepository commercialPartRepository;
     private Mapper mapper;
