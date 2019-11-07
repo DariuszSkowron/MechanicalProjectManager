@@ -40,7 +40,11 @@ public class Project {
     public Project() {
     }
 
-
+    public Project(String name, int projectNumber, long budget) {
+        this.name = name;
+        this.projectNumber = projectNumber;
+        this.budget = budget;
+    }
 
     public Project(String name, int projectNumber, long budget, MechanicalProcessing mechanicalProcessing, PartsOrder partsOrder) {
         this.name = name;
