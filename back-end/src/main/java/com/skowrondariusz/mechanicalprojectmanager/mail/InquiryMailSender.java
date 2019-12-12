@@ -49,7 +49,7 @@ public class InquiryMailSender implements InquirySender {
             helper.setFrom(from);
             helper.setTo(to);
             helper.setSubject(title);
-            helper.setText("chuj ci w doope");
+            helper.setText("test");
             MimeBodyPart textBodyPart = new MimeBodyPart();
             ByteArrayOutputStream outputStream = null;
             outputStream = new ByteArrayOutputStream();
