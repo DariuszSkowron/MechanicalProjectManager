@@ -1,6 +1,5 @@
 package com.skowrondariusz.mechanicalprojectmanager.service;
 
-import com.skowrondariusz.mechanicalprojectmanager.model.PartsOrder;
 import com.skowrondariusz.mechanicalprojectmanager.repository.CommercialPartRepository;
 import com.skowrondariusz.mechanicalprojectmanager.repository.PartsOrderRepository;
 import com.skowrondariusz.mechanicalprojectmanager.repository.ProjectRepository;
