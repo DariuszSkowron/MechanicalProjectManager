@@ -17,6 +17,15 @@
   <div>
     <label><b>Commercial Parts List:</b></label> {{project.partsOrder}}
   </div>
+  <div>
+    <label><b>Project Start Date:</b></label> {{project.projectStartDate | date:'dd-MM-yyy'}}
+  </div>
+  <div>
+    <label><b>Project End Date:</b></label> {{project.projectEndDate | date:'dd-MM-yyy'}}
+  </div>
+  <div>
+    <label><b>Assembling Date :</b></label> {{project.projectAssemblingDate | date:'dd-MM-yyy'}}
+  </div>
 
 
   <span class="button is-small btn-danger" (click)='deleteProject()'>Delete</span>

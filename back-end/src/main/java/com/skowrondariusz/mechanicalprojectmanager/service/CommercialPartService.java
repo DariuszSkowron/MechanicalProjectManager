@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 
 @Service
@@ -25,15 +26,19 @@ public class CommercialPartService {
 
     public Date checkDeliveryDate(Long partsOrderId){
         Date partCreationDate = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
+        Calendar c = Calendar.getInstance();
 
-        Date projectDate = this.projectRepository.findByPartsOrder(partsOrderRepository.getOne(partsOrderId)).getProjectAssemblingDate();
+        Date projectDate = this.projectRepository.findByPartsOrder(partsOrderRepository.findByProjectId(partsOrderId)).getProjectAssemblingDate();
 
         if (projectDate == null)
-            throw new IllegalArgumentException("Date of project assembling phase cant be unassigned");
+            throw new NullPointerException("Date of project assembling phase can't be unassigned");
         if(partCreationDate.before(projectDate)){
             return projectDate;
         }
-        else return projectDate;
+        c.setTime(partCreationDate);
+        c.add(Calendar.DATE, 2 );
+        partCreationDate = c.getTime();
+        return partCreationDate;
     }
 
 

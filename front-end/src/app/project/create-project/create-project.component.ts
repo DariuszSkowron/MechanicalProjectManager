@@ -21,8 +21,6 @@ export class CreateProjectComponent implements OnInit {
   newProject(): void {
     this.submitted = false;
     this.project = new Project();
-    // this.project.projectNumber = null;
-    // this.project.mechanicalProcessing = null;
   }
 
   save() {
