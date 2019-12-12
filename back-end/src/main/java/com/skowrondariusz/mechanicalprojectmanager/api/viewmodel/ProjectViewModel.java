@@ -11,15 +11,8 @@ public class ProjectViewModel {
     private String mechanicalProcessing;
     private String partsOrder;
     private String projectAssemblingDate;
-
-
-    public String getProjectAssemblingDate() {
-        return projectAssemblingDate;
-    }
-
-    public void setProjectAssemblingDate(String projectAssemblingDate) {
-        this.projectAssemblingDate = projectAssemblingDate;
-    }
+    private String projectStartDate;
+    private String projectEndDate;
 
     public String getId() {
         return id;
@@ -67,5 +60,29 @@ public class ProjectViewModel {
 
     public void setPartsOrder(String partsOrder) {
         this.partsOrder = partsOrder;
+    }
+
+    public String getProjectAssemblingDate() {
+        return projectAssemblingDate;
+    }
+
+    public void setProjectAssemblingDate(String projectAssemblingDate) {
+        this.projectAssemblingDate = projectAssemblingDate;
+    }
+
+    public String getProjectStartDate() {
+        return projectStartDate;
+    }
+
+    public void setProjectStartDate(String projectStartDate) {
+        this.projectStartDate = projectStartDate;
+    }
+
+    public String getProjectEndDate() {
+        return projectEndDate;
+    }
+
+    public void setProjectEndDate(String projectEndDate) {
+        this.projectEndDate = projectEndDate;
     }
 }

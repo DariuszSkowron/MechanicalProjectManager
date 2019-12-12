@@ -48,6 +48,8 @@ public class CommercialPartController {
         return commercialParts.stream()
                               .map(part -> this.mapper.convertToCommercialPartViewModel(part))
                               .collect(Collectors.toList());
+
+
     }
 
     @GetMapping("/byId/{id}")

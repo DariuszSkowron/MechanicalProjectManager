@@ -6,4 +6,6 @@ export class Project {
   mechanicalProcessing: string;
   partsOrder: string;
   projectAssemblingDate: string;
+  projectStartDate: string;
+  projectEndDate: string;
 }

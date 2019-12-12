@@ -90,13 +90,7 @@ public class Mapper {
 
     public Project convertToProjectEntity(ProjectViewModel viewModel) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-//        var entity = modelMapper.map(viewModel, Project.class);
-//        try {
-//            entity.setProjectAssemblingDate(formatter.parse(viewModel.getProjectAssemblingDate()));
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//        return entity;
+
         var entity = new Project(
                 viewModel.getName(),
                 Integer.parseInt(viewModel.getProjectNumber()),
@@ -105,6 +99,9 @@ public class Mapper {
 
         try {
             entity.setProjectAssemblingDate(formatter.parse(viewModel.getProjectAssemblingDate()));
+            entity.setProjectEndDate(formatter.parse(viewModel.getProjectEndDate()));
+            entity.setProjectStartDate(formatter.parse(viewModel.getProjectStartDate()));
+
         } catch (ParseException e) {
             e.printStackTrace();
         }

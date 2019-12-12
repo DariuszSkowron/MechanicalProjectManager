@@ -2,6 +2,7 @@ package com.skowrondariusz.mechanicalprojectmanager.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -29,8 +30,11 @@ public class Project {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "project", cascade = CascadeType.ALL)
     private PartsOrder partsOrder;
 
-
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date projectStartDate;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date projectEndDate;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -60,6 +64,16 @@ public class Project {
         this.budget = budget;
         this.mechanicalProcessing = mechanicalProcessing;
         this.partsOrder = partsOrder;
+        this.projectStartDate = projectStartDate;
+        this.projectEndDate = projectEndDate;
+        this.projectAssemblingDate = projectAssemblingDate;
+    }
+
+
+    public Project(String name, int projectNumber, long budget, Date projectStartDate, Date projectEndDate, Date projectAssemblingDate) {
+        this.name = name;
+        this.projectNumber = projectNumber;
+        this.budget = budget;
         this.projectStartDate = projectStartDate;
         this.projectEndDate = projectEndDate;
         this.projectAssemblingDate = projectAssemblingDate;
@@ -136,6 +150,8 @@ public class Project {
     public void setPartsOrder(PartsOrder partsOrder) {
         this.partsOrder = partsOrder;
     }
+
+
 
 
     @Override
