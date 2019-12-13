@@ -1,9 +1,10 @@
 package com.skowrondariusz.mechanicalprojectmanager.mail;
 
-import com.itextpdf.text.Chunk;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.skowrondariusz.mechanicalprojectmanager.model.CommercialPart;
 import com.skowrondariusz.mechanicalprojectmanager.repository.InvoiceRepository;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ByteArrayResource;
@@ -53,10 +54,10 @@ public class InquiryMailSender implements InquirySender {
             MimeBodyPart textBodyPart = new MimeBodyPart();
             ByteArrayOutputStream outputStream = null;
             outputStream = new ByteArrayOutputStream();
-            writePdf(outputStream);
+            writePdf(outputStream, invoiceId);
             byte[] bytes =  outputStream.toByteArray();
-            DataSource dataSource = new ByteArrayDataSource(bytes, "application/pdf");
-            helper.addAttachment(dataSource.getName(), dataSource);
+//            DataSource dataSource = new ByteArrayDataSource(bytes, "application/pdf");
+            helper.addAttachment("kupa.pdf", new ByteArrayResource(bytes));
         } catch (MessagingException e) {
             throw new MailParseException(e);
         } catch (Exception e) {
@@ -112,9 +113,17 @@ public class InquiryMailSender implements InquirySender {
 //        }
     }
 
-    public void writePdf(OutputStream outputStream) throws Exception {
+    public void writePdf(OutputStream outputStream, String invoiceId) throws Exception {
         Document document = new Document();
+        var partsList = this.invoiceRepository.getInvoiceById(Long.valueOf(invoiceId)).getCommercialParts();
         PdfWriter.getInstance(document, outputStream);
+
+        PdfPTable table = new PdfPTable(4);
+        table.setWidthPercentage(100.0f);
+        table.setSpacingBefore(10);
+
+        Font font = FontFactory.getFont(FontFactory.TIMES);
+        font.setColor(BaseColor.WHITE);
 
         document.open();
         document.addTitle("Inquiry");
@@ -127,6 +136,29 @@ public class InquiryMailSender implements InquirySender {
         paragraph.add(new Chunk("hello!"));
         document.add(paragraph);
 
+        PdfPCell cell = new PdfPCell();
+        cell.setBackgroundColor(BaseColor.DARK_GRAY);
+        cell.setPadding(5);
+
+        cell.setPhrase(new Phrase("N°", font));
+        table.addCell(cell);
+
+        cell.setPhrase(new Phrase("Name", font));
+        table.addCell(cell);
+
+        cell.setPhrase(new Phrase("Order Symbol", font));
+        table.addCell(cell);
+
+        cell.setPhrase(new Phrase("Quantity", font));
+        table.addCell(cell);
+        int i = 1;
+        for (CommercialPart commercialPart : partsList) {
+            table.addCell(String.valueOf(i++));
+            table.addCell(commercialPart.getName().toString());
+            table.addCell(commercialPart.getOrderSymbol().toString());
+            table.addCell(String.valueOf(commercialPart.getQuantity()));
+        }
+        document.add(table);
         document.close();
     }
 }
