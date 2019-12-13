@@ -118,7 +118,7 @@ public class InquiryMailSender implements InquirySender {
         var partsList = this.invoiceRepository.getInvoiceById(Long.valueOf(invoiceId)).getCommercialParts();
         PdfWriter.getInstance(document, outputStream);
 
-        PdfPTable table = new PdfPTable(3);
+        PdfPTable table = new PdfPTable(4);
         table.setWidthPercentage(100.0f);
         table.setSpacingBefore(10);
 
@@ -140,6 +140,9 @@ public class InquiryMailSender implements InquirySender {
         cell.setBackgroundColor(BaseColor.DARK_GRAY);
         cell.setPadding(5);
 
+        cell.setPhrase(new Phrase("N°", font));
+        table.addCell(cell);
+
         cell.setPhrase(new Phrase("Name", font));
         table.addCell(cell);
 
@@ -148,8 +151,9 @@ public class InquiryMailSender implements InquirySender {
 
         cell.setPhrase(new Phrase("Quantity", font));
         table.addCell(cell);
-
+        int i = 1;
         for (CommercialPart commercialPart : partsList) {
+            table.addCell(String.valueOf(i++));
             table.addCell(commercialPart.getName().toString());
             table.addCell(commercialPart.getOrderSymbol().toString());
             table.addCell(String.valueOf(commercialPart.getQuantity()));
