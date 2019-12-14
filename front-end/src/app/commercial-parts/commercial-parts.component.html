@@ -1,34 +1,15 @@
 <div class="container">
-
   <div>
-    <label>
-      <input type="text"
-             [(ngModel)]="nameOrOrderSymbolSearch"
-             class="form-control"
-             placeholder="Search parts...">
-    </label>
-
-    <button type="buton"
-            (click)="createPartsOrder()"
-            class="btn"><i class="fas fa-plus"></i> New parts order list
-    </button>
-
-    <button type="button"
-            (click)="createCommercialPart(selectedPartsOrder.id)"
-            [disabled]="selectedPartsOrder == null"
-            class="btn"><i class="fa fa-plus"></i> New part
-    </button>
-
     <button type="button"
             (click)="generateInvoice()"
             [disabled]="this.selectedCommercialParts.length === 0"
-            class="btn-invoice"><i class="fas fa-file-invoice-dollar"></i> Generate invoce from selected parts
+            class="btn-invoice"><i class="fas fa-file-invoice-dollar"></i> Generate invoice from selected parts
     </button>
   </div>
 
-  <div>
+  <div class="manufacturer-invoice">
     <mat-form-field>
-    <mat-label>Search by manufacturer</mat-label>
+    <mat-label>Select Manufacturer</mat-label>
     <mat-select [(ngModel)]="manufacturerSearch">
 <!--      <mat-option [value]="undefined" disabled hidden>Pick one of the options available</mat-option>-->
       <mat-option [value]="undefined">All parts</mat-option>
@@ -47,22 +28,26 @@
     </span>
   </button>
 </div>
+
 </div>
 
 <div class="partsContent">
   <div class="processList">
-
     <div>
       <h3>Commercial Parts</h3>
       <br>
+
       <div class="list-group list-group-flush">
-        <a (click)="selectAllCommercialParts()" class="list-group-item list-group-item-action">
+        <button type="button"  (click)="createPartsOrder()" class="list-group-item list-group-item-action list-group-item-success text-center">
+          <i class="fas fa-plus"></i> New parts order list
+        </button>
+        <button type="button" href="" (click)="selectAllCommercialParts()" class="list-group-item list-group-item-action list-group-item-primary text-center">
           All parts
-        </a>
+        </button>
         <a *ngFor="let partsOrder of partsOrders"
            (click)="selectPartsOrder(partsOrder)" class="list-group-item list-group-item-action">
           &nbsp;
-          <select class="project-select" [(ngModel)]="partsOrder.projectId" (change)="updatePartsOrder(partsOrder)">
+          <select class="form-control" [(ngModel)]="partsOrder.projectId" (change)="updatePartsOrder(partsOrder)">
             <option [ngValue]="null" selected disabled hidden>Please specify project</option>
             <option *ngFor="let project of projects" value={{project.id}} [hidden]="project.partsOrder != null">
               {{project.name}}
@@ -90,7 +75,18 @@
         <h3 *ngIf="selectedPartsOrder != null">{{selectedPartsOrder.name}}</h3>
         <h3 *ngIf="selectedPartsOrder == null">All parts</h3>
         <p *ngIf="this.partsOrders.length === 0">There are no parts to display in this list</p>
+        <button type="button"
+                (click)="createCommercialPart(selectedPartsOrder.id)"
+                [disabled]="selectedPartsOrder == null"
+                class="btn"><i class="fa fa-plus"></i> New part
+        </button>
       </div>
+      <label>
+        <input type="text"
+               [(ngModel)]="nameOrOrderSymbolSearch"
+               class="form-control"
+               placeholder="Search parts...">
+      </label>
 
       <div>
         <table class="titleTable" *ngIf="this.commercialParts.length != 0">
@@ -101,12 +97,11 @@
             <th>Quantity</th>
             <th>Order Date</th>
             <th>Expected delivery date</th>
-            <th>Price</th>
+            <th>Price [PLN]</th>
             <th>Manufacturer</th>
             <th>Actions</th>
           </tr>
         </table>
-
         <div *ngFor="let n of commercialParts | commercialPartFilter:nameOrOrderSymbolSearch: manufacturerSearch">
           <commercial-part
             [commercialPart]="n"

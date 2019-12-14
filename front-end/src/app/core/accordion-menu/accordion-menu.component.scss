@@ -11,12 +11,12 @@
   display: inline-block;
   height: 90vh;
   background: #34495e;
-  width: 250px;
+  width: 200px;
   border-radius: 0;
 }
 
 .menu {
-  width: 250px;
+  width: 200px;
   border-radius: 8px;
   overflow: hidden;
 }
@@ -37,7 +37,7 @@
 
 .smenu a {
   display: block;
-  padding: 10px 15px;
+  padding: 10px 0 0 0;
   color: white;
   font-size: 18px;
   margin: 4px 0;
