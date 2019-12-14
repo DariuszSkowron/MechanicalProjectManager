@@ -6,6 +6,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.skowrondariusz.mechanicalprojectmanager.model.CommercialPart;
 import com.skowrondariusz.mechanicalprojectmanager.repository.InvoiceRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.mail.MailParseException;
@@ -26,6 +27,7 @@ import java.io.OutputStream;
 
 @Component
 public class InquiryMailSender implements InquirySender {
+
     private JavaMailSenderImpl mailSender;
     private InvoiceRepository invoiceRepository;
 
@@ -42,7 +44,6 @@ public class InquiryMailSender implements InquirySender {
 
     @Override
     public void sendInquiry(String from, String to, String title, String invoiceId) {
-//        SimpleMailMessage message = new SimpleMailMessage();
         MimeMessage message = mailSender.createMimeMessage();
 
         try{
@@ -50,13 +51,12 @@ public class InquiryMailSender implements InquirySender {
             helper.setFrom(from);
             helper.setTo(to);
             helper.setSubject(title);
-            helper.setText("test");
+            helper.setText("Dear Sir/Madame" + "\n" + "In the attachment I'm sending inquiry, please send me an offer for specified products" + "\n" + "Sincerly,"  + "\n" + from);
             MimeBodyPart textBodyPart = new MimeBodyPart();
             ByteArrayOutputStream outputStream = null;
             outputStream = new ByteArrayOutputStream();
             writePdf(outputStream, invoiceId);
             byte[] bytes =  outputStream.toByteArray();
-//            DataSource dataSource = new ByteArrayDataSource(bytes, "application/pdf");
             helper.addAttachment("kupa.pdf", new ByteArrayResource(bytes));
         } catch (MessagingException e) {
             throw new MailParseException(e);
@@ -116,6 +116,7 @@ public class InquiryMailSender implements InquirySender {
     public void writePdf(OutputStream outputStream, String invoiceId) throws Exception {
         Document document = new Document();
         var partsList = this.invoiceRepository.getInvoiceById(Long.valueOf(invoiceId)).getCommercialParts();
+
         PdfWriter.getInstance(document, outputStream);
 
         PdfPTable table = new PdfPTable(4);

@@ -249,7 +249,7 @@ export class CommercialPartsComponent implements OnInit {
     const newInvoice: Invoice = {
       id: null,
       commercialParts: this.commercialParts
-        .filter(commercial => commercial.manufacturer === manufacturer)
+        .filter(commercial => commercial.manufacturer === manufacturer && commercial.invoiceId == null)
         .map(commercial => commercial.id)
     };
 
