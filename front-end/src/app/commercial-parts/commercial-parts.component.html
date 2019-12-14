@@ -1,36 +1,3 @@
-<div class="container">
-  <div>
-    <button type="button"
-            (click)="generateInvoice()"
-            [disabled]="this.selectedCommercialParts.length === 0"
-            class="btn-invoice"><i class="fas fa-file-invoice-dollar"></i> Generate invoice from selected parts
-    </button>
-  </div>
-
-  <div class="manufacturer-invoice">
-    <mat-form-field>
-    <mat-label>Select Manufacturer</mat-label>
-    <mat-select [(ngModel)]="manufacturerSearch">
-<!--      <mat-option [value]="undefined" disabled hidden>Pick one of the options available</mat-option>-->
-      <mat-option [value]="undefined">All parts</mat-option>
-      <mat-option *ngFor="let commercialPart of commercialParts | duplicateFilter" [value]='commercialPart.manufacturer'>
-        {{commercialPart.manufacturer}}
-      </mat-option>
-    </mat-select>
-    </mat-form-field>
-  <button type="button"
-          (click)="generateInvoiceForSpecifiedManufacturer(manufacturerSearch)"
-          [disabled]="this.manufacturerSearch == null || manufacturerSearch === 'UNASSIGNED'"
-          class="btn-invoice-manufacturer">
-    <span>
-      <span *ngIf="manufacturerSearch == null || manufacturerSearch === 'UNASSIGNED'">Select specified Manufacturer</span>
-      <span *ngIf="manufacturerSearch != null && manufacturerSearch != 'UNASSIGNED'"> Generate invoice for {{manufacturerSearch}}</span>
-    </span>
-  </button>
-</div>
-
-</div>
-
 <div class="partsContent">
   <div class="processList">
     <div>
@@ -71,6 +38,7 @@
   <!-- Parts Panel -->
   <div class="partsList">
     <div>
+      <div class="menu">
       <div>
         <h3 *ngIf="selectedPartsOrder != null">{{selectedPartsOrder.name}}</h3>
         <h3 *ngIf="selectedPartsOrder == null">All parts</h3>
@@ -80,13 +48,45 @@
                 [disabled]="selectedPartsOrder == null"
                 class="btn"><i class="fa fa-plus"></i> New part
         </button>
+        <label>
+          <input type="text"
+                 [(ngModel)]="nameOrOrderSymbolSearch"
+                 class="form-control"
+                 placeholder="Search parts...">
+        </label>
       </div>
-      <label>
-        <input type="text"
-               [(ngModel)]="nameOrOrderSymbolSearch"
-               class="form-control"
-               placeholder="Search parts...">
-      </label>
+      <div>
+        <h3>Invoices Managing</h3>
+        <div>
+          <button type="button"
+                  (click)="generateInvoice()"
+                  [disabled]="this.selectedCommercialParts.length === 0"
+                  class="btn-invoice"><i class="fas fa-file-invoice-dollar"></i> Generate invoice from selected parts
+          </button>
+        </div>
+
+        <div class="manufacturer-invoice">
+          <mat-form-field>
+            <mat-label>Select Manufacturer</mat-label>
+            <mat-select [(ngModel)]="manufacturerSearch">
+              <mat-option [value]="undefined">All parts</mat-option>
+              <mat-option *ngFor="let commercialPart of commercialParts | duplicateFilter" [value]='commercialPart.manufacturer'>
+                {{commercialPart.manufacturer}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button type="button"
+                  (click)="generateInvoiceForSpecifiedManufacturer(manufacturerSearch)"
+                  [disabled]="this.manufacturerSearch == null || manufacturerSearch === 'UNASSIGNED'"
+                  class="btn-invoice-manufacturer">
+    <span>
+      <span *ngIf="manufacturerSearch == null || manufacturerSearch === 'UNASSIGNED'">Select specified Manufacturer</span>
+      <span *ngIf="manufacturerSearch != null && manufacturerSearch != 'UNASSIGNED'"> Generate invoice for {{manufacturerSearch}}</span>
+    </span>
+          </button>
+        </div>
+      </div>
+      </div>
 
       <div>
         <table class="titleTable" *ngIf="this.commercialParts.length != 0">
