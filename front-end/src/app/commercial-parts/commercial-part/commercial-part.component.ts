@@ -23,6 +23,7 @@ export class CommercialPartComponent implements  OnInit, OnChanges {
   @Output() commercialPartUpdated: EventEmitter<any> = new EventEmitter<any>();
   @Output() commercialPartDeleted: EventEmitter<CommercialPart> = new EventEmitter<CommercialPart>();
   @Output() commercialPartSelected: EventEmitter<CommercialPart> = new EventEmitter<CommercialPart>();
+  partSelected = false;
 
   constructor(private apiService: ApiService) {
   }
@@ -52,7 +53,7 @@ export class CommercialPartComponent implements  OnInit, OnChanges {
   }
 
   selectCommercialPart() {
-    this.commercialPart.checked = true;
+    this.partSelected = !this.partSelected;
     this.commercialPartUpdated.emit(this.commercialPart);
   }
 
