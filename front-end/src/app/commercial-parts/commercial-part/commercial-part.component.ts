@@ -23,7 +23,6 @@ export class CommercialPartComponent implements  OnInit, OnChanges {
   @Output() commercialPartUpdated: EventEmitter<any> = new EventEmitter<any>();
   @Output() commercialPartDeleted: EventEmitter<CommercialPart> = new EventEmitter<CommercialPart>();
   @Output() commercialPartSelected: EventEmitter<CommercialPart> = new EventEmitter<CommercialPart>();
-  partSelected = false;
 
   constructor(private apiService: ApiService) {
   }
@@ -52,10 +51,10 @@ export class CommercialPartComponent implements  OnInit, OnChanges {
     this.commercialPartDeleted.emit(this.commercialPart);
   }
 
-  selectCommercialPart() {
-    this.partSelected = !this.partSelected;
-    this.commercialPartUpdated.emit(this.commercialPart);
-  }
+  // selectCommercialPart() {
+  //   this.commercialPart.checked = !this.commercialPart.checked;
+  //   this.commercialPartUpdated.emit(this.commercialPart);
+  // }
 
   ngOnChanges(changes: SimpleChanges) {
     console.log('ngOnChanges,, previous CommercialPart: ', changes.commercialPart.previousValue);
