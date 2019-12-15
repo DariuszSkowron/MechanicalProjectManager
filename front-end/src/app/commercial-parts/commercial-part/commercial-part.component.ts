@@ -51,10 +51,10 @@ export class CommercialPartComponent implements  OnInit, OnChanges {
     this.commercialPartDeleted.emit(this.commercialPart);
   }
 
-  selectCommercialPart() {
-    this.commercialPart.checked = true;
-    this.commercialPartUpdated.emit(this.commercialPart);
-  }
+  // selectCommercialPart() {
+  //   this.commercialPart.checked = !this.commercialPart.checked;
+  //   this.commercialPartUpdated.emit(this.commercialPart);
+  // }
 
   ngOnChanges(changes: SimpleChanges) {
     console.log('ngOnChanges,, previous CommercialPart: ', changes.commercialPart.previousValue);

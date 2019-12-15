@@ -78,7 +78,7 @@
       </span>
       <span>
       <mat-checkbox  title="Check part"  [disabled]="commercialPart.invoiceId != null"
-              [(ngModel)]="commercialPart.checked"  (change)="selectCommercialPart()">
+                     [(ngModel)]="commercialPart.checked" (change)="updateCommercialPart()">
       </mat-checkbox>
       </span>
     </td>

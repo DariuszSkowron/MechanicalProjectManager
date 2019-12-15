@@ -45,7 +45,7 @@ export class CommercialPartsComponent implements OnInit {
   }
 
   getAllSelected() {
-    this.selectedCommercialParts = this.commercialParts.filter(commercial => commercial.checked === true);
+    this.selectedCommercialParts = this.commercialParts.filter(commercial => commercial.checked === true && commercial.invoiceId == null);
   }
 
   getAllProjects() {
@@ -218,10 +218,10 @@ export class CommercialPartsComponent implements OnInit {
     this.projectService.getCommercialPartsByPartsOrder(this.selectedPartsOrder.id).subscribe(
       res => {
         this.commercialParts = res;
+        this.getAllSelected();
       }
     );
   }
-
 
   generateInvoice() {
     const newInvoice: Invoice = {
