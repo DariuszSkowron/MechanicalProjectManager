@@ -62,11 +62,12 @@ table th{
   color: white;
   display: inline-block;
   border-radius: 5px;
-  height: 3rem;
   //padding-left: 50px;
   align-items: center;
   border: none;
   cursor: pointer;
+  height: 38px;
+  //font-size: 10px;
 }
 
 .btn-invoice:disabled{
@@ -152,9 +153,35 @@ table th{
 
 
 .menu{
-  //border: 2px solid red;
-  display: grid;
+  border: 2px solid red;
+  display: inline-block;
+  //display: grid;
   //width: 1000px;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 50px;
+  //grid-template-columns: 1fr 1fr;
+  //grid-gap: 50px;
 }
+
+.menu-buttons{
+  width: 1000px;
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.input-group-text{
+  box-shadow: none;
+  border-right: none;
+  background: none;
+}
+
+.form-control.modified{
+  border-left: none;
+  height: 50px;
+}
+
+.input-group{
+  max-width: 250px;
+  height: 50px;
+}
+
