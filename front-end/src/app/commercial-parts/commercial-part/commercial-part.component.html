@@ -1,6 +1,6 @@
 <table>
   <tr>
-    <td>
+  <td>
       <label>
         <input type="text" name="type" placeholder="Type"
                [(ngModel)]="commercialPart.type"
@@ -10,7 +10,6 @@
     </td>
 
     <td>
-
       <label>
         <input type="text" placeholder="Order Symbol"
                [(ngModel)]="commercialPart.orderSymbol"
@@ -36,11 +35,13 @@
                class="input-label-lg"/>
       </label>
     </td>
+
     <td>
       <span class="order-date">
         {{commercialPart.orderDate | date:'dd-MM-yyy'}}
       </span>
     </td>
+
     <td>
 <!--      <label>-->
 <!--        <input type="date" placeholder="deliveryDate"-->
@@ -52,6 +53,7 @@
         {{commercialPart.deliveryDate | date:'dd-MM-yyy'}}
       </span>
     </td>
+
     <td>
       <label>
         <input type="text" placeholder="price"
@@ -60,6 +62,7 @@
                class="input-label-lg"/>
       </label>
     </td>
+
     <td>
       <label>
         <select class="form-control" [(ngModel)]="commercialPart.manufacturer" (ngModelChange)="updateCommercialPart()">
