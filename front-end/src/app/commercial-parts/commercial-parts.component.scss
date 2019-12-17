@@ -11,7 +11,6 @@
 }
 
 .project-select {
-  //@extend form-control;
   @extend .custom-select;
   width: 150px;
 }
@@ -36,7 +35,6 @@
 
 
 table{
-  //display: inline-block;
   table-layout:fixed;
   width: 100%;
   border:1px;
@@ -56,18 +54,29 @@ table th{
   }
 }
 
+.button-container{
+  padding-right:10px;
+}
+
+.btn.btn-success{
+  height: 50px;
+  width: 120px;
+}
 
 .btn-invoice{
   background: rgba(102, 239, 101, 0.51);
   color: white;
   display: inline-block;
   border-radius: 5px;
-  //padding-left: 50px;
   align-items: center;
   border: none;
   cursor: pointer;
-  height: 38px;
-  //font-size: 10px;
+  height: 50px;
+  width: 120px;
+
+  i{
+    padding-right: 5px;
+  }
 }
 
 .btn-invoice:disabled{
@@ -88,11 +97,8 @@ table th{
   width: 420px;
   display: flex;
   align-items: center;
-  border: 2px solid green;
-  //height: 50px;
-
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border: 2px solid #ced4da;
+  border-radius: 5px;
 }
 
 
@@ -152,21 +158,10 @@ table th{
 //}
 
 
-.menu{
-  border: 2px solid red;
-  display: inline-block;
-  //display: grid;
-  //width: 1000px;
-  //grid-template-columns: 1fr 1fr;
-  //grid-gap: 50px;
-}
 
 .menu-buttons{
-  width: 1000px;
-  display: inline-block;
-  vertical-align: middle;
-  padding-left: 10px;
-  padding-right: 10px;
+  display: flex;
+  justify-content: left;
 }
 
 .input-group-text{
@@ -183,5 +178,6 @@ table th{
 .input-group{
   max-width: 250px;
   height: 50px;
+  padding-right: 10px;
 }
 
