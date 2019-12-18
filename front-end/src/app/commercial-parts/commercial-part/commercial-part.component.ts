@@ -11,6 +11,7 @@ import {
 import {CommercialPart} from '../model/commercial-part';
 import {Manufacturer} from '../../manufacturers/model/manufacturer';
 import {ApiService} from '../../shared/api.service';
+import {CommercialPartType} from '../model/commercial-part-type.enum';
 
 @Component({
   selector: 'commercial-part',
@@ -19,6 +20,8 @@ import {ApiService} from '../../shared/api.service';
 })
 export class CommercialPartComponent implements  OnInit, OnChanges {
   manufacturers: Manufacturer[] = [];
+  commercialPartType = CommercialPartType;
+  kupa = ['MILLING', 'TURNING'];
   @Input() commercialPart: CommercialPart;
   @Output() commercialPartUpdated: EventEmitter<any> = new EventEmitter<any>();
   @Output() commercialPartDeleted: EventEmitter<CommercialPart> = new EventEmitter<CommercialPart>();

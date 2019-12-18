@@ -1,11 +1,31 @@
 <table>
   <tr>
-  <td>
+<!--  <td>-->
+<!--      <label>-->
+<!--        <input type="text" name="type" placeholder="Type"-->
+<!--               [(ngModel)]="commercialPart.type"-->
+<!--               (change)="updateCommercialPart()"-->
+<!--               class="input-label-lg"/>-->
+<!--      </label>-->
+<!--    </td>-->
+
+<!--    <td>-->
+<!--      <label>-->
+<!--        <select class="form-control" [(ngModel)]="commercialPart.type" (ngModelChange)="updateCommercialPart()">-->
+<!--          <option *ngFor="let key  of keys; index as i" [value] = "i+1" [label]=commercialPartType[key] value={{commercialPartT.type}}>-->
+<!--            {{commercialPart.type}}-->
+<!--          </option>-->
+<!--        </select>-->
+<!--      </label>-->
+<!--    </td>-->
+
+    <td>
       <label>
-        <input type="text" name="type" placeholder="Type"
-               [(ngModel)]="commercialPart.type"
-               (change)="updateCommercialPart()"
-               class="input-label-lg"/>
+        <select class="form-control" [(ngModel)]="commercialPart.type" (ngModelChange)="updateCommercialPart()">
+          <option *ngFor="let key  of kupa"   value={{key}}>
+            {{key}}
+          </option>
+        </select>
       </label>
     </td>
 
@@ -72,6 +92,14 @@
         </select>
       </label>
     </td>
+
+    <td>
+      <span>
+        {{commercialPart.invoiceId}}
+      </span>
+    </td>
+
+
 
     <td>
       <span>

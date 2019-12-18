@@ -14,7 +14,7 @@ public class CommercialPart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "commercial_part_id")
     private long id;
-    private String type;
+    private CommercialPartType type;
     private String orderSymbol;
     private String name;
 
@@ -37,7 +37,7 @@ public class CommercialPart {
     public CommercialPart() {
     }
 
-    public CommercialPart(String type, String orderSymbol, String name, int quantity, Date orderDate, Date deliveryDate, long price, PartsOrder partsOrder) {
+    public CommercialPart(CommercialPartType type, String orderSymbol, String name, int quantity, Date orderDate, Date deliveryDate, long price, PartsOrder partsOrder) {
         this.type = type;
         this.orderSymbol = orderSymbol;
         this.name = name;
@@ -48,7 +48,7 @@ public class CommercialPart {
         this.partsOrder = partsOrder;
     }
 
-    public CommercialPart(String type, String orderSymbol, String name, Manufacturer manufacturer, int quantity, Date orderDate, Date deliveryDate, long price, PartsOrder partsOrder) {
+    public CommercialPart(CommercialPartType type, String orderSymbol, String name, Manufacturer manufacturer, int quantity, Date orderDate, Date deliveryDate, long price, PartsOrder partsOrder) {
         this.type = type;
         this.orderSymbol = orderSymbol;
         this.name = name;
@@ -60,7 +60,7 @@ public class CommercialPart {
         this.partsOrder = partsOrder;
     }
 
-    public CommercialPart(String type, String orderSymbol, String name, Manufacturer manufacturer, Invoice invoice, int quantity, Date orderDate, Date deliveryDate, long price, PartsOrder partsOrder) {
+    public CommercialPart(CommercialPartType type, String orderSymbol, String name, Manufacturer manufacturer, Invoice invoice, int quantity, Date orderDate, Date deliveryDate, long price, PartsOrder partsOrder) {
         this.type = type;
         this.orderSymbol = orderSymbol;
         this.name = name;
@@ -97,11 +97,11 @@ public class CommercialPart {
         this.id = id;
     }
 
-    public String getType() {
+    public CommercialPartType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(CommercialPartType type) {
         this.type = type;
     }
 

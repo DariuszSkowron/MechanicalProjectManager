@@ -12,6 +12,7 @@ import {CommercialPart} from './model/commercial-part';
 import {ApiService} from '../shared/api.service';
 import {Project} from '../project/project';
 import {Invoice} from './model/invoice';
+import {CommercialPartType} from "./model/commercial-part-type.enum";
 
 
 @Component({
@@ -33,6 +34,8 @@ export class CommercialPartsComponent implements OnInit {
   todayDate: Date = new Date();
   selectedCommercialParts: Array<any>;
   existingManufacturers: Array<any>;
+  commercialPartType = CommercialPartType;
+  keys = [];
 
   constructor(private projectService: ApiService) {
   }
@@ -161,14 +164,14 @@ export class CommercialPartsComponent implements OnInit {
   createCommercialPart(partsOrderId: string) {
     const newCommercialPart: CommercialPart = {
       id: null,
-      type: '',
+      type: 'MILLING',
       orderSymbol: '',
       name: '',
       manufacturer: 'UNASSIGNED',
-      quantity: '',
+      quantity: '0',
       orderDate: this.todayDate,
       deliveryDate: null,
-      price: '',
+      price: '0',
       manufacturerId: '1',
       partsOrderId: partsOrderId,
       invoiceId: null,

@@ -45,6 +45,7 @@
           <h3 *ngIf="selectedPartsOrder != null">{{selectedPartsOrder.name}}</h3>
           <h3 *ngIf="selectedPartsOrder == null">All parts</h3>
           <p *ngIf="this.partsOrders.length === 0">There are no parts to display in this list</p>
+        </div>
           <div class="menu-buttons">
               <div class="input-group mb-3">
               <div class="input-group-prepend">
@@ -55,16 +56,20 @@
                      class="form-control modified"
                      placeholder="Search parts...">
               </div>
+            <div class="button-container">
             <button type="button"
                     (click)="createCommercialPart(selectedPartsOrder.id)"
                     [disabled]="selectedPartsOrder == null"
                     class="btn btn-success"><i class="fa fa-plus"></i> New part
             </button>
+            </div>
+            <div class="button-container">
             <button type="button"
                     (click)="generateInvoice()"
                     [disabled]="this.selectedCommercialParts.length == 0"
                     class="btn-invoice"><i class="fas fa-file-invoice-dollar"></i>New invoice
             </button>
+            </div>
             <span class="manufacturer-invoice">
             <mat-form-field>
               <mat-label>Select Manufacturer</mat-label>
@@ -89,8 +94,8 @@
             </button>
           </span>
           </div>
-        </div>
       </div>
+
       <div>
         <table class="titleTable" *ngIf="this.commercialParts.length != 0">
           <tr>
@@ -102,6 +107,7 @@
             <th>Expected delivery date</th>
             <th>Price [PLN]</th>
             <th>Manufacturer</th>
+            <th>Invoice Number</th>
             <th>Actions</th>
           </tr>
         </table>
