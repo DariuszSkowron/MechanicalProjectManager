@@ -2,6 +2,7 @@ package com.skowrondariusz.mechanicalprojectmanager.api.controller;
 
 import com.skowrondariusz.mechanicalprojectmanager.api.viewmodel.CommercialPartViewModel;
 import com.skowrondariusz.mechanicalprojectmanager.model.CommercialPart;
+import com.skowrondariusz.mechanicalprojectmanager.model.CommercialPartType;
 import com.skowrondariusz.mechanicalprojectmanager.model.Manufacturer;
 import com.skowrondariusz.mechanicalprojectmanager.repository.CommercialPartRepository;
 import com.skowrondariusz.mechanicalprojectmanager.repository.ManufacturerRepository;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.EntityNotFoundException;
 import javax.validation.ValidationException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,7 +35,7 @@ public class CommercialPartController {
     private ManufacturerRepository manufacturerRepository;
 
 
-    public CommercialPartController(PartsOrderRepository partsOrderRepository, CommercialPartRepository commercialPartRepository, Mapper mapper, ManufacturerRepository manufacturerRepository){
+    public CommercialPartController(PartsOrderRepository partsOrderRepository, CommercialPartRepository commercialPartRepository, Mapper mapper, ManufacturerRepository manufacturerRepository) {
         this.partsOrderRepository = partsOrderRepository;
         this.commercialPartRepository = commercialPartRepository;
         this.mapper = mapper;
@@ -42,12 +44,12 @@ public class CommercialPartController {
 
 
     @GetMapping("/all")
-    public List<CommercialPartViewModel> all(){
+    public List<CommercialPartViewModel> all() {
         var commercialParts = this.commercialPartRepository.findAll();
-    
+
         return commercialParts.stream()
-                              .map(part -> this.mapper.convertToCommercialPartViewModel(part))
-                              .collect(Collectors.toList());
+                .map(part -> this.mapper.convertToCommercialPartViewModel(part))
+                .collect(Collectors.toList());
 
 
     }
@@ -64,11 +66,11 @@ public class CommercialPartController {
     }
 
     @GetMapping("/byPartsOrder/{partsOrderId}")
-    public List<CommercialPartViewModel> byPartsOrders(@PathVariable String partsOrderId){
+    public List<CommercialPartViewModel> byPartsOrders(@PathVariable String partsOrderId) {
         List<CommercialPart> commercialParts = new ArrayList<>();
 
         var partsOrder = this.partsOrderRepository.findById(Long.valueOf(partsOrderId));
-        if (partsOrder.isPresent()){
+        if (partsOrder.isPresent()) {
             commercialParts = this.commercialPartRepository.findAllByPartsOrder(partsOrder.get());
         }
 
@@ -78,8 +80,8 @@ public class CommercialPartController {
     }
 
     @PostMapping
-    public CommercialPart save(@RequestBody CommercialPartViewModel commercialPartViewModel, BindingResult bindingResult){
-        if (bindingResult.hasErrors()){
+    public CommercialPart save(@RequestBody CommercialPartViewModel commercialPartViewModel, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             throw new ValidationException();
         }
 
@@ -90,8 +92,14 @@ public class CommercialPartController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable String id){
+    public void delete(@PathVariable String id) {
         this.commercialPartRepository.deleteById(Long.valueOf(id));
     }
 
+
+    @GetMapping("/types")
+    public List<CommercialPartType> allCommercialPartsTypes() {
+        List<CommercialPartType> enums = Arrays.asList(CommercialPartType.values());
+        return enums;
+    }
 }

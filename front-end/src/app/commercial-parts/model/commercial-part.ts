@@ -1,5 +1,3 @@
-import {CommercialPartType} from './commercial-part-type.enum';
-
 export class CommercialPart {
   id: string;
   type: string;

@@ -1,27 +1,16 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output, SimpleChanges
-} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {CommercialPart} from '../model/commercial-part';
 import {Manufacturer} from '../../manufacturers/model/manufacturer';
 import {ApiService} from '../../shared/api.service';
-import {CommercialPartType} from '../model/commercial-part-type.enum';
 
 @Component({
   selector: 'commercial-part',
   templateUrl: './commercial-part.component.html',
   styleUrls: ['./commercial-part.component.scss']
 })
-export class CommercialPartComponent implements  OnInit, OnChanges {
+export class CommercialPartComponent implements OnInit, OnChanges {
   manufacturers: Manufacturer[] = [];
-  commercialPartType = CommercialPartType;
-  kupa = ['MILLING', 'TURNING'];
+  commercialPartsTypes = [];
   @Input() commercialPart: CommercialPart;
   @Output() commercialPartUpdated: EventEmitter<any> = new EventEmitter<any>();
   @Output() commercialPartDeleted: EventEmitter<CommercialPart> = new EventEmitter<CommercialPart>();
@@ -31,9 +20,20 @@ export class CommercialPartComponent implements  OnInit, OnChanges {
   }
 
 
-
   ngOnInit() {
     this.getAllManufacturers();
+    this.getCommercialPartsTypes();
+  }
+
+
+  getCommercialPartsTypes() {
+    this.apiService.getCommercialPartsTypes().subscribe(res => {
+        this.commercialPartsTypes = res;
+      },
+      err => {
+        alert(`An error has occurred` + err);
+      }
+    );
   }
 
   getAllManufacturers() {
