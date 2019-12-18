@@ -60,6 +60,7 @@ public class Mapper {
     public CommercialPart convertToCommercialPartEntity(CommercialPartViewModel viewModel) {
         var entity = modelMapper.map(viewModel, CommercialPart.class);
         entity.setManufacturer(manufacturerRepository.getManufacturerByName(viewModel.getManufacturer()));
+        entity.setType(CommercialPartType.valueOf(viewModel.getType()));
         return entity;
     }
 
