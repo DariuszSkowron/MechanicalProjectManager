@@ -43,6 +43,7 @@ export class ApiService {
   private GET_MANUFACTURER_BY_ID_URL = `${this.BASE_URL}/manufacturer/`;
   private SAVE_UPDATE_INVOICE_URL = `${this.BASE_URL}/invoice`;
   private SAVE_INQUIRY_URL = `${this.BASE_URL}/inquiry`;
+  private GET_COMMERCIAL_PARTS_TYPES = `${this.BASE_URL}/commercialParts/types`;
 
 
 
@@ -132,6 +133,10 @@ export class ApiService {
 
   deleteCommercialPart(commercialPartId: string): Observable<any> {
     return this.http.delete(this.DELETE_COMMERCIAL_PART_URL + commercialPartId);
+  }
+
+  getCommercialPartsTypes(): Observable<any> {
+    return this.http.get(this.GET_COMMERCIAL_PARTS_TYPES);
   }
 
 

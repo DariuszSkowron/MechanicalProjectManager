@@ -8,22 +8,11 @@
 <!--               class="input-label-lg"/>-->
 <!--      </label>-->
 <!--    </td>-->
-
-<!--    <td>-->
-<!--      <label>-->
-<!--        <select class="form-control" [(ngModel)]="commercialPart.type" (ngModelChange)="updateCommercialPart()">-->
-<!--          <option *ngFor="let key  of keys; index as i" [value] = "i+1" [label]=commercialPartType[key] value={{commercialPartT.type}}>-->
-<!--            {{commercialPart.type}}-->
-<!--          </option>-->
-<!--        </select>-->
-<!--      </label>-->
-<!--    </td>-->
-
     <td>
       <label>
         <select class="form-control" [(ngModel)]="commercialPart.type" (ngModelChange)="updateCommercialPart()">
-          <option *ngFor="let key  of kupa"   value={{key}}>
-            {{key}}
+          <option *ngFor="let commercialPartType  of commercialPartsTypes"   value={{commercialPartType}}>
+            {{commercialPartType}}
           </option>
         </select>
       </label>
