@@ -1,7 +1,4 @@
-import {
-  Component,
-  OnInit,
-} from '@angular/core';
+import {Component, OnInit,} from '@angular/core';
 import {PartsOrder} from './model/parts-order';
 import {CommercialPart} from './model/commercial-part';
 import {ApiService} from '../shared/api.service';
@@ -39,7 +36,6 @@ export class CommercialPartsComponent implements OnInit {
   }
 
 
-
   ngOnInit() {
     this.getAllPartsOrders();
     this.getAllCommercialParts();
@@ -49,7 +45,9 @@ export class CommercialPartsComponent implements OnInit {
   }
 
   initPaginator() {
-    setTimeout(() => { this.currentItemsToShow = this.commercialParts; }, 200);
+    setTimeout(() => {
+      this.currentItemsToShow = this.commercialParts;
+    }, 200);
   }
 
   onPageChangeTest() {
@@ -58,13 +56,14 @@ export class CommercialPartsComponent implements OnInit {
 
   onPageChange($event) {
     this.x = $event.pageIndex * $event.pageSize;
-    this.y =  $event.pageIndex * $event.pageSize + $event.pageSize;
-    this.currentItemsToShow =
-      this.commercialParts.slice($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
+    this.y = $event.pageIndex * $event.pageSize + $event.pageSize;
+    this.currentItemsToShow = this.commercialParts
+      .slice($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
   }
 
   getAllSelected() {
-    this.selectedCommercialParts = this.commercialParts.filter(commercial => commercial.checked === true && commercial.invoiceId == null);
+    this.selectedCommercialParts = this.currentItemsToShow
+      .filter(commercial => commercial.checked === true && commercial.invoiceId == null);
   }
 
   getAllProjects() {
@@ -238,7 +237,7 @@ export class CommercialPartsComponent implements OnInit {
   updatecc() {
     this.projectService.getCommercialPartsByPartsOrder(this.selectedPartsOrder.id).subscribe(
       res => {
-        this.commercialParts = res;
+        this.currentItemsToShow = res;
         this.getAllSelected();
       }
     );
@@ -247,7 +246,7 @@ export class CommercialPartsComponent implements OnInit {
   generateInvoice() {
     const newInvoice: Invoice = {
       id: null,
-      commercialParts: this.commercialParts.filter(commercial => commercial.checked === true).map(commercial => commercial.id)
+      commercialParts: this.currentItemsToShow.filter(commercial => commercial.checked === true).map(commercial => commercial.id)
     };
 
     if (confirm('You will create new invoice from selected parts, do you want to continue?')) {
@@ -283,7 +282,7 @@ export class CommercialPartsComponent implements OnInit {
         },
         err => {
           alert('An error has occurred while saving part');
-            console.log('oops', err.err);
+          console.log('oops', err.err);
           console.log(JSON.stringify(err));
         }
       );
