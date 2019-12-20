@@ -1,18 +1,9 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  OnChanges,
-  OnInit,
-  SimpleChange,
-  SimpleChanges, ViewChild
-} from '@angular/core';
+import {Component, OnInit,} from '@angular/core';
 import {PartsOrder} from './model/parts-order';
 import {CommercialPart} from './model/commercial-part';
 import {ApiService} from '../shared/api.service';
 import {Project} from '../project/project';
 import {Invoice} from './model/invoice';
-import {MatPaginator, MatTableDataSource, PageEvent} from '@angular/material';
 
 
 @Component({
@@ -38,10 +29,11 @@ export class CommercialPartsComponent implements OnInit {
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   currentItemsToShow = [];
+  x: number;
+  y: number;
 
   constructor(private projectService: ApiService) {
   }
-
 
 
   ngOnInit() {
@@ -53,16 +45,25 @@ export class CommercialPartsComponent implements OnInit {
   }
 
   initPaginator() {
-    setTimeout(() => this.currentItemsToShow = this.commercialParts);
+    setTimeout(() => {
+      this.currentItemsToShow = this.commercialParts;
+    }, 200);
+  }
+
+  onPageChangeTest() {
+    this.currentItemsToShow = this.commercialParts.slice(this.x, this.y + 1);
   }
 
   onPageChange($event) {
-    this.currentItemsToShow =
-      this.commercialParts.slice($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
+    this.x = $event.pageIndex * $event.pageSize;
+    this.y = $event.pageIndex * $event.pageSize + $event.pageSize;
+    this.currentItemsToShow = this.commercialParts
+      .slice($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
   }
 
   getAllSelected() {
-    this.selectedCommercialParts = this.commercialParts.filter(commercial => commercial.checked === true && commercial.invoiceId == null);
+    this.selectedCommercialParts = this.currentItemsToShow
+      .filter(commercial => commercial.checked === true && commercial.invoiceId == null);
   }
 
   getAllProjects() {
@@ -195,6 +196,8 @@ export class CommercialPartsComponent implements OnInit {
       res => {
         newCommercialPart.id = res.id;
         this.commercialParts.push(newCommercialPart);
+        // this.currentItemsToShow = this.commercialParts;
+        this.onPageChangeTest();
       },
       err => {
         alert('An error has occurred while saving part');
@@ -234,7 +237,7 @@ export class CommercialPartsComponent implements OnInit {
   updatecc() {
     this.projectService.getCommercialPartsByPartsOrder(this.selectedPartsOrder.id).subscribe(
       res => {
-        this.commercialParts = res;
+        this.currentItemsToShow = res;
         this.getAllSelected();
       }
     );
@@ -243,7 +246,7 @@ export class CommercialPartsComponent implements OnInit {
   generateInvoice() {
     const newInvoice: Invoice = {
       id: null,
-      commercialParts: this.commercialParts.filter(commercial => commercial.checked === true).map(commercial => commercial.id)
+      commercialParts: this.currentItemsToShow.filter(commercial => commercial.checked === true).map(commercial => commercial.id)
     };
 
     if (confirm('You will create new invoice from selected parts, do you want to continue?')) {
@@ -254,7 +257,7 @@ export class CommercialPartsComponent implements OnInit {
           this.updatecc();
         },
         err => {
-          alert('An error has occurred while saving part'),
+          alert('An error has occurred while saving part');
           console.log('oops', err.err);
           console.log(JSON.stringify(err));
         }
@@ -278,8 +281,8 @@ export class CommercialPartsComponent implements OnInit {
           this.updatecc();
         },
         err => {
-          alert('An error has occurred while saving part'),
-            console.log('oops', err.err);
+          alert('An error has occurred while saving part');
+          console.log('oops', err.err);
           console.log(JSON.stringify(err));
         }
       );
