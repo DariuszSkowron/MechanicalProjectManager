@@ -32,6 +32,8 @@ export class CommercialPartsComponent implements OnInit {
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   currentItemsToShow = [];
+  x: number;
+  y: number;
 
   constructor(private projectService: ApiService) {
   }
@@ -47,10 +49,16 @@ export class CommercialPartsComponent implements OnInit {
   }
 
   initPaginator() {
-    setTimeout(() => this.currentItemsToShow = this.commercialParts);
+    setTimeout(() => { this.currentItemsToShow = this.commercialParts; }, 200);
+  }
+
+  onPageChangeTest() {
+    this.currentItemsToShow = this.commercialParts.slice(this.x, this.y + 1);
   }
 
   onPageChange($event) {
+    this.x = $event.pageIndex * $event.pageSize;
+    this.y =  $event.pageIndex * $event.pageSize + $event.pageSize;
     this.currentItemsToShow =
       this.commercialParts.slice($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
   }
@@ -189,7 +197,8 @@ export class CommercialPartsComponent implements OnInit {
       res => {
         newCommercialPart.id = res.id;
         this.commercialParts.push(newCommercialPart);
-        this.currentItemsToShow = this.commercialParts;
+        // this.currentItemsToShow = this.commercialParts;
+        this.onPageChangeTest();
       },
       err => {
         alert('An error has occurred while saving part');
@@ -249,7 +258,7 @@ export class CommercialPartsComponent implements OnInit {
           this.updatecc();
         },
         err => {
-          alert('An error has occurred while saving part'),
+          alert('An error has occurred while saving part');
           console.log('oops', err.err);
           console.log(JSON.stringify(err));
         }
@@ -273,7 +282,7 @@ export class CommercialPartsComponent implements OnInit {
           this.updatecc();
         },
         err => {
-          alert('An error has occurred while saving part'),
+          alert('An error has occurred while saving part');
             console.log('oops', err.err);
           console.log(JSON.stringify(err));
         }
