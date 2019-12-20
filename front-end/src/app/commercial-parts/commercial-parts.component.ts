@@ -1,18 +1,12 @@
 import {
-  AfterViewInit,
-  ChangeDetectorRef,
   Component,
-  OnChanges,
   OnInit,
-  SimpleChange,
-  SimpleChanges, ViewChild
 } from '@angular/core';
 import {PartsOrder} from './model/parts-order';
 import {CommercialPart} from './model/commercial-part';
 import {ApiService} from '../shared/api.service';
 import {Project} from '../project/project';
 import {Invoice} from './model/invoice';
-import {MatPaginator, MatTableDataSource, PageEvent} from '@angular/material';
 
 
 @Component({
@@ -195,6 +189,7 @@ export class CommercialPartsComponent implements OnInit {
       res => {
         newCommercialPart.id = res.id;
         this.commercialParts.push(newCommercialPart);
+        this.currentItemsToShow = this.commercialParts;
       },
       err => {
         alert('An error has occurred while saving part');
