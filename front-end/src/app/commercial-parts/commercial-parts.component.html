@@ -46,31 +46,31 @@
           <h3 *ngIf="selectedPartsOrder == null">All parts</h3>
           <p *ngIf="this.partsOrders.length === 0">There are no parts to display in this list</p>
         </div>
-          <div class="menu-buttons">
-              <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1"> <i class="fa fa-search"></i></span>
-              </div>
-              <input type="text"
-                     [(ngModel)]="nameOrOrderSymbolSearch"
-                     class="form-control modified"
-                     placeholder="Search parts...">
-              </div>
-            <div class="button-container">
+        <div class="menu-buttons">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"> <i class="fa fa-search"></i></span>
+            </div>
+            <input type="text"
+                   [(ngModel)]="nameOrOrderSymbolSearch"
+                   class="form-control modified"
+                   placeholder="Search parts...">
+          </div>
+          <div class="button-container">
             <button type="button"
                     (click)="createCommercialPart(selectedPartsOrder.id)"
                     [disabled]="selectedPartsOrder == null"
                     class="btn btn-success"><i class="fa fa-plus"></i> New part
             </button>
-            </div>
-            <div class="button-container">
+          </div>
+          <div class="button-container">
             <button type="button"
                     (click)="generateInvoice()"
                     [disabled]="this.selectedCommercialParts.length == 0"
                     class="btn-invoice"><i class="fas fa-file-invoice-dollar"></i>New invoice
             </button>
-            </div>
-            <span class="manufacturer-invoice">
+          </div>
+          <span class="manufacturer-invoice">
             <mat-form-field>
               <mat-label>Select Manufacturer</mat-label>
               <mat-select [(ngModel)]="manufacturerSearch">
@@ -93,9 +93,17 @@
     </span>
             </button>
           </span>
-          </div>
+        </div>
       </div>
 
+
+      <mat-paginator
+        (page)="onPageChange($event)"
+        [length]="commercialParts.length"
+        [pageSize]="100"
+        [pageSizeOptions]="pageSizeOptions"
+        [showFirstLastButtons]="true">
+      </mat-paginator>
       <div>
         <table class="titleTable" *ngIf="this.commercialParts.length != 0">
           <tr>
@@ -111,7 +119,8 @@
             <th>Actions</th>
           </tr>
         </table>
-        <div *ngFor="let n of commercialParts | commercialPartFilter:nameOrOrderSymbolSearch: manufacturerSearch">
+        <div
+          *ngFor="let n of currentItemsToShow | commercialPartFilter:nameOrOrderSymbolSearch: manufacturerSearch, let i=index">
           <commercial-part
             [commercialPart]="n"
             (commercialPartUpdated)="updateCommercialParts($event)"
