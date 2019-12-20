@@ -24,7 +24,13 @@ import { ManufacturersComponent } from './manufacturers/manufacturers.component'
 import { SalesRepresentativesComponent } from './manufacturers/sales-representatives/sales-representatives.component';
 import { SalesRepresentativeFilterPipe } from './shared/sales-representative-filter.pipe';
 import { DuplicateFilterPipe } from './shared/duplicate-filter.pipe';
-import {MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatSelectModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatCheckboxModule,
+  MatDatepickerModule,
+  MatPaginatorModule,
+  MatSelectModule
+} from '@angular/material';
 import { InquiryComponent } from './inquiry/inquiry.component';
 import { InvoicesComponent } from './invoices/invoices.component';
 
@@ -64,6 +70,7 @@ import { InvoicesComponent } from './invoices/invoices.component';
     BrowserAnimationsModule,
     MatSelectModule,
     MatDatepickerModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

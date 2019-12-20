@@ -1,11 +1,10 @@
 package com.skowrondariusz.mechanicalprojectmanager.model;
 
-public enum CommercialPartType {
-    ELECTRICAL,
-    MECHANICAL,
+public enum ProcessedPartMainProcess {
+    TURNING,
+    MILLING,
     UNMARKED,
     OTHER;
-
 
     @Override
     public String toString() {

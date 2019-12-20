@@ -5,13 +5,14 @@ import {
   OnChanges,
   OnInit,
   SimpleChange,
-  SimpleChanges
+  SimpleChanges, ViewChild
 } from '@angular/core';
 import {PartsOrder} from './model/parts-order';
 import {CommercialPart} from './model/commercial-part';
 import {ApiService} from '../shared/api.service';
 import {Project} from '../project/project';
 import {Invoice} from './model/invoice';
+import {MatPaginator, MatTableDataSource, PageEvent} from '@angular/material';
 
 
 @Component({
@@ -33,15 +34,31 @@ export class CommercialPartsComponent implements OnInit {
   todayDate: Date = new Date();
   selectedCommercialParts: Array<any>;
   existingManufacturers: Array<any>;
+  length = 100;
+  pageSize = 10;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+  currentItemsToShow = [];
 
   constructor(private projectService: ApiService) {
   }
+
+
 
   ngOnInit() {
     this.getAllPartsOrders();
     this.getAllCommercialParts();
     this.getAllProjects();
     this.getAllSelected();
+    this.initPaginator();
+  }
+
+  initPaginator() {
+    setTimeout(() => this.currentItemsToShow = this.commercialParts);
+  }
+
+  onPageChange($event) {
+    this.currentItemsToShow =
+      this.commercialParts.slice($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
   }
 
   getAllSelected() {
