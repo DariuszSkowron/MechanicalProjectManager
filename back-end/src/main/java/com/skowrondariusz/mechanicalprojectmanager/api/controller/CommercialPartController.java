@@ -3,13 +3,14 @@ package com.skowrondariusz.mechanicalprojectmanager.api.controller;
 import com.skowrondariusz.mechanicalprojectmanager.api.viewmodel.CommercialPartViewModel;
 import com.skowrondariusz.mechanicalprojectmanager.model.CommercialPart;
 import com.skowrondariusz.mechanicalprojectmanager.model.CommercialPartType;
-import com.skowrondariusz.mechanicalprojectmanager.model.Manufacturer;
 import com.skowrondariusz.mechanicalprojectmanager.repository.CommercialPartRepository;
 import com.skowrondariusz.mechanicalprojectmanager.repository.ManufacturerRepository;
 import com.skowrondariusz.mechanicalprojectmanager.repository.PartsOrderRepository;
 import com.skowrondariusz.mechanicalprojectmanager.service.CommercialPartService;
 import com.skowrondariusz.mechanicalprojectmanager.utility.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -89,6 +90,12 @@ public class CommercialPartController {
         commercialPartEntity.setDeliveryDate(commercialPartService.checkDeliveryDate(commercialPartEntity.getPartsOrder().getId()));
         this.commercialPartRepository.save(commercialPartEntity);
         return commercialPartEntity;
+    }
+
+    @PostMapping("/deleteSelected")
+    public ResponseEntity<String> deleteProject(@PathVariable List<CommercialPart> commercialPartList) {
+        commercialPartList.forEach(commercialPart -> commercialPartRepository.deleteById(commercialPart.getId()));
+        return new ResponseEntity<>("Selected projects have been deleted", HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

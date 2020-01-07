@@ -63,6 +63,10 @@ table th{
   width: 120px;
 }
 
+.btn.btn-danger{
+  @extend .btn.btn-success;
+}
+
 .btn-invoice{
   background: rgba(102, 239, 101, 0.51);
   color: white;

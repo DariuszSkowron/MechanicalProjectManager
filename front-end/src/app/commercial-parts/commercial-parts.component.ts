@@ -176,6 +176,12 @@ export class CommercialPartsComponent implements OnInit {
     }
   }
 
+  deleteSelectedCommercialParts(commercialPart: CommercialPart) {
+    if (confirm('Do you want to delete selected parts?')) {
+      this.projectService.delete
+    }
+  }
+
   createCommercialPart(partsOrderId: string) {
     const newCommercialPart: CommercialPart = {
       id: null,
