@@ -65,6 +65,13 @@
           </div>
           <div class="button-container">
             <button type="button"
+                    (click)="createCommercialPart(selectedPartsOrder.id)"
+                    [disabled]="selectedPartsOrder == null"
+                    class="btn btn-danger"><i class="fas fa-trash"></i> Delete
+            </button>
+          </div>
+          <div class="button-container">
+            <button type="button"
                     (click)="generateInvoice()"
                     [disabled]="this.selectedCommercialParts.length == 0"
                     class="btn-invoice"><i class="fas fa-file-invoice-dollar"></i>New invoice
