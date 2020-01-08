@@ -93,8 +93,8 @@ public class CommercialPartController {
     }
 
     @PostMapping("/deleteSelected")
-    public ResponseEntity<String> deleteProject(@PathVariable List<CommercialPart> commercialPartList) {
-        commercialPartList.forEach(commercialPart -> commercialPartRepository.deleteById(commercialPart.getId()));
+    public ResponseEntity<String> deleteProject(@RequestBody List<String> commercialPartList) {
+        commercialPartList.forEach(commercialPart -> this.commercialPartRepository.deleteById(Long.valueOf(commercialPart)));
         return new ResponseEntity<>("Selected projects have been deleted", HttpStatus.OK);
     }
 

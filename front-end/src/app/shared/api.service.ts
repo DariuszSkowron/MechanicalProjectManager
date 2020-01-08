@@ -44,6 +44,7 @@ export class ApiService {
   private SAVE_UPDATE_INVOICE_URL = `${this.BASE_URL}/invoice`;
   private SAVE_INQUIRY_URL = `${this.BASE_URL}/inquiry`;
   private GET_COMMERCIAL_PARTS_TYPES = `${this.BASE_URL}/commercialParts/types`;
+  private DELETE_MULTIPLE_COMMERCIAL_PARTS = `${this.BASE_URL}/commercialParts/deleteSelected`;
 
 
 
@@ -139,8 +140,9 @@ export class ApiService {
     return this.http.get(this.GET_COMMERCIAL_PARTS_TYPES);
   }
 
-
-
+  deleteSelectedCommercialParts(commercialParts: string[]): Observable<any> {
+    return this.http.post(this.DELETE_MULTIPLE_COMMERCIAL_PARTS, commercialParts, {responseType: 'text'});
+  }
 
   getAllManufacturers(): Observable<Manufacturer[]> {
     return this.http.get<Manufacturer[]>(this.ALL_MANUFACTURERS_URL);
