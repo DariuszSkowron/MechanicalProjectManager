@@ -144,9 +144,6 @@ export class ApiService {
     return this.http.post(this.DELETE_MULTIPLE_COMMERCIAL_PARTS, commercialParts, {responseType: 'text'});
   }
 
-
-
-
   getAllManufacturers(): Observable<Manufacturer[]> {
     return this.http.get<Manufacturer[]>(this.ALL_MANUFACTURERS_URL);
   }

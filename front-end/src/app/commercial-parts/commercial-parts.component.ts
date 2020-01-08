@@ -47,7 +47,7 @@ export class CommercialPartsComponent implements OnInit {
   initPaginator() {
     setTimeout(() => {
       this.currentItemsToShow = this.commercialParts;
-    }, 80);
+    }, 200);
   }
 
   onPageChangeTest() {
@@ -182,7 +182,8 @@ export class CommercialPartsComponent implements OnInit {
         .filter(commercial => commercial.checked === true).map(commercial => commercial.id)).subscribe(
         res => {
           console.log(res);
-          this.updatecc();
+          this.getAllCommercialParts();
+          this.initPaginator();
         },
         err => {
           alert('Failed to delete selected parts');
@@ -212,6 +213,7 @@ export class CommercialPartsComponent implements OnInit {
       res => {
         newCommercialPart.id = res.id;
         this.commercialParts.push(newCommercialPart);
+
         this.onPageChangeTest();
       },
       err => {
