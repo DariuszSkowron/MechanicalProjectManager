@@ -118,4 +118,7 @@ public class CommercialPartViewModel {
     public void setManufacturerId(String manufacturerId) {
         this.manufacturerId = manufacturerId;
     }
+
+    public CommercialPartViewModel() {
+    }
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit,} from '@angular/core';
+import {Component, OnInit, } from '@angular/core';
 import {PartsOrder} from './model/parts-order';
 import {CommercialPart} from './model/commercial-part';
 import {ApiService} from '../shared/api.service';
@@ -47,7 +47,7 @@ export class CommercialPartsComponent implements OnInit {
   initPaginator() {
     setTimeout(() => {
       this.currentItemsToShow = this.commercialParts;
-    }, 200);
+    }, 80);
   }
 
   onPageChangeTest() {
@@ -176,9 +176,19 @@ export class CommercialPartsComponent implements OnInit {
     }
   }
 
-  deleteSelectedCommercialParts(commercialPart: CommercialPart) {
+  deleteSelectedCommercialParts() {
     if (confirm('Do you want to delete selected parts?')) {
-      this.projectService.delete
+      this.projectService.deleteSelectedCommercialParts(this.currentItemsToShow
+        .filter(commercial => commercial.checked === true).map(commercial => commercial.id)).subscribe(
+        res => {
+          console.log(res);
+          this.updatecc();
+        },
+        err => {
+          alert('Failed to delete selected parts');
+          console.log(err);
+        }
+      );
     }
   }
 
@@ -202,7 +212,6 @@ export class CommercialPartsComponent implements OnInit {
       res => {
         newCommercialPart.id = res.id;
         this.commercialParts.push(newCommercialPart);
-        // this.currentItemsToShow = this.commercialParts;
         this.onPageChangeTest();
       },
       err => {
