@@ -127,7 +127,7 @@
           </tr>
         </table>
         <div
-          *ngFor="let n of commercialParts | commercialPartFilter:nameOrOrderSymbolSearch: manufacturerSearch, let i=index">
+          *ngFor="let n of currentItemsToShow | commercialPartFilter:nameOrOrderSymbolSearch: manufacturerSearch, let i=index">
           <commercial-part
             [commercialPart]="n"
             (commercialPartUpdated)="updateCommercialParts($event)"

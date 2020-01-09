@@ -1,10 +1,10 @@
-import {Component, OnInit, ViewChild,} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild,} from '@angular/core';
 import {PartsOrder} from './model/parts-order';
 import {CommercialPart} from './model/commercial-part';
 import {ApiService} from '../shared/api.service';
 import {Project} from '../project/project';
 import {Invoice} from './model/invoice';
-import {MatPaginator, MatTableDataSource} from "@angular/material";
+import {MatPaginator, MatTableDataSource} from '@angular/material';
 
 
 @Component({
@@ -12,7 +12,7 @@ import {MatPaginator, MatTableDataSource} from "@angular/material";
   templateUrl: './commercial-parts.component.html',
   styleUrls: ['./commercial-parts.component.scss']
 })
-export class CommercialPartsComponent implements OnInit {
+export class CommercialPartsComponent implements OnInit, AfterViewInit {
   partsOrders: PartsOrder[] = [];
   projects: Project[] = [];
   commercialParts: CommercialPart[] = [];
@@ -45,7 +45,9 @@ export class CommercialPartsComponent implements OnInit {
     this.getAllProjects();
     this.getAllSelected();
     // this.initPaginator();
-    this.dataSource.paginator = this.paginator;
+  }
+
+  ngAfterViewInit() {
   }
 
 
@@ -59,12 +61,12 @@ export class CommercialPartsComponent implements OnInit {
   //   this.currentItemsToShow = this.commercialParts.slice(this.x, this.y + 1);
   // }
   //
-  // onPageChange($event) {
-  //   this.x = $event.pageIndex * $event.pageSize;
-  //   this.y = $event.pageIndex * $event.pageSize + $event.pageSize;
-  //   this.currentItemsToShow = this.commercialParts
-  //     .slice($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
-  // }
+  onPageChange($event) {
+    this.x = $event.pageIndex * $event.pageSize;
+    this.y = $event.pageIndex * $event.pageSize + $event.pageSize;
+    this.currentItemsToShow = this.commercialParts
+      .slice($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
+  }
 
   getAllSelected() {
     this.selectedCommercialParts = this.commercialParts
@@ -232,6 +234,7 @@ export class CommercialPartsComponent implements OnInit {
     this.projectService.getCommercialPartsByPartsOrder(partsOrder.id).subscribe(
       res => {
         this.commercialParts = res;
+        this.currentItemsToShow = this.commercialParts;
       },
       err => {
         alert('An error has occurred while fetching the parts');
