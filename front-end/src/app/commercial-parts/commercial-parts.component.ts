@@ -1,9 +1,10 @@
-import {Component, OnInit, } from '@angular/core';
+import {Component, OnInit, ViewChild,} from '@angular/core';
 import {PartsOrder} from './model/parts-order';
 import {CommercialPart} from './model/commercial-part';
 import {ApiService} from '../shared/api.service';
 import {Project} from '../project/project';
 import {Invoice} from './model/invoice';
+import {MatPaginator, MatTableDataSource} from "@angular/material";
 
 
 @Component({
@@ -31,6 +32,8 @@ export class CommercialPartsComponent implements OnInit {
   currentItemsToShow = [];
   x: number;
   y: number;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  dataSource = new MatTableDataSource(this.commercialParts);
 
   constructor(private projectService: ApiService) {
   }
@@ -41,28 +44,30 @@ export class CommercialPartsComponent implements OnInit {
     this.getAllCommercialParts();
     this.getAllProjects();
     this.getAllSelected();
-    this.initPaginator();
+    // this.initPaginator();
+    this.dataSource.paginator = this.paginator;
   }
 
-  initPaginator() {
-    setTimeout(() => {
-      this.currentItemsToShow = this.commercialParts;
-    }, 200);
-  }
 
-  onPageChangeTest() {
-    this.currentItemsToShow = this.commercialParts.slice(this.x, this.y + 1);
-  }
+  // initPaginator() {
+  //   setTimeout(() => {
+  //     this.currentItemsToShow = this.commercialParts;
+  //   }, 200);
+  // }
 
-  onPageChange($event) {
-    this.x = $event.pageIndex * $event.pageSize;
-    this.y = $event.pageIndex * $event.pageSize + $event.pageSize;
-    this.currentItemsToShow = this.commercialParts
-      .slice($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
-  }
+  // onPageChangeTest() {
+  //   this.currentItemsToShow = this.commercialParts.slice(this.x, this.y + 1);
+  // }
+  //
+  // onPageChange($event) {
+  //   this.x = $event.pageIndex * $event.pageSize;
+  //   this.y = $event.pageIndex * $event.pageSize + $event.pageSize;
+  //   this.currentItemsToShow = this.commercialParts
+  //     .slice($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
+  // }
 
   getAllSelected() {
-    this.selectedCommercialParts = this.currentItemsToShow
+    this.selectedCommercialParts = this.commercialParts
       .filter(commercial => commercial.checked === true && commercial.invoiceId == null);
   }
 
@@ -178,12 +183,12 @@ export class CommercialPartsComponent implements OnInit {
 
   deleteSelectedCommercialParts() {
     if (confirm('Do you want to delete selected parts?')) {
-      this.projectService.deleteSelectedCommercialParts(this.currentItemsToShow
+      this.projectService.deleteSelectedCommercialParts(this.commercialParts
         .filter(commercial => commercial.checked === true).map(commercial => commercial.id)).subscribe(
         res => {
           console.log(res);
           this.getAllCommercialParts();
-          this.initPaginator();
+          // this.initPaginator();
         },
         err => {
           alert('Failed to delete selected parts');
@@ -214,7 +219,7 @@ export class CommercialPartsComponent implements OnInit {
         newCommercialPart.id = res.id;
         this.commercialParts.push(newCommercialPart);
 
-        this.onPageChangeTest();
+        // this.onPageChangeTest();
       },
       err => {
         alert('An error has occurred while saving part');
