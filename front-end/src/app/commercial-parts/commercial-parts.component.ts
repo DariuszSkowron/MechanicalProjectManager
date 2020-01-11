@@ -61,6 +61,10 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
     this.currentItemsToShow = this.commercialParts.slice(this.x, this.y + 1);
   }
 
+  onPageChangeTest3() {
+
+  }
+
   onPageChangeTest2(numberOfDeletions: number) {
     this.currentItemsToShow = this.commercialParts.slice(this.x, this.y - numberOfDeletions);
   }
@@ -228,7 +232,7 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
         newCommercialPart.id = res.id;
         this.commercialParts.push(newCommercialPart);
 
-        // this.onPageChangeTest();
+        this.onPageChangeTest();
       },
       err => {
         alert('An error has occurred while saving part');
@@ -241,7 +245,7 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
     this.projectService.getCommercialPartsByPartsOrder(partsOrder.id).subscribe(
       res => {
         this.commercialParts = res;
-        this.currentItemsToShow = this.commercialParts;
+        this.currentItemsToShow = this.commercialParts.slice(0, 10);
       },
       err => {
         alert('An error has occurred while fetching the parts');
@@ -253,7 +257,7 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
     this.projectService.getCommercialPartsByPartsOrder(this.selectedPartsOrder.id).subscribe(
       res => {
         this.commercialParts = res;
-        this.currentItemsToShow = this.commercialParts;
+        this.currentItemsToShow = this.commercialParts.slice(10, 20);
       },
       err => {
         alert('An error has occurred while fetching the parts');
