@@ -57,10 +57,20 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
   //   }, 200);
   // }
 
-  // onPageChangeTest() {
-  //   this.currentItemsToShow = this.commercialParts.slice(this.x, this.y + 1);
-  // }
-  //
+  onPageChangeTest() {
+    this.currentItemsToShow = this.commercialParts.slice(this.x, this.y + 1);
+  }
+
+  onPageChangeTest3() {
+
+  }
+
+  onPageChangeTest2(numberOfDeletions: number) {
+    this.currentItemsToShow = this.commercialParts.slice(this.x, this.y - numberOfDeletions);
+  }
+
+
+
   onPageChange($event) {
     this.x = $event.pageIndex * $event.pageSize;
     this.y = $event.pageIndex * $event.pageSize + $event.pageSize;
@@ -69,7 +79,7 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
   }
 
   getAllSelected() {
-    this.selectedCommercialParts = this.commercialParts
+    this.selectedCommercialParts = this.currentItemsToShow
       .filter(commercial => commercial.checked === true && commercial.invoiceId == null);
   }
 
@@ -103,6 +113,7 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
     this.projectService.getAllCommercialParts().subscribe(
       res => {
         this.commercialParts = res;
+        this.currentItemsToShow = this.commercialParts;
       },
       err => {
         alert('While downloading the parts orders occurred an error');
@@ -185,12 +196,12 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
 
   deleteSelectedCommercialParts() {
     if (confirm('Do you want to delete selected parts?')) {
-      this.projectService.deleteSelectedCommercialParts(this.commercialParts
+      const kupa: number = this.currentItemsToShow.filter((commercial => commercial.checked === true)).length;
+      this.projectService.deleteSelectedCommercialParts(this.currentItemsToShow
         .filter(commercial => commercial.checked === true).map(commercial => commercial.id)).subscribe(
         res => {
           console.log(res);
-          this.getAllCommercialParts();
-          // this.initPaginator();
+          this.selectPartsOrder2();
         },
         err => {
           alert('Failed to delete selected parts');
@@ -221,7 +232,7 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
         newCommercialPart.id = res.id;
         this.commercialParts.push(newCommercialPart);
 
-        // this.onPageChangeTest();
+        this.onPageChangeTest();
       },
       err => {
         alert('An error has occurred while saving part');
@@ -234,7 +245,19 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
     this.projectService.getCommercialPartsByPartsOrder(partsOrder.id).subscribe(
       res => {
         this.commercialParts = res;
-        this.currentItemsToShow = this.commercialParts;
+        this.currentItemsToShow = this.commercialParts.slice(0, 10);
+      },
+      err => {
+        alert('An error has occurred while fetching the parts');
+      }
+    );
+  }
+
+  selectPartsOrder2() {
+    this.projectService.getCommercialPartsByPartsOrder(this.selectedPartsOrder.id).subscribe(
+      res => {
+        this.commercialParts = res;
+        this.currentItemsToShow = this.commercialParts.slice(10, 20);
       },
       err => {
         alert('An error has occurred while fetching the parts');

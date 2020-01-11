@@ -38,7 +38,9 @@ public class DatabaseInitializer implements CommandLineRunner {
         this.salesRepresentativeRepository.save(defaultSalesRep);
 
         var defaultProject = new Project("Test Project No1", 1, 45000, new Date(119,10,26,0,0), new Date(119,10,26,0,0), new Date(119,10,26,0,0));
+        var defaultProject2 = new Project("Test Project No2", 2, 45000, new Date(119,10,26,0,0), new Date(119,10,26,0,0), new Date(119,10,26,0,0));
         this.projectRepository.save(defaultProject);
+        this.projectRepository.save(defaultProject2);
 
 
 
