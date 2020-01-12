@@ -4,6 +4,10 @@ table{
   //border:10px;
 }
 
+//table tr{
+//  align-items: center;
+//}
+
 table td {
   //width:10%;
   text-align: center;
@@ -16,9 +20,20 @@ table td {
 }
 
 .order-date{
-  text-align: right;
+  display: inline-block;
+  padding-bottom: 7px;
+  text-align: center;
+  padding-left: 0;
+  padding-right: 0;
   width: 100px;
   color: green;
+  font-weight: 500;
+
+}
+
+.delivery-date{
+  @extend .order-date;
+  color: red;
 }
 
 .border {
@@ -75,5 +90,11 @@ table td {
 
 span{
   padding-right: 5px;
+}
+
+.form-control{
+  padding-left: 0;
+  padding-right: 0;
+  font-size: 14px;
 }
 

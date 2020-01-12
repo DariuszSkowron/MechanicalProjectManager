@@ -263,7 +263,6 @@ export class CommercialPartsComponent implements OnInit {
         res => {
           newInvoice.id = res.id;
           this.invoices.push(newInvoice);
-          // this.updatecc();
           this.reloadPartsAfterDeletion();
         },
         err => {
@@ -288,7 +287,6 @@ export class CommercialPartsComponent implements OnInit {
         res => {
           newInvoice.id = res.id;
           this.invoices.push(newInvoice);
-          // this.updatecc();
           this.reloadPartsAfterDeletion();
         },
         err => {
