@@ -187,7 +187,6 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
 
   deleteSelectedCommercialParts() {
     if (confirm('Do you want to delete selected parts?')) {
-      // const kupa: number = this.currentItemsToShow.filter((commercial => commercial.checked === true)).length;
       this.projectService.deleteSelectedCommercialParts(this.currentItemsToShow
         .filter(commercial => commercial.checked === true).map(commercial => commercial.id)).subscribe(
         res => {
@@ -293,7 +292,8 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
         res => {
           newInvoice.id = res.id;
           this.invoices.push(newInvoice);
-          this.updatecc();
+          // this.updatecc();
+          this.reloadPartsAfterDeletion();
         },
         err => {
           alert('An error has occurred while saving part');
