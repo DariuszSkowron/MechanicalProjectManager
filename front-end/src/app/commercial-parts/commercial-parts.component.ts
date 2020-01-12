@@ -176,10 +176,10 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
         res => {
           const indexOfCommercialPart = this.commercialParts.indexOf(commercialPart);
           this.commercialParts.splice(indexOfCommercialPart, 1);
+          this.reloadPartsAfterDeletion();
         },
         err => {
           alert('Failed to delete the part');
-          this.initPaginator();
         }
       );
     }
