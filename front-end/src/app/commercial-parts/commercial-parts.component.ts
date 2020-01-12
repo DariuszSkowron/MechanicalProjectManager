@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild,} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PartsOrder} from './model/parts-order';
 import {CommercialPart} from './model/commercial-part';
 import {ApiService} from '../shared/api.service';
@@ -12,7 +12,7 @@ import {MatPaginator, MatTableDataSource} from '@angular/material';
   templateUrl: './commercial-parts.component.html',
   styleUrls: ['./commercial-parts.component.scss']
 })
-export class CommercialPartsComponent implements OnInit, AfterViewInit {
+export class CommercialPartsComponent implements OnInit {
   partsOrders: PartsOrder[] = [];
   projects: Project[] = [];
   commercialParts: CommercialPart[] = [];
@@ -25,15 +25,13 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
   index: number;
   todayDate: Date = new Date();
   selectedCommercialParts: Array<any>;
-  existingManufacturers: Array<any>;
-  length = 100;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   currentItemsToShow = [];
-  x: number;
-  y: number;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  dataSource = new MatTableDataSource(this.commercialParts);
+  x = 0;
+  y = this.pageSize;
+  // @ViewChild(MatPaginator) paginator: MatPaginator;
+  // dataSource = new MatTableDataSource(this.currentItemsToShow);
 
   constructor(private projectService: ApiService) {
   }
@@ -44,32 +42,11 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
     this.getAllCommercialParts();
     this.getAllProjects();
     this.getAllSelected();
-    // this.initPaginator();
   }
 
-  ngAfterViewInit() {
+  initPaginator() {
+    this.currentItemsToShow = this.commercialParts.slice(this.x, this.y);
   }
-
-
-  // initPaginator() {
-  //   setTimeout(() => {
-  //     this.currentItemsToShow = this.commercialParts;
-  //   }, 200);
-  // }
-
-  onPageChangeTest() {
-    this.currentItemsToShow = this.commercialParts.slice(this.x, this.y + 1);
-  }
-
-  onPageChangeTest3() {
-
-  }
-
-  onPageChangeTest2(numberOfDeletions: number) {
-    this.currentItemsToShow = this.commercialParts.slice(this.x, this.y - numberOfDeletions);
-  }
-
-
 
   onPageChange($event) {
     this.x = $event.pageIndex * $event.pageSize;
@@ -93,10 +70,6 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
     );
   }
 
-  filterPartsByManufacturer() {
-    this.existingManufacturers = this.commercialParts.map(commercialPart => commercialPart.manufacturer);
-  }
-
   getAllPartsOrders() {
     this.projectService.getAllPartsOrders().subscribe(res => {
         this.partsOrders = res;
@@ -108,12 +81,11 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
     );
   }
 
-
   getAllCommercialParts() {
     this.projectService.getAllCommercialParts().subscribe(
       res => {
         this.commercialParts = res;
-        this.currentItemsToShow = this.commercialParts;
+        this.initPaginator();
       },
       err => {
         alert('While downloading the parts orders occurred an error');
@@ -186,6 +158,7 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
         res => {
           const indexOfCommercialPart = this.commercialParts.indexOf(commercialPart);
           this.commercialParts.splice(indexOfCommercialPart, 1);
+          this.reloadPartsAfterDeletion();
         },
         err => {
           alert('Failed to delete the part');
@@ -196,12 +169,11 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
 
   deleteSelectedCommercialParts() {
     if (confirm('Do you want to delete selected parts?')) {
-      const kupa: number = this.currentItemsToShow.filter((commercial => commercial.checked === true)).length;
       this.projectService.deleteSelectedCommercialParts(this.currentItemsToShow
         .filter(commercial => commercial.checked === true).map(commercial => commercial.id)).subscribe(
         res => {
           console.log(res);
-          this.selectPartsOrder2();
+          this.reloadPartsAfterDeletion();
         },
         err => {
           alert('Failed to delete selected parts');
@@ -231,8 +203,7 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
       res => {
         newCommercialPart.id = res.id;
         this.commercialParts.push(newCommercialPart);
-
-        this.onPageChangeTest();
+        this.initPaginator();
       },
       err => {
         alert('An error has occurred while saving part');
@@ -245,7 +216,7 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
     this.projectService.getCommercialPartsByPartsOrder(partsOrder.id).subscribe(
       res => {
         this.commercialParts = res;
-        this.currentItemsToShow = this.commercialParts.slice(0, 10);
+        this.initPaginator();
       },
       err => {
         alert('An error has occurred while fetching the parts');
@@ -253,11 +224,11 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
     );
   }
 
-  selectPartsOrder2() {
+  reloadPartsAfterDeletion() {
     this.projectService.getCommercialPartsByPartsOrder(this.selectedPartsOrder.id).subscribe(
       res => {
         this.commercialParts = res;
-        this.currentItemsToShow = this.commercialParts.slice(10, 20);
+        this.currentItemsToShow = this.commercialParts.slice(this.x, this.y);
       },
       err => {
         alert('An error has occurred while fetching the parts');
@@ -276,19 +247,9 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
     );
   }
 
-
   selectAllCommercialParts() {
     this.selectedPartsOrder = null;
     this.getAllCommercialParts();
-  }
-
-  updatecc() {
-    this.projectService.getCommercialPartsByPartsOrder(this.selectedPartsOrder.id).subscribe(
-      res => {
-        this.currentItemsToShow = res;
-        this.getAllSelected();
-      }
-    );
   }
 
   generateInvoice() {
@@ -302,7 +263,8 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
         res => {
           newInvoice.id = res.id;
           this.invoices.push(newInvoice);
-          this.updatecc();
+          // this.updatecc();
+          this.reloadPartsAfterDeletion();
         },
         err => {
           alert('An error has occurred while saving part');
@@ -326,7 +288,8 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
         res => {
           newInvoice.id = res.id;
           this.invoices.push(newInvoice);
-          this.updatecc();
+          // this.updatecc();
+          this.reloadPartsAfterDeletion();
         },
         err => {
           alert('An error has occurred while saving part');
@@ -336,6 +299,4 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
       );
     }
   }
-
-
 }
