@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild,} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PartsOrder} from './model/parts-order';
 import {CommercialPart} from './model/commercial-part';
 import {ApiService} from '../shared/api.service';
@@ -12,7 +12,7 @@ import {MatPaginator, MatTableDataSource} from '@angular/material';
   templateUrl: './commercial-parts.component.html',
   styleUrls: ['./commercial-parts.component.scss']
 })
-export class CommercialPartsComponent implements OnInit, AfterViewInit {
+export class CommercialPartsComponent implements OnInit {
   partsOrders: PartsOrder[] = [];
   projects: Project[] = [];
   commercialParts: CommercialPart[] = [];
@@ -25,15 +25,13 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
   index: number;
   todayDate: Date = new Date();
   selectedCommercialParts: Array<any>;
-  existingManufacturers: Array<any>;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   currentItemsToShow = [];
   x = 0;
   y = this.pageSize;
-  currentPageIndex: number;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  dataSource = new MatTableDataSource(this.currentItemsToShow);
+  // @ViewChild(MatPaginator) paginator: MatPaginator;
+  // dataSource = new MatTableDataSource(this.currentItemsToShow);
 
   constructor(private projectService: ApiService) {
   }
@@ -45,17 +43,6 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
     this.getAllProjects();
     this.getAllSelected();
   }
-
-  ngAfterViewInit() {
-  }
-
-
-  // initPaginator() {
-  //   setTimeout(() => {
-  //     this.currentItemsToShow = this.commercialParts;
-  //   }, 200);
-  // }
-
 
   initPaginator() {
     this.currentItemsToShow = this.commercialParts.slice(this.x, this.y);
@@ -83,10 +70,6 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
     );
   }
 
-  filterPartsByManufacturer() {
-    this.existingManufacturers = this.commercialParts.map(commercialPart => commercialPart.manufacturer);
-  }
-
   getAllPartsOrders() {
     this.projectService.getAllPartsOrders().subscribe(res => {
         this.partsOrders = res;
@@ -97,7 +80,6 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
       }
     );
   }
-
 
   getAllCommercialParts() {
     this.projectService.getAllCommercialParts().subscribe(
@@ -234,7 +216,6 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
     this.projectService.getCommercialPartsByPartsOrder(partsOrder.id).subscribe(
       res => {
         this.commercialParts = res;
-        // this.currentItemsToShow = this.commercialParts.slice(0, 10);
         this.initPaginator();
       },
       err => {
@@ -266,19 +247,9 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
     );
   }
 
-
   selectAllCommercialParts() {
     this.selectedPartsOrder = null;
     this.getAllCommercialParts();
-  }
-
-  updatecc() {
-    this.projectService.getCommercialPartsByPartsOrder(this.selectedPartsOrder.id).subscribe(
-      res => {
-        this.currentItemsToShow = res;
-        this.getAllSelected();
-      }
-    );
   }
 
   generateInvoice() {
@@ -317,7 +288,8 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
         res => {
           newInvoice.id = res.id;
           this.invoices.push(newInvoice);
-          this.updatecc();
+          // this.updatecc();
+          this.reloadPartsAfterDeletion();
         },
         err => {
           alert('An error has occurred while saving part');
@@ -327,6 +299,4 @@ export class CommercialPartsComponent implements OnInit, AfterViewInit {
       );
     }
   }
-
-
 }
