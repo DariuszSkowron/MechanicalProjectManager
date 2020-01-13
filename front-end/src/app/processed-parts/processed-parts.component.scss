@@ -2,37 +2,38 @@
   display: none;
 }
 
-.processList{
+.processList {
   display: block;
   min-width: 220px;
   float: left;
 
 }
 
-.partsList{
+.partsList {
   display: block;
   padding-left: 100px;
 }
 
-.partsContent{
+.partsContent {
   display: flex;
   padding-top: 20px;
   padding-left: 40px;
 }
 
 
-table{
+table {
   //display: inline-block;
-  table-layout:fixed;
+  table-layout: fixed;
   width: 100%;
-  border:1px;
-}
-table td {
-  width:20%;
+  border: 1px;
 }
 
-table th{
-  width:20%;
+table td {
+  width: 20%;
+}
+
+table th {
+  width: 20%;
 }
 
 .titleTable {

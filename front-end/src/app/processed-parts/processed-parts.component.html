@@ -14,7 +14,6 @@
       <i class="fas fa-plus"></i> New processing list
     </button>
 
-
     <button type="button"
             (click)="createProcessedPart(selectedMechanicalProcessing.id)"
             [disabled]="selectedMechanicalProcessing == null"
@@ -34,18 +33,7 @@
       </option>
     </select>
   </div>
-
-  <!--  <mat-form-field>-->
-  <!--  disabled hidden-->
-  <!--    <mat-label>Select an option</mat-label>-->
-  <!--    <mat-select [(ngModel)]="mainProcessSearch" (change)="filterPartsByProcessingType($event.target)">-->
-  <!--      <mat-option>None</mat-option>-->
-  <!--      <mat-option *ngFor="let fos of processedParts" value={{fos.mainProcess}}>{{fos.mainProcess}}</mat-option>-->
-  <!--    </mat-select>-->
-  <!--  </mat-form-field>-->
-
 </div>
-
 
 <div class="partsContent">
   <div class="processList">

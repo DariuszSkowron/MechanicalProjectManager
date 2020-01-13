@@ -17,7 +17,8 @@ export class ProcessedPartsComponent implements OnInit {
   defaultMachining: any;
   processedPartsNumber = 1;
 
-  constructor(private projectService: ApiService) { }
+  constructor(private projectService: ApiService) {
+  }
 
   ngOnInit() {
     this.defaultMachining = this.processedParts[0];

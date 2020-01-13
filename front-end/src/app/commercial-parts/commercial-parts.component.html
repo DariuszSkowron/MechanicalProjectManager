@@ -9,7 +9,7 @@
                 class="list-group-item list-group-item-action list-group-item-success text-center">
           <i class="fas fa-plus"></i> New parts order list
         </button>
-        <button type="button" href="" (click)="selectAllCommercialParts()"
+        <button type="button" (click)="selectAllCommercialParts()"
                 class="list-group-item list-group-item-action list-group-item-primary text-center">
           All parts
         </button>
@@ -112,7 +112,6 @@
           </span>
         </div>
       </div>
-
 
       <mat-paginator
         (page)="onPageChange($event)"
