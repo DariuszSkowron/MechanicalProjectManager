@@ -21,8 +21,7 @@
           </tr>
         </table>
         <a *ngFor="let partsOrder of partsOrders"
-           (click)="selectPartsOrder(partsOrder)" class="list-group-item list-group-item-action">
-          <span class="items-xx">
+           (click)="selectPartsOrder(partsOrder)" class="list-group-item list-group-item-action partList">
           <span>
           <select class="form-control" [(ngModel)]="partsOrder.projectId" (change)="updatePartsOrder(partsOrder)">
             <option [ngValue]="null" selected disabled hidden>Please specify project</option>
@@ -42,7 +41,6 @@
           <a (click)="deletePartsOrder(partsOrder)" class="btn-delete-partsOrder">
             <i class="fas fa-trash"></i>
           </a>
-            </span>
             </span>
         </a>
       </div>
